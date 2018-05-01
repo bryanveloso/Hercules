@@ -335,14 +335,14 @@ job3_guil01,82,95,3	script	Daora#3rdgc02	4_F_DESERT,{
 			mes "Or do you need something?";
 			next;
 			mes "[Daora]";
-			mes "Ah, I'm not selling liquir to someone who's started the special task.";
+			mes "Ah, I'm not selling liquor to someone who's started the special task.";
 			next;
 			switch(select("Not selling liquor...", "I need information.", "Fine then punk!")) {
 			case 1:
 				mes "[Daora]";
 				mes "Hey, you are performing a task now.";
 				mes "And you want me to sell you booze?!";
-				mes "Is every assasin like you? Lazy boozers?";
+				mes "Is every assassin like you? Lazy boozers?";
 				close;
 			case 2:
 				mes "[Daora]";
@@ -563,7 +563,7 @@ job3_guil01,82,95,3	script	Daora#3rdgc02	4_F_DESERT,{
 						mes "[Daora]";
 						mes "Umm~.";
 						mes "Right. There is a secret";
-						mes "you can't tell anyone while perfoming a task.";
+						mes "you can't tell anyone while performing a task.";
 						next;
 						mes "[Daora]";
 						mes "In those regards, you surpass the standards.";
@@ -1064,7 +1064,7 @@ job3_guil01,16,20,4	script	Mayshell#3rdgc03	4_F_KHELLISIA,{
 		}
 		mes "[Mayshell]";
 		mes "You got a new qualification for completing this task.";
-		mes "It's a shadow of our assasin as a shadow of the world...";
+		mes "It's a shadow of our assassin as a shadow of the world...";
 		next;
 		mes "[Mayshell]";
 		mes "I'm going to give you the qualification to be a ^4d4dffGuillotine Cross^000000.";
@@ -1126,7 +1126,7 @@ job3_guil01,16,20,4	script	Mayshell#3rdgc03	4_F_KHELLISIA,{
 		mes "[Mayshell]";
 		mes "It's funny.";
 		mes "We live for checking our comrades...";
-		mes "But it's a rule of the assasin.";
+		mes "But it's a rule of the assassin.";
 		next;
 		mes "[Mayshell]";
 		mes "In a dark night, it's the fate of a person who is going on the shadow of the moon.";
@@ -1289,7 +1289,7 @@ ve_in,228,108,3	script	Waitress#3rdgc04	1_F_PUBGIRL,{
 							next;
 							mes "[Waitress]";
 							mes "A business in a village can keep up with customers.";
-							mes "Thesedays, adventurers have been visiting more often.";
+							mes "These days, adventurers have been visiting more often.";
 							next;
 							select("Any suspicious visitors?");
 							mes "[Waitress]";
@@ -1364,7 +1364,7 @@ ve_in,228,108,3	script	Waitress#3rdgc04	1_F_PUBGIRL,{
 		}
 	} else {
 		mes "Hi~!";
-		mes "We can see often each other.";
+		mes "We can see each other often.";
 		next;
 		mes "[Madelle]";
 		mes "A meal? Liquor?";
@@ -1376,7 +1376,7 @@ ve_in,228,108,3	script	Waitress#3rdgc04	1_F_PUBGIRL,{
 ve_in,246,303,3	script	Young Merchant#3rdgc05	4_M_RACHMAN2,{
 	if (job_3rd_gc < 6) {
 		mes "[Young Merchant]";
-		mes "If you want to buy stuff, go to this person.";
+		mes "If you want to buy stuff, come to me!";
 		mes "I'm a distributor.";
 		close;
 	}
@@ -1400,14 +1400,14 @@ ve_in,246,303,3	script	Young Merchant#3rdgc05	4_M_RACHMAN2,{
 				}
 			} else {
 				mes "[Young Merchant]";
-				mes "How about increasing potion in next time...";
+				mes "How about bringing in more potions next time...";
 				mes "Um, do you have something to tell me?";
 				next;
 				switch(select("Do you know Crave?", "Give me a potion.")) {
 				case 1:
 					mes "[Crave]";
 					mes "I'm Crave, who are you...?";
-					//mes "You're not a usual stuff in connection.."; //FIXME: Dialogue.
+					mes "Hmm you're not one of the regulars..";
 					next;
 					mes "[Crave]";
 					mes "Ah, is it about Daora?";
@@ -1424,9 +1424,9 @@ ve_in,246,303,3	script	Young Merchant#3rdgc05	4_M_RACHMAN2,{
 					mes "It was a girl...";
 					next;
 					mes "[Crave]";
-					mes "She buys food and the necessities of life regularly in the morning and afternoon.";
+					mes "She shops regularly in the morning and afternoon.";
 					mes "I wanted to know more about her, because she was pretty.";
-					mes "But there is no person who knows her residence.";
+					mes "But no one seems to know where she lives.";
 					next;
 					mes "[Crave]";
 					mes "Is it a mysterious person?";
@@ -1490,7 +1490,7 @@ ve_in,246,303,3	script	Young Merchant#3rdgc05	4_M_RACHMAN2,{
 				case 2:
 					mes "[Young Merchant]";
 					mes "Hmm? It's reasonable.";
-					mes "I have to be quick in visual learning for living as a merchant.";
+					mes "I have to be quick in visual learning to be a merchant.";
 					next;
 					mes "[Young Merchant]";
 					mes "I have to memorize the faces of people who do business with me so I can make a profit.";
