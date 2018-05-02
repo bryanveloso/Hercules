@@ -1106,7 +1106,7 @@ alberta_in,23,104,4	script	Grandpa Turtle#tur	2_M_PHARMACIST,{
 	}
 }
 
--	script	::Sailor_alberta	FAKE_NPC,{
+-	script	Gotanblue::Sailor_alberta	FAKE_NPC,{
 	if (TURTLE || (MISC_QUEST & 65536)) {
 		mes "[Gotanblue]";
 		mes "Heh...";

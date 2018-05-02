@@ -48,7 +48,7 @@ alberta,246,40,3	duplicate(Girl_louyang)	Girl#0lou	4_F_CHNDRESS1
 alberta,246,51,4	duplicate(PR_Officer_moscovia)	Moscovia P.R. Officer#1	4_F_RUSWOMAN2
 
 //== quests/quests_alberta.txt =============================
-alberta,244,118,4	duplicate(Sailor_alberta)	Sailor#tur	4_M_SEAMAN
+alberta,244,118,4	duplicate(Sailor_alberta)	Gotanblue#tur	4_M_SEAMAN
 alberta,246,114,4	duplicate(Turtle_Scholar_alberta)	Turtle Island Scholar	2_M_MOLGENSTEIN
 
 //== quests/skills/merchant_skills.txt =====================
