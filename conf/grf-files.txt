@@ -2,7 +2,7 @@
 // GRF Files
 // Add as many as needed.
 //-----------------------------------------
-grf: grf/maps.grf
+grf: grfs/maps.grf
 
 //-----------------------------------------
 // Data Directory
