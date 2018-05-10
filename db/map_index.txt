@@ -889,6 +889,15 @@ int_land01
 int_land02
 int_land03
 int_land04
+lasagna
+lasa_fild01
+lasa_fild02
+lasa_dun01
+lasa_dun02
+lasa_dun03
+conch_in
+lasa_in01
+lasa_dun_q
 prt_fild08d
 prt_fild08c
 prt_fild08b
