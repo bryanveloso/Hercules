@@ -91,7 +91,7 @@ OnInit:
 	end;
 }
 
-lasa_fild01,53,322,3	script	Applicant Paul#drmt13	4_M_MERCAT1,4,4,{
+lasa_fild01,53,322,3	script	Applicant Paul#drm1	4_M_MERCAT1,4,4,{
 	if (Class != Job_Summoner) {
 		mes "[Paul]";
 		mes "~Shrieks~ You startled me!";
@@ -132,7 +132,7 @@ lasa_fild01,53,322,3	script	Applicant Paul#drmt13	4_M_MERCAT1,4,4,{
 		mes "...Stop fighting, you two!";
 		mes "Hey, there. Newcomer.";
 		mes "You can ask me if there is something you'd like to know.";
-		npctalk("You can ask me if there is something you'd like to know.", "Vigilante Gnocchi#drmt13");
+		npctalk("You can ask me if there is something you'd like to know.", "Vigilante Gnocchi#drm1");
 		setquest 7723;// The potential within
 		close;
 	case 1:
@@ -151,22 +151,22 @@ lasa_fild01,53,322,3	script	Applicant Paul#drmt13	4_M_MERCAT1,4,4,{
 	}
 OnTouch:
 	if (Class == Job_Summoner && questprogress(7723) == 0) {
-		npctalk("You, dimwit! Nothing beats damage! You should boost your STR first!", "Applicant Paul#drmt13");
+		npctalk("You, dimwit! Nothing beats damage! You should boost your STR first!", "Applicant Paul#drm1");
 		sleep2 2000;
-		npctalk("You have no idea! DEX comes first if you want your attack to be successful!!", "Applicant MacCarnie#drmt13");
+		npctalk("You have no idea! DEX comes first if you want your attack to be successful!!", "Applicant MacCarnie#drm1");
 		sleep2 1000;
-		emotion ET_STARE, getnpcid(0, "Applicant Paul#drmt13");
-		emotion ET_OHNO, getnpcid(0, "Applicant MacCarnie#drmt13");
+		emotion ET_STARE, getnpcid(0, "Applicant Paul#drm1");
+		emotion ET_OHNO, getnpcid(0, "Applicant MacCarnie#drm1");
 	}
 	end;
 OnInit:
-	if (strnpcinfo(0) == "Applicant Paul#drmt13")
+	if (strnpcinfo(0) == "Applicant Paul#drm1")
 		questinfo 7723, QTYPE_QUEST, 1;
 	end;
 }
-lasa_fild01,50,321,6	duplicate(Applicant Paul#drmt13)	Applicant MacCarnie#drmt13	4_M_MERCAT1
+lasa_fild01,50,321,6	duplicate(Applicant Paul#drm1)	Applicant MacCarnie#drm1	4_M_MERCAT1
 
-lasa_fild01,54,325,3	script	Vigilante Gnocchi#drmt13	4_DR_SOLDIER,{
+lasa_fild01,54,325,3	script	Vigilante Gnocchi#drm1	4_DR_SOLDIER,{
 	if (Class != Job_Summoner) {
 		mes "[Vigilante Gnocchi]";
 		mes "Ahem! This is like a gateway to the Far-Star Continent.";
