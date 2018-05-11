@@ -14,11 +14,11 @@
 lasa_fild01,47,297,0	script	#doint_evt01	HIDDEN_WARP_NPC,1,1,{
 	end;
 OnTouch:
-	if (Class == Job_Summoner && isbegin_quest(7711) == 0) {
+	if (Class == Job_Summoner && questprogress(7711) == 0) {
 		sleep2 100;
-		npctalk "Hey, newbie! Get over here!", "Vigilante Ajegna#doram0", bc_self;
-		npctalk "Come on over here! Click me, quick!", "Vigilante Ajegna#doram0", bc_self;
-		setquest 7711;// Beginning
+		npctalk("Hey, newbie! Get over here!", "Vigilante Ajegna#doram0");
+		npctalk("Come on over here! Click me, quick!", "Vigilante Ajegna#doram0");
+		setquest 7711; // Beginning
 	}
 	end;
 }
@@ -34,7 +34,7 @@ lasa_fild01,49,304,3	script	Vigilante Ajegna#doram0	4_DR_SOLDIER,{
 		mes "Why don't you just return to your village from here?";
 		close;
 	}
-	switch( isbegin_quest(7712) ) {
+	switch( questprogress(7712) ) {
 	case 0:
 		mes "[Vigilante Ajegna]";
 		mes "Oh, there you go!";
@@ -63,7 +63,7 @@ lasa_fild01,49,304,3	script	Vigilante Ajegna#doram0	4_DR_SOLDIER,{
 		next;
 		mes "[Vigilante Ajegna]";
 		mes "Do you see the Doram over there? He's ^4d4dffAglio^000000. He'll let you in on some useful stuff. Go meet the guy.";
-		if (isbegin_quest(7711) == 0)
+		if (questprogress(7711) == 0)
 			setquest 7711;
 		completequest 7711;// Beginning
 		setquest 7712;// Where am I? Who am I??
@@ -91,14 +91,14 @@ OnInit:
 	end;
 }
 
-lasa_fild01,53,322,3	script	Applicant Paul#doramt13	4_M_MERCAT1,4,4,{
+lasa_fild01,53,322,3	script	Applicant Paul#drmt13	4_M_MERCAT1,4,4,{
 	if (Class != Job_Summoner) {
 		mes "[Paul]";
 		mes "~Shrieks~ You startled me!";
 		mes "A human? Wow, what an odd-looking one!";
 		close;
 	}
-	switch( isbegin_quest(7723) ) {
+	switch( questprogress(7723) ) {
 	case 0:
 		mes "[Paul]";
 		mes "So, you're that adventurer Doram, eh?";
@@ -132,7 +132,7 @@ lasa_fild01,53,322,3	script	Applicant Paul#doramt13	4_M_MERCAT1,4,4,{
 		mes "...Stop fighting, you two!";
 		mes "Hey, there. Newcomer.";
 		mes "You can ask me if there is something you'd like to know.";
-		npctalk "You can ask me if there is something you'd like to know.", "Vigilante Gnocchi#doramt13", bc_self;
+		npctalk("You can ask me if there is something you'd like to know.", "Vigilante Gnocchi#drmt13");
 		setquest 7723;// The potential within
 		close;
 	case 1:
@@ -150,32 +150,32 @@ lasa_fild01,53,322,3	script	Applicant Paul#doramt13	4_M_MERCAT1,4,4,{
 		close;
 	}
 OnTouch:
-	if (Class == Job_Summoner && isbegin_quest(7723) == 0) {
-		npctalk "You, dimwit! Nothing beats damage! You should boost your STR first!", "Applicant Paul#doramt13", bc_self;
+	if (Class == Job_Summoner && questprogress(7723) == 0) {
+		npctalk("You, dimwit! Nothing beats damage! You should boost your STR first!", "Applicant Paul#drmt13");
 		sleep2 2000;
-		npctalk "You have no idea! DEX comes first if you want your attack to be successful!!", "Applicant MacCarnie#doramt13", bc_self;
+		npctalk("You have no idea! DEX comes first if you want your attack to be successful!!", "Applicant MacCarnie#drmt13");
 		sleep2 1000;
-		emotion ET_STARE, getnpcid(0, "Applicant Paul#doramt13");
-		emotion ET_OHNO, getnpcid(0, "Applicant MacCarnie#doramt13");
+		emotion ET_STARE, getnpcid(0, "Applicant Paul#drmt13");
+		emotion ET_OHNO, getnpcid(0, "Applicant MacCarnie#drmt13");
 	}
 	end;
 OnInit:
-	if (strnpcinfo(0) == "Applicant Paul#doramt13")
+	if (strnpcinfo(0) == "Applicant Paul#drmt13")
 		questinfo 7723, QTYPE_QUEST, 1;
 	end;
 }
-lasa_fild01,50,321,6	duplicate(Applicant Paul#doramt13)	Applicant MacCarnie#doramt13	4_M_MERCAT1
+lasa_fild01,50,321,6	duplicate(Applicant Paul#drmt13)	Applicant MacCarnie#drmt13	4_M_MERCAT1
 
-lasa_fild01,54,325,3	script	Vigilante Gnocchi#doramt13	4_DR_SOLDIER,{
+lasa_fild01,54,325,3	script	Vigilante Gnocchi#drmt13	4_DR_SOLDIER,{
 	if (Class != Job_Summoner) {
 		mes "[Vigilante Gnocchi]";
 		mes "Ahem! This is like a gateway to the Far-Star Continent.";
 		mes "No more humans are allowed!";
 		close;
 	}
-	switch( isbegin_quest(7723) ) {
+	switch( questprogress(7723) ) {
 	case 0:
-		npctalk "Do you happen to know why they are making so much noise?", "", bc_self;
+		npctalk("Do you happen to know why they are making so much noise?", "");
 		end;
 	case 1:
 		mes "[Vigilante Gnocchi]";
@@ -223,7 +223,7 @@ lasa_fild01,54,325,3	script	Vigilante Gnocchi#doramt13	4_DR_SOLDIER,{
 	mes "[Vigilante Gnocchi]";
 	mes "DEX is highly crucial in the early stages because it is what boosts Accuracy.";
 	mes "This can be a difficult concept to get, so you should try boosting this and that to find your own way.";
-	if (isbegin_quest(7723) == 1) {
+	if (questprogress(7723) == 1) {
 		completequest 7723;// The potential within
 		getexp 50,50;
 		next;
@@ -232,8 +232,8 @@ lasa_fild01,54,325,3	script	Vigilante Gnocchi#doramt13	4_DR_SOLDIER,{
 	}
 	close;
 OnInit:
-	questinfo 7723, QTYPE_QUEST, 1;
-	setquestinfo_req 7723, 7723,1;// todo : display when isbegin_quest(7723) == 1 only
+	questinfo(7723, QTYPE_QUEST, 1);
+	// setquestinfo_req 7723, 7723,1;// todo : display when questprogress(7723) == 1 only
 	end;
 }
 
@@ -293,7 +293,7 @@ lasa_fild01,60,322,3	script	Vigilante Aglio#doram02	4_DR_AGLIO,{
 		next;
 		mes "[Vigilante Aglio]";
 		mes "Go ahead and get rid of some ^4d4dffEggring^000000, will you? ^4d4dffThree^000000 should do for now.";
-		if (isbegin_quest(7712) == 0)
+		if (questprogress(7712) == 0)
 			setquest 7712;// Where am I? Who am I??
 		completequest 7712;
 		setquest 7713;// First Battle!
@@ -303,11 +303,13 @@ lasa_fild01,60,322,3	script	Vigilante Aglio#doram02	4_DR_AGLIO,{
 		mes "^4d4dff!- Notice -!^000000";
 		mes "You have accepted a quest from an NPC.";
 		mes "^4d4dffCheck out the quest details by pressing the shortcut key [Alt+U],^000000 or through the Quest icon found in the menu tray.^000000";
-		close3;
+		close2;
+		cutin "", 255;
+		end;
 	}
 	if (lasagna_quest[0] == 1 || lasagna_quest[0] == 2 || lasagna_quest[0] == 3) {
 		if (lasagna_quest[0] == 1) {
-			if (checkquest(7713,HUNTING) < 2) {
+			if (questprogress(7713,HUNTING) < 2) {
 				mes "[Vigilante Aglio]";
 				mes "Alright, to warm up, go and eliminate ^4d4dffthree Eggrings^000000.";
 				next;
@@ -399,9 +401,9 @@ lasa_fild01,60,322,3	script	Vigilante Aglio#doram02	4_DR_AGLIO,{
 		classchange( 4_DR_KID_01, "Kid#doram03t", bc_self );
 		mes "[Vigilante Aglio]";
 		mes "I'll direct you to the village, now.";
-		npctalk "....Aglioooooo!!", "Kid#doram03t", bc_self;
+		npctalk("....Aglioooooo!!", "Kid#doram03t");
 		next;
-		npctalk "Oh, my days! You startled me!", "", bc_self;
+		npctalk("Oh, my days! You startled me!", "");
 		mes "[Vigilante Aglio]";
 		mes "What's up?";
 		mes "Oh, you're the youngest kitten of the tool merchant!";
@@ -436,9 +438,9 @@ lasa_fild01,60,322,3	script	Vigilante Aglio#doram02	4_DR_AGLIO,{
 		mes "Come on...I'm the cutest, youngest kitten from Lasagna!";
 		mes "Anyway, I hope you help me by finding that box. Please.";
 		next;
-		npctalk "You know that I love you, don't you?", "Kid#doram03t", bc_self;
+		npctalk("You know that I love you, don't you?", "Kid#doram03t");
 		sleep2 1000;
-		npctalk "Just go, already!", "", bc_self;
+		npctalk("Just go, already!", "");
 		classchange( HIDDEN_WARP_NPC, "Kid#doram03t", bc_self );
 		mes "[Vigilante Aglio]";
 		mes ".....";
@@ -506,7 +508,9 @@ lasa_fild01,60,322,3	script	Vigilante Aglio#doram02	4_DR_AGLIO,{
 		mes "Arrows will be generated pointing toward the location of the target.^000000";
 		cutin "navi02.bmp",4;
 		navigateto "lasagna",168,124;
-		close3;
+		close2;
+		cutin "", 255;
+		end;
 	}
 	if (lasagna_quest[0] == 5) {
 		mes "[Vigilante Aglio]";
@@ -528,10 +532,10 @@ lasa_fild01,60,322,3	script	Vigilante Aglio#doram02	4_DR_AGLIO,{
 	mes "Well, problems do occur at the harbor from time to time, but I thought it wouldn't be an issue for you.";
 	close;
 OnInit:
-	questinfo 7715, QTYPE_QUEST, 1;
-	setquestinfo_req 7715, 7713,2;
-	questinfo 7712, QTYPE_QUEST, 1;
-	setquestinfo_req 7712, 7712,1;
+	questinfo(7715, QTYPE_QUEST, 1);
+	// setquestinfo_req 7715, 7713,2;
+	questinfo(7712, QTYPE_QUEST, 1);
+	// setquestinfo_req 7712, 7712,1;
 	// questinfo 7713, QTYPE_QUEST, 1;
 	// setquestinfo_req 7713, 7713,2;// todo display when HUNTING is QUEST_COMPLETE
 	end;
@@ -548,7 +552,7 @@ lasa_fild01,132,374,3	script	Sloth#doram	4_DR_KID_01,3,3,{
 		mes "- and try again. -";
 		close;
 	}
-	switch( isbegin_quest(7719) ) {
+	switch( questprogress(7719) ) {
 	case 0:
 		mes "[Sloth]";
 		mes "Hmm...You look energetic.";
@@ -590,7 +594,7 @@ lasa_fild01,132,374,3	script	Sloth#doram	4_DR_KID_01,3,3,{
 			close;
 		}
 	case 1:
-		if (checkquest(7719,HUNTING) != 2) {
+		if (questprogress(7719,HUNTING) != 2) {
 			mes "[Sloth]";
 			mes "What I want isn't too much.";
 			mes "Just ^4d4dffpluck the Red Grass and collect 2 Red Herbs^000000 around here. That's all.";
@@ -636,10 +640,10 @@ lasa_fild01,132,374,3	script	Sloth#doram	4_DR_KID_01,3,3,{
 		close;
 	}
 OnTouch:
-	if (isbegin_quest(7719) == 2)
-		npctalk "~Growling~", "", bc_self;
+	if (questprogress(7719) == 2)
+		npctalk("~Growling~", "");
 	else
-		npctalk "Hey, there! Get over here for a minute!", "", bc_self;
+		npctalk("Hey, there! Get over here for a minute!", "");
 	end;
 OnInit:
 	questinfo 7719, QTYPE_QUEST, 1;
@@ -656,7 +660,7 @@ lasa_fild01,103,344,3	script	Well-known Troublemaker	4_DR_KID_01,3,3,{
 		mes "This is like a gateway. It cannot and should not be tainted by humans!";
 		close;
 	}
-	switch( isbegin_quest(7721) ) {
+	switch( questprogress(7721) ) {
 	case 0:
 		mes "[Well-known Kittie]";
 		mes "Hey, buddy!";
@@ -695,8 +699,8 @@ lasa_fild01,103,344,3	script	Well-known Troublemaker	4_DR_KID_01,3,3,{
 			close;
 		}
 	case 1:
-		.@quest_hunting = checkquest(7721,HUNTING);
-		.@quest_playtime = checkquest(7721,PLAYTIME);
+		.@quest_hunting = questprogress(7721,HUNTING);
+		.@quest_playtime = questprogress(7721,PLAYTIME);
 		if (.@quest_playtime < 2 && .@quest_hunting < 2) {
 			mes "[Well-known Kittie]";
 			mes "Eliminate ^4d4dff3 Leaf Lunatics and 2 Grass Fabres^000000 swarming around here within ^4d4dff10 minutes^000000!";
@@ -776,20 +780,20 @@ lasa_fild01,103,344,3	script	Well-known Troublemaker	4_DR_KID_01,3,3,{
 		close2;
 		classchange( 4_DR_AGLIO, "Vigilante Aglio#doram12", bc_self );
 		sleep2 1000;
-		npctalk "You! You're picking a fight with another innocent passerby?", "Vigilante Aglio#doram12", bc_self;
+		npctalk("You! You're picking a fight with another innocent passerby?", "Vigilante Aglio#doram12");
 		sleep2 2000;
-		npctalk "Picking a fight? This is what we call training!", "Well-known Troublemaker", bc_self;
+		npctalk("Picking a fight? This is what we call training!", "Well-known Troublemaker");
 		sleep2 2000;
-		npctalk "Shut your mouth! You're joining the Vigilante Corp the moment you return to the village, got it?", "Vigilante Aglio#doram12", bc_self;
+		npctalk("Shut your mouth! You're joining the Vigilante Corp the moment you return to the village, got it?", "Vigilante Aglio#doram12");
 		sleep2 2000;
-		npctalk "Well, uh...I'm...uh...I'm free-spirited! That's all!", "Well-known Troublemaker", bc_self;
+		npctalk("Well, uh...I'm...uh...I'm free-spirited! That's all!", "Well-known Troublemaker");
 		sleep2 2000;
-		npctalk "Enough. " + strcharinfo(0) + " the next destination is the tool shop in the village. I'll let you know where it is, again.", "Vigilante Aglio#doram12", bc_self;
+		npctalk("Enough. " + strcharinfo(0) + " the next destination is the tool shop in the village. I'll let you know where it is, again.", "Vigilante Aglio#doram12");
 		sleep2 2000;
-		npctalk "I'll see you again in the village!", "Vigilante Aglio#doram12", bc_self;
+		npctalk("I'll see you again in the village!", "Vigilante Aglio#doram12");
 		navigateto "lasagna",168,124;
 		sleep2 2000;
-		npctalk "You're just full of it.", "Well-known Troublemaker", bc_self;
+		npctalk("You're just full of it.", "Well-known Troublemaker");
 		classchange( HIDDEN_WARP_NPC, "Vigilante Aglio#doram12", bc_self );
 		end;
 	case 2:
@@ -807,19 +811,19 @@ lasa_fild01,103,344,3	script	Well-known Troublemaker	4_DR_KID_01,3,3,{
 	}
 
 OnTouch:
-	if (Class == Job_Summoner && isbegin_quest(7721) == 0)
-		npctalk "Meeow?? Is this another out-of-towner Doram that I haven't met before?", "", bc_self;
+	if (Class == Job_Summoner && questprogress(7721) == 0)
+		npctalk("Meeow?? Is this another out-of-towner Doram that I haven't met before?", "");
 	end;
 
 OnInit:
-	questinfo 7721, QTYPE_QUEST, 1;
-	setquestinfo_req 7721, 7716,1;
+	questinfo(7721, QTYPE_QUEST, 1);
+	// setquestinfo_req 7721, 7716,1;
 	end;
 }
 
 lasa_fild01,102,342,7	script	Vigilante Aglio#doram12	HIDDEN_WARP_NPC,{ end; }
 
--	shop	Cat Paw Shrimp Merchant#shop::doram_shrimp	-1,515:-1,567:-1,11602:-1
+-	shop	Shrimp Merchant#shop::doram_shrimp	-1,515:-1,567:-1,11602:-1
 
 lasagna,168,125,3	script	Kid#doram04t	4_DR_KID_01,{
 	if (lasagna_quest[0] == 5) {
@@ -843,7 +847,7 @@ lasagna,168,125,3	script	Kid#doram04t	4_DR_KID_01,{
 			classchange( HIDDEN_WARP_NPC, "", bc_self );
 			lasagna_quest[0] = 6;
 			next;
-			npctalk "...Wow, that was fast.", "Tool Merchant#doram05t", bc_self;
+			npctalk("...Wow, that was fast.", "Tool Merchant#doram05t");
 			mes "[Tool Merchant]";
 			mes "Anyway, thank you for finding the box.";
 			mes "If you have the time, sit down and talk with me.";
@@ -867,11 +871,11 @@ lasagna,168,125,3	script	Kid#doram04t	4_DR_KID_01,{
 	mes "I was told you're headed to the New Continent.";
 	mes "I want to go there myself, too!";
 	close2;
-	npctalk "You're too young! Just join the Vigilante Corp.", "Tool Merchant#doram05t", bc_self;
+	npctalk("You're too young! Just join the Vigilante Corp.", "Tool Merchant#doram05t");
 	end;
 OnInit:
-	questinfo 7716, QTYPE_QUEST, 1;
-	setquestinfo_req 7716, 7716,1;// todo display when Active, removed when completed
+	questinfo(7716, QTYPE_QUEST, 1);
+	// setquestinfo_req 7716, 7716,1;// todo display when Active, removed when completed
 	end;
 }
 
@@ -897,7 +901,7 @@ lasagna,165,125,5	script	Tool Merchant#doram05t	4_DR_M_01,{
 			classchange( HIDDEN_WARP_NPC, "Kid#doram04t", bc_self );
 			lasagna_quest[0] = 6;
 			next;
-			npctalk "...Wow, that was fast.", "", bc_self;
+			npctalk("...Wow, that was fast.", "");
 			mes "[Tool Merchant]";
 			mes "Anyway, thank you for finding the box.";
 			mes "If you have the time, sit down and talk with me.";
@@ -1051,7 +1055,7 @@ lasagna,224,126,5	script	Healer Haru#doram07t	4_DR_M_02,{
 		mes "Click the ^4d4dffSkill^000000 button to open the Skill Window.";
 		mes "FYI, the shortcut key is ^4d4dffAlt+S^000000.";
 		getexp 100,100;
-		if (isbegin_quest(7722) == 0) {
+		if (questprogress(7722) == 0) {
 			setquest 7722;// EMT
 			completequest 7722;// EMT
 		}
@@ -1088,7 +1092,7 @@ lasagna,224,126,5	script	Healer Haru#doram07t	4_DR_M_02,{
 		mes "It's going to be a lot easier to use it.";
 		close;
 	case 3:
-		if (isbegin_quest(7718) == 0 || lasagna_quest[0] == 7) {
+		if (questprogress(7718) == 0 || lasagna_quest[0] == 7) {
 			mes "[Healer Haru]";
 			mes "Oh, so you're here to learn the potion combination?";
 			mes "Then, you need a combination scroll first.";
@@ -1109,9 +1113,9 @@ lasagna,224,126,5	script	Healer Haru#doram07t	4_DR_M_02,{
 			mes "[Healer Haru]";
 			mes "The herbs are growing in the entrance of the village. Did you see them?";
 			mes "^4d4dffGo and collect 1 Red Herb in the entrance of the village.^000000 This should be a good practice.";
-			if (isbegin_quest(7717) == 1)
+			if (questprogress(7717) == 1)
 				erasequest 7717;
-			if (isbegin_quest(7718) == 0)
+			if (questprogress(7718) == 0)
 				setquest 7718;// I'm used to this
 			if (lasagna_quest[0] == 7)
 				lasagna_quest[0] = 8;
@@ -1120,10 +1124,10 @@ lasagna,224,126,5	script	Healer Haru#doram07t	4_DR_M_02,{
 			mes "Come on. Hurry!";
 			close2;
 			if (lasagna_quest[0] == 7 && Class == Job_Summoner)
-				npctalk "Hey, there. Newbie Doram. Talk to me.", "Hypnotist#doram08t", bc_self;
+				npctalk("Hey, there. Newbie Doram. Talk to me.", "Hypnotist#doram08t");
 			end;
 		}
-		if (isbegin_quest(7718) == 1) {
+		if (questprogress(7718) == 1) {
 			if (countitem(507) > 0) {
 				if (checkweight(1001,5) == 0) {
 					mes "- Hold on a second here!! -";
@@ -1165,9 +1169,9 @@ lasagna,224,126,5	script	Healer Haru#doram07t	4_DR_M_02,{
 				mes "[Healer Haru]";
 				mes "Here's the directions. To read the combination scroll,";
 				mes "^4d4dffRight-click the scroll,^000000 and then, click the ^4d4dffbook-shaped icon^000000 found in the description window.";
-				if (isbegin_quest(7717) > 0)
+				if (questprogress(7717) > 0)
 					erasequest 7717;
-				if (isbegin_quest(7718) == 0)
+				if (questprogress(7718) == 0)
 					setquest 7718;// I'm used to this
 				completequest 7718;
 				getexp 200,200;
@@ -1176,7 +1180,7 @@ lasagna,224,126,5	script	Healer Haru#doram07t	4_DR_M_02,{
 				getitem 12849,10;// Combination Kit
 				getitem 507,1;// Red Herb
 				getitem 512,1;// Apple
-				npctalk "Oh! Here you are!", "Vigilante Aglio#doram09", bc_self;
+				npctalk("Oh! Here you are!", "Vigilante Aglio#doram09");
 				classchange( 4_DR_AGLIO, "Vigilante Aglio#doram09", bc_self );
 				lasagna_quest[0] = 9;
 				close;
@@ -1286,8 +1290,8 @@ lasagna,230,127,3	script	Vigilante Aglio#doram09	HIDDEN_WARP_NPC,{
 	}
 }
 
-izlude,117,165,3	script	Cat Paw Shrimp Merchant#iz	4_M_MERCAT1,{
-	npctalk "Here are the shrimps, carrots and catnip!", "", bc_self;
+izlude,117,165,3	script	Shrimp Merchant#iz	4_M_MERCAT1,{
+	npctalk("Here are the shrimps, carrots and catnip!", "");
 	switch( select( "Buy", "Sell", "Cancel" ) ) {
 	case 1:
 		callshop "doram_shrimp",1;
@@ -1296,43 +1300,43 @@ izlude,117,165,3	script	Cat Paw Shrimp Merchant#iz	4_M_MERCAT1,{
 		callshop "doram_shrimp",2;
 		end;
 	case 3:
-		npctalk "Come back again soon!", "", bc_self;
+		npctalk("Come back again soon!", "");
 		end;
 	}
 }
 
-alberta,111,159,3	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#alb	4_M_MERCAT1
-aldeba_in,89,56,3	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#ald	4_M_MERCAT1
-amatsu,102,122,5	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#ama	4_M_MERCAT1
+alberta,111,159,3	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#alb	4_M_MERCAT1
+aldeba_in,89,56,3	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#ald	4_M_MERCAT1
+amatsu,102,122,5	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#ama	4_M_MERCAT1
 // ayo_in01,15,177
-brasilis,249,257,3	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#bra	4_M_MERCAT1
-comodo,103,136,3	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#com	4_M_MERCAT1
-dewata,193,169,5	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#dew	4_M_MERCAT1
-einbroch,164,316,3	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#ein	4_M_MERCAT1
-ein_in01,194,22,3	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#ein1	4_M_MERCAT1
-dic_in01,242,119,5	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#dic	4_M_MERCAT1
-ecl_in01,72,86,3	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#ecl	4_M_MERCAT1
-geffen_in,75,140,3	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#gef	4_M_MERCAT1
-gonryun,147,88,5	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#gon	4_M_MERCAT1
-hugel,76,165,5	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#hug	4_M_MERCAT1
-izlude_a,117,165,3	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#iz_a	4_M_MERCAT1
-izlude_b,117,165,3	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#iz_b	4_M_MERCAT1
-izlude_c,117,165,3	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#iz_c	4_M_MERCAT1
-izlude_d,117,165,3	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#iz_d	4_M_MERCAT1
-lasagna,166,117,6	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#las	4_M_MERCAT1
-lhz_in02,29,219,5	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#lhz	4_M_MERCAT1
-lou_in02,241,168,5	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#lou	4_M_MERCAT1
-malaya,286,175,3	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#mal	4_M_MERCAT1
-mora,110,118,3	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#mora	4_M_MERCAT1
-morocc,169,105,3	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#moro	4_M_MERCAT1
-mosk_in,30,246,3	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#mosk	4_M_MERCAT1
-payon,157,96,5	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#pay	4_M_MERCAT1
-prontera,137,223,5	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#prt	4_M_MERCAT1
-ra_in01,243,272,5	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#ra	4_M_MERCAT1
-um_in,104,118,3	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#um	4_M_MERCAT1
-ve_in,263,303,3	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#ve	4_M_MERCAT1
-xmas_in,32,38,5	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#xma	4_M_MERCAT1
-yuno,205,116,5	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#yu	4_M_MERCAT1
+brasilis,249,257,3	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#bra	4_M_MERCAT1
+comodo,103,136,3	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#com	4_M_MERCAT1
+dewata,193,169,5	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#dew	4_M_MERCAT1
+einbroch,164,316,3	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#ein	4_M_MERCAT1
+ein_in01,194,22,3	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#ein1	4_M_MERCAT1
+dic_in01,242,119,5	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#dic	4_M_MERCAT1
+ecl_in01,72,86,3	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#ecl	4_M_MERCAT1
+geffen_in,75,140,3	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#gef	4_M_MERCAT1
+gonryun,147,88,5	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#gon	4_M_MERCAT1
+hugel,76,165,5	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#hug	4_M_MERCAT1
+izlude_a,117,165,3	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#iz_a	4_M_MERCAT1
+izlude_b,117,165,3	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#iz_b	4_M_MERCAT1
+izlude_c,117,165,3	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#iz_c	4_M_MERCAT1
+izlude_d,117,165,3	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#iz_d	4_M_MERCAT1
+lasagna,166,117,6	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#las	4_M_MERCAT1
+lhz_in02,29,219,5	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#lhz	4_M_MERCAT1
+lou_in02,241,168,5	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#lou	4_M_MERCAT1
+malaya,286,175,3	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#mal	4_M_MERCAT1
+mora,110,118,3	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#mora	4_M_MERCAT1
+morocc,169,105,3	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#moro	4_M_MERCAT1
+mosk_in,30,246,3	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#mosk	4_M_MERCAT1
+payon,157,96,5	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#pay	4_M_MERCAT1
+prontera,137,223,5	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#prt	4_M_MERCAT1
+ra_in01,243,272,5	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#ra	4_M_MERCAT1
+um_in,104,118,3	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#um	4_M_MERCAT1
+ve_in,263,303,3	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#ve	4_M_MERCAT1
+xmas_in,32,38,5	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#xma	4_M_MERCAT1
+yuno,205,116,5	duplicate(Shrimp Merchant#iz)	Shrimp Merchant#yu	4_M_MERCAT1
 
 izlude,195,213,5	script	Con-Chliina Crewman#doi	4_M_MERCAT1,{
 	mes "[Con-Chliina Crewman]";
@@ -1411,7 +1415,7 @@ izlude,138,183,3	script	Vigilante Penne#doect01	4_DR_SOLDIER,{
 		next;
 		mes "This proud cat is getting really talkative...";
 		close2;
-		npctalk "Huh? Are you just passing by?", "", bc_self;
+		npctalk("Huh? Are you just passing by?", "");
 		end;
 	case 3:
 		mes "[Vigilante Penne]";
@@ -1481,15 +1485,15 @@ lasagna,227,187,1	script	Vongolo#dorcon01	4_CAT_SAILOR1,{
 lasagna,220,172,6	script	Master of Property#do_h	4_M_BABYCAT,{
 	.@r = rand(0,4);
 	if (.@r == 0)
-		npctalk "Earth element defeats Wind element.", "", bc_self;
+		npctalk("Earth element defeats Wind element.", "");
 	else if (.@r == 1)
-		npctalk "Water element is superior to Fire element.", "", bc_self;
+		npctalk("Water element is superior to Fire element.", "");
 	else if (.@r == 2)
-		npctalk "Wind element outperforms Water element.", "", bc_self;
+		npctalk("Wind element outperforms Water element.", "");
 	else if (.@r == 3)
-		npctalk "Fire element beats Earth element.", "", bc_self;
+		npctalk("Fire element beats Earth element.", "");
 	else
-		npctalk "Holy element and Dark element are in stark contrast to each other.", "", bc_self;
+		npctalk("Holy element and Dark element are in stark contrast to each other.", "");
 	mes "[Property Cat]";
 	mes "Every life in this world comes with a property.";
 	mes "There are numerous kinds of elements from neutral to four major natural elements, alongside the holy and dark elements.";
@@ -1524,7 +1528,7 @@ lasagna,220,172,6	script	Master of Property#do_h	4_M_BABYCAT,{
 }
 
 lasagna,208,188,3	script	Cat Paw Service#lasagna	4_M_MERCAT1,4,4,{
-	if (Class == Job_Summoner && isbegin_quest(7720) == 0) {
+	if (Class == Job_Summoner && questprogress(7720) == 0) {
 		if (checkweight(1001,2) == 0) {
 			mes "- Hold on a second here!! -";
 			mes "- You have too many items. -";
@@ -1619,7 +1623,7 @@ lasagna,208,188,3	script	Cat Paw Service#lasagna	4_M_MERCAT1,4,4,{
 	case 1:
 		mes "[Cat Paw Commerce Group]";
 		mes "Saved, meow!";
-		savepoint "lasagna",193,183,1,1;
+		savepoint("lasagna",193,183);
 		close;
 	case 2:
 		if (!callfunc("F_CanOpenStorage")) {
@@ -1660,8 +1664,8 @@ lasagna,208,188,3	script	Cat Paw Service#lasagna	4_M_MERCAT1,4,4,{
 		close;
 	}
 OnTouch:
-	if (Class == Job_Summoner && isbegin_quest(7720) != 2)
-		npctalk "Meow! Hey, a new friend! I've got a story to tell you. You don't want to miss this!", "", bc_self;
+	if (Class == Job_Summoner && questprogress(7720) != 2)
+		npctalk("Meow! Hey, a new friend! I've got a story to tell you. You don't want to miss this!", "");
 	end;
 OnInit:
 	questinfo 7720, QTYPE_QUEST, 1;// perma for human
@@ -1670,7 +1674,7 @@ OnInit:
 
 lasagna,171,105,5	script	Emergency Patient#dorco	4_M_DIEMAN,5,5,{
 	emotion ET_HELP;
-	npctalk "S-someone help me... Dorams, they're so cute I'm going to die...", "", bc_self;
+	npctalk("S-someone help me... Dorams, they're so cute I'm going to die...", "");
 	end;
 OnTouch:
 	emotion ET_HELP;
@@ -1690,7 +1694,7 @@ lasagna,200,278,5	script	Recruiter#dorcon01	4_CAT_ADV2,{
 }
 
 lasagna,202,276,5	script	Gomae#dorcon01	4_DR_F_01,{
-	npctalk "I heard that there are illegal anchovy boats tricking people to get on board these days. It's a scary world. The vigilantes have their eyes wide open to catch them.", "", bc_self;
+	npctalk("I heard that there are illegal anchovy boats tricking people to get on board these days. It's a scary world. The vigilantes have their eyes wide open to catch them.", "");
 	end;
 }
 
@@ -1717,30 +1721,30 @@ lasagna,211,186,5	script	Boarding Attendant#dorc	4_CAT_ADV1,5,5,{
 	}
 	end;
 OnTouch:
-	if (isbegin_quest(11445) == 2 && isbegin_quest(14545) == 0)
-		npctalk "Please don't miss the announcement about the details of Con-Chliina!", "", bc_self;
+	if (questprogress(11445) == 2 && questprogress(14545) == 0)
+		npctalk("Please don't miss the announcement about the details of Con-Chliina!", "");
 	end;
 OnInit:
-	questinfo 14545, QTYPE_QUEST, 1;
-	setquestinfo_req 14545, 11445,2;
+	questinfo(14545, QTYPE_QUEST, 1);
+	// setquestinfo_req 14545, 11445,2;
 	end;
 }
 
 lasa_fild01,356,374,7	script	Cow#dorcon01	4_BULL,{
-	npctalk "Moo -", "", bc_self;
+	npctalk("Moo -", "");
 	end;
 }
 lasa_fild01,352,376,5	script	Cow#dorcon02	4_WHITE_COW,{
-	npctalk "Moo - Moo -", "", bc_self;
+	npctalk("Moo - Moo -", "");
 	end;
 }
 lasa_fild01,361,372,3	script	Cow#dorcon03	4_BULL,{
-	npctalk "Bba -", "", bc_self;
+	npctalk("Bba -", "");
 	end;
 }
 
 lasagna,217,192,5	script	Kittie#do_hint01	4_CAT_SAILOR1,{
-	npctalk "F12! F12!", "", bc_self;
+	npctalk("F12! F12!", "");
 	mes "[Kittie]";
 	mes "^4d4dffPress the F12 key and it will bring up the shortcut key slots.^000000";
 	next;
@@ -1871,152 +1875,152 @@ lasagna,134,113,3	script	Hair Designer#dr	4_DR_F_02,{
 }
 
 lasagna,260,134,3	script	Rasmus#dorcon01	4_CAT_SAILOR3,{
-	npctalk "Red yarn will take you to the place you want to go, and the yellow road will take you home. don't forget. If you get lost, follow the red yarn.", "", bc_self;
+	npctalk("Red yarn will take you to the place you want to go, and the yellow road will take you home. don't forget. If you get lost, follow the red yarn.", "");
 	end;
 }
 
 lasagna,244,231,3	script	Crewman of Anchovy Fish	4_CAT_SAILOR1,{
-	npctalk "Follow this yellow cheese road and you'll reach my hometown. I want to go back there one day.", "", bc_self;
+	npctalk("Follow this yellow cheese road and you'll reach my hometown. I want to go back there one day.", "");
 	end;
 }
 
 lasagna,190,239,5	script	Youngster meow#dorcon01	4_CAT_ADV1,{
-	npctalk "I'm the boss of this playground-", "", bc_self;
+	npctalk("I'm the boss of this playground-", "");
 	end;
 }
 
 lasagna,180,230,7	script	Youngster meow#dorcon02	4_CAT_ADV2,{
-	npctalk "Whew, you little kids... You guys are too young for me.", "", bc_self;
+	npctalk("Whew, you little kids... You guys are too young for me.", "");
 	end;
 }
 
 lasagna,192,245,7	script	Youngster meow#dorcon03	4_CAT_REST,{
-	npctalk "There are one ten two ten three ten yarn balls... So many!", "", bc_self;
+	npctalk("There are one ten two ten three ten yarn balls... So many!", "");
 	end;
 }
 
 lasagna,184,234,5	script	Youngster meow#dorcon04	4_M_BABYCAT,{
-	npctalk "Anyone who wants to ride the seesaw- come here-", "", bc_self;
+	npctalk("Anyone who wants to ride the seesaw- come here-", "");
 	end;
 }
 
 lasagna,186,231,3	script	Youngster meow#dorcon05	4_DR_KID_01,{
 	emotion ET_CRY;
-	npctalk "Why Isn't this rolling- Make it roll-", "", bc_self;
+	npctalk("Why Isn't this rolling- Make it roll-", "");
 	end;
 }
 
 lasagna,226,196,5	script	Aram#dorcon01	4_DR_F_02,{
-	npctalk "Is this the famous Pub-Oven?", "Tos#dorcon01", bc_self;
+	npctalk("Is this the famous Pub-Oven?", "Tos#dorcon01");
 	sleep2 2000;
-	npctalk "Stop looking around like a hillbilly!", "", bc_self;
+	npctalk("Stop looking around like a hillbilly!", "");
 	sleep2 2000;
-	npctalk "Wow! Look at this! Would this be the place where all three of them sat down?", "Porto#dorcon01", bc_self;
+	npctalk("Wow! Look at this! Would this be the place where all three of them sat down?", "Porto#dorcon01");
 	sleep2 2000;
-	npctalk "Geesh! You're just screaming that you're a hillbilly!", "", bc_self;
+	npctalk("Geesh! You're just screaming that you're a hillbilly!", "");
 	sleep2 2000;
-	npctalk "Since we're here, Let's make an oven resolution!", "Tos#dorcon01", bc_self;
+	npctalk("Since we're here, Let's make an oven resolution!", "Tos#dorcon01");
 	sleep2 2000;
-	npctalk "That's why we went through the trouble to come here! Just like Peperoncino, Thomas, and Gamberry, we'll unite and become successful!", "Porto#dorcon01", bc_self;
+	npctalk("That's why we went through the trouble to come here! Just like Peperoncino, Thomas, and Gamberry, we'll unite and become successful!", "Porto#dorcon01");
 	sleep2 2000;
-	npctalk "Boss! Three glasses of kaluna milk shaken hard, please! And egg yolk on top!", "Tos#dorcon01", bc_self;
+	npctalk("Boss! Three glasses of kaluna milk shaken hard, please! And egg yolk on top!", "Tos#dorcon01");
 	sleep2 2000;
-	npctalk "Oh, this is embarrassing! How many times do I have to tell you that everyone here has it stirred?!", "", bc_self;
+	npctalk("Oh, this is embarrassing! How many times do I have to tell you that everyone here has it stirred?!", "");
 	sleep2 2000;
-	npctalk "Stirred or shaken, who cares as long as It's tasty?", "Porto#dorcon01", bc_self;
+	npctalk("Stirred or shaken, who cares as long as It's tasty?", "Porto#dorcon01");
 	sleep2 1000;
-	npctalk "don't let people notice that you're from out of town!", "", bc_self;
+	npctalk("don't let people notice that you're from out of town!", "");
 	sleep2 2000;
-	npctalk "Who cares if it shows?! Apparently, there Aren't too many Lasagna natives here.", "Tos#dorcon01", bc_self;
+	npctalk("Who cares if it shows?! Apparently, there Aren't too many Lasagna natives here.", "Tos#dorcon01");
 	sleep2 2000;
-	npctalk "Yeah, Let's just enjoy ourselves since we're here. I'll try not to let it show too much.", "Porto#dorcon01", bc_self;
+	npctalk("Yeah, Let's just enjoy ourselves since we're here. I'll try not to let it show too much.", "Porto#dorcon01");
 	sleep2 2000;
-	npctalk "Yeah, yeah. I won't show it.", "Tos#dorcon01", bc_self;
+	npctalk("Yeah, yeah. I won't show it.", "Tos#dorcon01");
 	sleep2 2000;
 	classchange( 4_CAT_SAILOR3, "Employee#dorcon01", bc_self );
-	npctalk "Three glasses of kaluna milk. Here you go.", "Employee#dorcon01", bc_self;
+	npctalk("Three glasses of kaluna milk. Here you go.", "Employee#dorcon01");
 	sleep2 2000;
 	classchange( HIDDEN_WARP_NPC, "Employee#dorcon01", bc_self );
-	npctalk "Finally!", "Porto#dorcon01", bc_self;
+	npctalk("Finally!", "Porto#dorcon01");
 	sleep2 2000;
-	npctalk "Let's all make a toast. Hold the glasses high!", "Tos#dorcon01", bc_self;
+	npctalk("Let's all make a toast. Hold the glasses high!", "Tos#dorcon01");
 	sleep2 2000;
-	npctalk "We weren't born on the same day, but Let's all die on the same day!", "", bc_self;
+	npctalk("We weren't born on the same day, but Let's all die on the same day!", "");
 	sleep2 2000;
-	npctalk "Why mention death?", "Tos#dorcon01", bc_self;
+	npctalk("Why mention death?", "Tos#dorcon01");
 	sleep2 2000;
-	npctalk "Then one for all! All for one!", "Porto#dorcon01", bc_self;
+	npctalk("Then one for all! All for one!", "Porto#dorcon01");
 	sleep2 1000;
-	npctalk "......", "", bc_self;
+	npctalk("......", "");
 	sleep2 2000;
-	npctalk "Cheesy...", "", bc_self;
+	npctalk("Cheesy...", "");
 	end;
 }
 
 lasagna,228,193,5	script	Porto#dorcon01	4_DR_M_01,{
-	npctalk "Since I've come all the way here, I should try the kaluna milk!", "", bc_self;
+	npctalk("Since I've come all the way here, I should try the kaluna milk!", "");
 	sleep2 2000;
-	npctalk "Don't be so loud! Everyone is looking!", "Aram#dorcon01", bc_self;
+	npctalk("Don't be so loud! Everyone is looking!", "Aram#dorcon01");
 	sleep2 2000;
-	npctalk "You know, you're the one who's louder.", "", bc_self;
+	npctalk("You know, you're the one who's louder.", "");
 	sleep2 2000;
-	npctalk "Right, right.", "Tos#dorcon01", bc_self;
+	npctalk("Right, right.", "Tos#dorcon01");
 	end;
 }
 
 lasagna,229,197,5	script	Tos#dorcon01	4_DR_M_02,{
-	npctalk "Befitting to its fame, this place is packed with people.", "", bc_self;
+	npctalk("Befitting to its fame, this place is packed with people.", "");
 	sleep2 2000;
-	npctalk "Stop looking around like a hillbilly!", "Aram#dorcon01", bc_self;
+	npctalk("Stop looking around like a hillbilly!", "Aram#dorcon01");
 	end;
 }
 
 lasagna,226,199,5	script	Employee#dorcon01	HIDDEN_WARP_NPC,{ end; }
 
 lasagna,230,192,3	script	Perky Doram#do_hint03	4_CAT_ADV2,{
-	npctalk "Always right-click when it comes to information! Right-click a human, item and cat to know more about them!", "", bc_self;
+	npctalk("Always right-click when it comes to information! Right-click a human, item and cat to know more about them!", "");
 	end;
 }
 
 lasagna,235,193,3	script	Customer#dorcon02	4_DR_TORTEL,{
-	npctalk "Always right-click when it comes to information! Right-click a human, item and cat to know more about them!", "", bc_self;
+	npctalk("Always right-click when it comes to information! Right-click a human, item and cat to know more about them!", "");
 	sleep2 1000;
 	emotion ET_THROB;
-	npctalk "Ha- ppi- ness-", "", bc_self;
+	npctalk("Ha- ppi- ness-", "");
 	sleep2 2000;
 	emotion ET_SLEEPY;
-	npctalk "We're full, so there's only one thing to do. Sleep.", "", bc_self;
+	npctalk("We're full, so there's only one thing to do. Sleep.", "");
 	end;
 }
 
 lasagna,220,190,5	script	Customer#dorcon01	4_CAT_ADV1,{
-	npctalk "Have you ever seen the crazy seagull nearby the south bridge over there? It was hopping like crazy. What's going on?", "", bc_self;
+	npctalk("Have you ever seen the crazy seagull nearby the south bridge over there? It was hopping like crazy. What's going on?", "");
 	end;
 }
 
 lasagna,220,194,3	script	Serious Doram#do_hint08	4_M_MERCAT1,{
-	npctalk "Humans say their weapons become stronger through refinement. What's refinement anyway?", "", bc_self;
+	npctalk("Humans say their weapons become stronger through refinement. What's refinement anyway?", "");
 	end;
 }
 
 
 lasagna,221,175,5	script	Smart Doram#do_hint06	4_CAT_SAILOR2,{
-	npctalk "DEX (Dexterity) is about accuracy and casting speed.", "", bc_self;
+	npctalk("DEX (Dexterity) is about accuracy and casting speed.", "");
 	end;
 }
 
 lasagna,219,178,3	script	Kittie#do_hint02	4_CAT_SAILOR3,{
-	npctalk "Double-click a consumable item to use.", "", bc_self;
+	npctalk("Double-click a consumable item to use.", "");
 	end;
 }
 
 // Intended ?
 /*
 lasagna,208,179,3	script	Kittie the Eraser#do_hi	4_M_MERCAT1,{
-	npctalk "I'm deleting all the rows from 7711 through 7720.", "", bc_self;
+	npctalk("I'm deleting all the rows from 7711 through 7720.", "");
 	lasagna_quest[0] = 0;
 	for ( .@quest_id = 7711; .@quest_id < 7721; .@quest_id++ ) {
-		if (isbegin_quest(.@quest_id) > 0)
+		if (questprogress(.@quest_id) > 0)
 			erasequest .@quest_id;
 	}
 	end;
@@ -2024,17 +2028,17 @@ lasagna,208,179,3	script	Kittie the Eraser#do_hi	4_M_MERCAT1,{
 */
 
 lasagna,225,174,3	script	Doram On The Journey#do	4_CAT_3COLOR,{
-	npctalk "You can't recover naturally if the items you carry exceed 50% of your max weight amount.", "", bc_self;
+	npctalk("You can't recover naturally if the items you carry exceed 50% of your max weight amount.", "");
 	end;
 }
 
 lasagna,233,174,5	script	Boozer#dorcon01	4_CAT_SAILOR5,{
-	npctalk "Kaluna milk should be stirred. With many wanders flocking around here lately, there's been an increase in those who shake it. But That's how kids drink it, Isn't?", "", bc_self;
+	npctalk("Kaluna milk should be stirred. With many wanders flocking around here lately, there's been an increase in those who shake it. But That's how kids drink it, Isn't?", "");
 	end;
 }
 
 lasagna,236,173,3	script	Boozer#dorcon02	4_CAT_SAILOR5,{
-	npctalk "Kaluna milk should be shaken. You have to shake it to taste the delicate flavor produced when adequately fermented kaluna is mixed with milk.", "", bc_self;
+	npctalk("Kaluna milk should be shaken. You have to shake it to taste the delicate flavor produced when adequately fermented kaluna is mixed with milk.", "");
 	end;
 }
 
@@ -2044,7 +2048,7 @@ lasagna,236,179,5	script	Meow goon#dorcon01	4_DR_M_01,{
 	next;
 	mes "[Meow goon]";
 	mes "Right! They're Aglio and Oligo!";
-	npctalk "Aglio and Oligo!", "", bc_self;
+	npctalk("Aglio and Oligo!", "");
 	next;
 	emotion ET_SWEAT, getnpcid(0, "Goon meow#dorcon01");
 	mes "[Goon meow]";
@@ -2055,7 +2059,7 @@ lasagna,236,179,5	script	Meow goon#dorcon01	4_DR_M_01,{
 	next;
 	mes "[Goon meow]";
 	mes "They're Aglio and Olio. Not Aglio and Oligo. You made them sound like a sugar.";
-	npctalk "They're Aglio and Olio.", "Goon meow#dorcon01", bc_self;
+	npctalk("They're Aglio and Olio.", "Goon meow#dorcon01");
 	next;
 	mes "[Meow goon]";
 	mes "Whichever.";
@@ -2065,11 +2069,11 @@ lasagna,236,179,5	script	Meow goon#dorcon01	4_DR_M_01,{
 lasagna,235,178,5	script	Goon meow#dorcon01	4_DR_M_02,{
 	mes "[Goon meow]";
 	mes "It's dangerous to put yourself out into the world. Take these tri-colored anchovies.";
-	npctalk "It's dangerous to put yourself out into the world.", "", bc_self;
+	npctalk("It's dangerous to put yourself out into the world.", "");
 	next;
 	mes "[Meow goon]";
 	mes "Everyone keep away! I'm dangerous. Krahh! How long can the tri-colored anchovies hold off?!";
-	npctalk "Everyone keep away! I'm dangerous.", "Meow goon#dorcon01", bc_self;
+	npctalk("Everyone keep away! I'm dangerous.", "Meow goon#dorcon01");
 	next;
 	mes "[Goon meow]";
 	mes "I'm... finished... You go ahead...";
@@ -2081,7 +2085,7 @@ lasagna,235,178,5	script	Goon meow#dorcon01	4_DR_M_02,{
 	emotion ET_BEST, getnpcid(0, "Meow goon#dorcon01");
 	mes "[Goon meow]";
 	mes "Good! This should be enough to keep me from getting snubbed in the new world.";
-	npctalk "We're thoroughly prepared all right!", "Meow goon#dorcon01";
+	npctalk("We're thoroughly prepared all right!", "Meow goon#dorcon01");
 	close;
 }
 
@@ -2493,9 +2497,9 @@ lasagna,140,245,3	script	The sensitive-minded el	4_CAT_SAILOR3,{
 lasa_fild01,353,370,5	script	Shepherd#dorcon	4_DR_KID_01,{
 	if (BaseLevel < 6 || BaseLevel > 9) {
 		if (BaseLevel > 9) {
-			if (checkquest(14592,PLAYTIME) == 2)
+			if (questprogress(14592,PLAYTIME) == 2)
 				erasequest 14592;
-			switch( checkquest(14546,HUNTING) ) {
+			switch( questprogress(14546,HUNTING) ) {
 			case -1:
 				break;
 			case 0:
@@ -2538,7 +2542,7 @@ lasa_fild01,353,370,5	script	Shepherd#dorcon	4_DR_KID_01,{
 				else
 					mes "Taking a ship from the ^4D4DFF[dock]^000000 in search of a bigger adventure is also a good idea. Thank you for helping us.";
 				erasequest 14546;// Take care of grass thief
-				if (isbegin_quest(14592) == 0 && BaseLevel < 21)
+				if (questprogress(14592) == 0 && BaseLevel < 21)
 					setquest 14592;// Resting Time
 				getexp 150,250;
 				close;
@@ -2548,9 +2552,9 @@ lasa_fild01,353,370,5	script	Shepherd#dorcon	4_DR_KID_01,{
 		mes "Hey cows- eat a lot and relax a lot- I'll sing you a song-";
 		close;
 	}
-	switch( checkquest(14592,PLAYTIME) ) {
+	switch( questprogress(14592,PLAYTIME) ) {
 	case -1:
-		switch( checkquest(14546,HUNTING) ) {
+		switch( questprogress(14546,HUNTING) ) {
 		case -1:
 			mes "[Shepherd]";
 			mes "Hello, are you the person who's here to help us? Then you can start now.";
@@ -2617,18 +2621,18 @@ lasa_fild01,353,370,5	script	Shepherd#dorcon	4_DR_KID_01,{
 		close;
 	}
 OnInit:
-	questinfo 14546, QTYPE_QUEST, 1;
-	setquestinfo_req 14546, 14592,0;
-	setquestinfo_level 14546,6,9;
+	questinfo(14546, QTYPE_QUEST, 1);
+	// setquestinfo_req 14546, 14592,0;
+	// setquestinfo_level 14546,6,9;
 	end;
 }
 
 lasa_fild02,102,372,5	script	Florin#dorcon	4_DR_F_01,{
 	if (BaseLevel < 10 || BaseLevel > 13) {
 		if (BaseLevel > 13) {
-			if (checkquest(14592,PLAYTIME) == 2)
+			if (questprogress(14592,PLAYTIME) == 2)
 				erasequest 14592;
-			switch( checkquest(14588,HUNTING) ) {
+			switch( questprogress(14588,HUNTING) ) {
 			case -1:
 				break;
 			case 0:
@@ -2667,7 +2671,7 @@ lasa_fild02,102,372,5	script	Florin#dorcon	4_DR_F_01,{
 				else
 					mes "Taking a ship from the ^4D4DFF[dock]^000000 in search of a bigger adventure is also a good idea. Thank you for helping us.";
 				erasequest 14588;// The Competition
-				if (isbegin_quest(14592) == 0 && BaseLevel < 21)
+				if (questprogress(14592) == 0 && BaseLevel < 21)
 					setquest 14592;// Resting Time
 				getexp 200,300;
 				close;
@@ -2677,9 +2681,9 @@ lasa_fild02,102,372,5	script	Florin#dorcon	4_DR_F_01,{
 		mes "I really like this job! I can smell sweet flowers and also get some honey!";
 		close;
 	}
-	switch( checkquest(14592,PLAYTIME) ) {
+	switch( questprogress(14592,PLAYTIME) ) {
 	case -1:
-		switch( checkquest(14588,HUNTING) ) {
+		switch( questprogress(14588,HUNTING) ) {
 		case -1:
 			mes "[Florin]";
 			mes "You're not taking my honey!";
@@ -2766,18 +2770,18 @@ lasa_fild02,102,372,5	script	Florin#dorcon	4_DR_F_01,{
 	}
 
 OnInit:
-	questinfo 14588, QTYPE_QUEST, 1;
-	setquestinfo_req 14588, 14592,0;
-	setquestinfo_level 14588,10,13;
+	questinfo(14588, QTYPE_QUEST, 1);
+	// setquestinfo_req 14588, 14592,0;
+	// setquestinfo_level 14588,10,13;
 	end;
 }
 
 lasa_fild02,177,241,5	script	Prok#dorcon	4_DR_M_02,{
 	if (BaseLevel < 14 || BaseLevel > 15) {
 		if (BaseLevel > 15) {
-			if (checkquest(14592,PLAYTIME) == 2)
+			if (questprogress(14592,PLAYTIME) == 2)
 				erasequest 14592;
-			switch( checkquest(14589,HUNTING)) {
+			switch( questprogress(14589,HUNTING)) {
 			case -1:
 				break;
 			case 0:
@@ -2826,7 +2830,7 @@ lasa_fild02,177,241,5	script	Prok#dorcon	4_DR_M_02,{
 				else
 					mes "Taking a ship from the ^4D4DFF[dock]^000000 in search of a bigger adventure is also a good idea. Thank you for helping us.";
 				erasequest 14589;// Sticky ingredient
-				if (isbegin_quest(14592) == 0 && BaseLevel < 21)
+				if (questprogress(14592) == 0 && BaseLevel < 21)
 					setquest 14592;// Resting Time
 				delitem 918,5;// Sticky Webfoot
 				getexp 300,500;
@@ -2837,9 +2841,9 @@ lasa_fild02,177,241,5	script	Prok#dorcon	4_DR_M_02,{
 		mes "Slippery- sticky- It's amazing such creatures exist.";
 		close;
 	}
-	switch( checkquest(14592,PLAYTIME) ) {
+	switch( questprogress(14592,PLAYTIME) ) {
 	case -1:
-		switch( checkquest(14589,HUNTING) ) {
+		switch( questprogress(14589,HUNTING) ) {
 		case -1:
 			mes "[Prok]";
 			mes "Can you by any chance help me? If you have time, that is.";
@@ -2910,18 +2914,18 @@ lasa_fild02,177,241,5	script	Prok#dorcon	4_DR_M_02,{
 	}
 
 OnInit:
-	questinfo 14589, QTYPE_QUEST, 1;
-	setquestinfo_req 14589, 14592,0;
-	setquestinfo_level 14589,14,15;
+	questinfo(14589, QTYPE_QUEST, 1);
+	// setquestinfo_req 14589, 14592,0;
+	// setquestinfo_level 14589,14,15;
 	end;
 }
 
 lasa_fild02,326,170,5	script	Fisher#dorcon	4_CAT_ADV2,{
 	if (BaseLevel < 16 || BaseLevel > 19) {
 		if (BaseLevel > 19) {
-			if (checkquest(14592,PLAYTIME) == 2)
+			if (questprogress(14592,PLAYTIME) == 2)
 				erasequest 14592;
-			switch( checkquest(14590,HUNTING) ) {
+			switch( questprogress(14590,HUNTING) ) {
 			case -1:
 				break;
 			case 0:
@@ -2952,7 +2956,7 @@ lasa_fild02,326,170,5	script	Fisher#dorcon	4_CAT_ADV2,{
 				else
 					mes "Taking a ship from the ^4D4DFF[dock]^000000 in search of a bigger adventure is also a good idea. Thank you for helping us.";
 				erasequest 14590;// Hunter's destination
-				if (isbegin_quest(14592) == 0 && BaseLevel < 21)
+				if (questprogress(14592) == 0 && BaseLevel < 21)
 					setquest 14592;// Resting Time
 				getexp 400,800;
 				close;
@@ -2962,9 +2966,9 @@ lasa_fild02,326,170,5	script	Fisher#dorcon	4_CAT_ADV2,{
 		mes "Today's wind is good! The fish will dry nicely.";
 		close;
 	}
-	switch( checkquest(14592,PLAYTIME) ) {
+	switch( questprogress(14592,PLAYTIME) ) {
 	case -1:
-		switch( checkquest(14590,HUNTING) ) {
+		switch( questprogress(14590,HUNTING) ) {
 		case -1:
 			mes "[Fisher]";
 			mes "Oh, what am I going to do. Hey you, adventurer! Hold on a second!";
@@ -3038,17 +3042,17 @@ lasa_fild02,326,170,5	script	Fisher#dorcon	4_CAT_ADV2,{
 	}
 
 OnInit:
-	questinfo 14590, QTYPE_QUEST, 1;
-	setquestinfo_req 14590, 14592,0;
-	setquestinfo_level 14590,16,19;
+	questinfo(14590, QTYPE_QUEST, 1);
+	// setquestinfo_req 14590, 14592,0;
+	// setquestinfo_level 14590,16,19;
 	end;
 }
 
 lasa_fild02,331,251,5	script	Sleepy meow#dorcon	4_CAT_REST,{
 	if (BaseLevel != 20) {
-		if (checkquest(14592,PLAYTIME) == 2)
+		if (questprogress(14592,PLAYTIME) == 2)
 			erasequest 14592;
-		switch( checkquest(14591,HUNTING)) {
+		switch( questprogress(14591,HUNTING)) {
 		case -1:
 			mes "[Sleepy meow]";
 			mes "Don't block the sunlight meow...";
@@ -3096,9 +3100,9 @@ lasa_fild02,331,251,5	script	Sleepy meow#dorcon	4_CAT_REST,{
 			close;
 		}
 	}
-	switch( checkquest(14592,PLAYTIME) ) {
+	switch( questprogress(14592,PLAYTIME) ) {
 	case -1:
-		switch( checkquest(14591,HUNTING) ) {
+		switch( questprogress(14591,HUNTING) ) {
 		case -1:
 			mes "[Sleepy meow]";
 			mes "Adventurer...please save me...";
@@ -3228,14 +3232,14 @@ lasa_fild02,331,251,5	script	Sleepy meow#dorcon	4_CAT_REST,{
 
 OnInit:
 	questinfo 14591, QTYPE_QUEST, 1;
-	setquestinfo_req 14591, 14592,0;
-	setquestinfo_level 14591,20,20;
+	// setquestinfo_req(14591, 14592,0);
+	// setquestinfo_level 14591,20,20;
 	end;
 }
 
 lasagna,222,187,3	script	Chef#dorcon	4_CAT_CHEF,{
 	if (BaseLevel < 6 || BaseLevel > 20) {
-		if (checkquest(14592,PLAYTIME) == 2)
+		if (questprogress(14592,PLAYTIME) == 2)
 			erasequest 14592;
 
 		setarray .@quest_id[0],
@@ -3247,7 +3251,7 @@ lasagna,222,187,3	script	Chef#dorcon	4_CAT_CHEF,{
 
 		if (BaseLevel > 20) {	// check / remove quests
 			for ( .@i = 0; .@i < 5; .@i++ ) {
-				switch( checkquest(.@quest_id[.@i],HUNTING) ) {
+				switch( questprogress(.@quest_id[.@i],HUNTING) ) {
 				case -1:
 					break;
 				case 0:
@@ -3303,7 +3307,7 @@ lasagna,222,187,3	script	Chef#dorcon	4_CAT_CHEF,{
 				next;
 				mes "[Chef]";
 				mes "Anyway, thanks for your help. It helped a lot.";
-				if (isbegin_quest(14592) > 0)
+				if (questprogress(14592) > 0)
 					erasequest 14592;
 				for ( .@i = 0; .@i < .@j; .@i++ )
 					erasequest .@quest_left[.@j];
@@ -3323,7 +3327,7 @@ lasagna,222,187,3	script	Chef#dorcon	4_CAT_CHEF,{
 		21, 14591;	// Secret Ingredient
 
 	for ( .@i = 0; .@i < 10; .@i += 2 ) {
-		if (isbegin_quest(.@datas[.@i+1]) > 0) {	// can't start another quest here
+		if (questprogress(.@datas[.@i+1]) > 0) {	// can't start another quest here
 			.@quest_id = .@datas[.@i+1];
 			break;
 		}
@@ -3333,9 +3337,9 @@ lasagna,222,187,3	script	Chef#dorcon	4_CAT_CHEF,{
 		}
 	}
 
-	switch( checkquest(14592,PLAYTIME) ) {
+	switch( questprogress(14592,PLAYTIME) ) {
 	case -1:
-		switch( checkquest(.@quest_id,HUNTING) ) {
+		switch( questprogress(.@quest_id,HUNTING) ) {
 		case -1:
 			mes "[Chef]";
 			mes "Adventurer, can you do me a small favor? There are things I must do right now but as you can see, I am shorthanded. What'd you say?";
@@ -3461,7 +3465,7 @@ lasagna,222,187,3	script	Chef#dorcon	4_CAT_CHEF,{
 				mes "Pub-Oven has its own special network where it receives ingredients within ten minutes. So customers don't need to wait infinitely.";
 				next;
 				mes "[Chef]";
-				mes "But as you know, there's no such thing as ¢®¡Ænever¢®¡¾ in life. Yet, we always make the effort to achieve ¢®¡Ænever.¢®¡¾";
+				mes "But as you know, there's no such thing as ï¿½ï¿½ï¿½ï¿½neverï¿½ï¿½ï¿½ï¿½ in life. Yet, we always make the effort to achieve ï¿½ï¿½ï¿½ï¿½never.ï¿½ï¿½ï¿½ï¿½";
 				next;
 				mes "[Chef]";
 				mes "And right now, that effort is being challenged.";
@@ -3473,7 +3477,7 @@ lasagna,222,187,3	script	Chef#dorcon	4_CAT_CHEF,{
 				mes "You must've heard about the cave in Raviol Forest. There are unspeakable things as well as creatures that are delicious food ingredients.";
 				next;
 				mes "[Chef]";
-				mes "You know the Trans Spores? Their ¢®¡Æmushroom spores¢®¡¾ are an essential ingredient for our fish cake.";
+				mes "You know the Trans Spores? Their ï¿½ï¿½ï¿½ï¿½mushroom sporesï¿½ï¿½ï¿½ï¿½ are an essential ingredient for our fish cake.";
 				next;
 				mes "[Chef]";
 				mes "But for some reason, they live with the basilisks, but so this is a serious problem for us.";
@@ -3722,21 +3726,21 @@ lasagna,222,187,3	script	Chef#dorcon	4_CAT_CHEF,{
 	end;
 
 OnInit:
-	questinfo 14546, QTYPE_QUEST, 1;
-	setquestinfo_req 14546, 14592,0, 14588,0, 14589,0, 14590,0;
-	setquestinfo_level 14546,6,9;
+	questinfo(14546, QTYPE_QUEST, 1);
+	// setquestinfo_req 14546, 14592,0, 14588,0, 14589,0, 14590,0;
+	// setquestinfo_level 14546,6,9;
 
-	questinfo 14588, QTYPE_QUEST, 1;
-	setquestinfo_req 14588, 14592,0, 14546,0, 14589,0, 14590,0;
-	setquestinfo_level 14588,10,13;
+	questinfo(14588, QTYPE_QUEST, 1);
+	// setquestinfo_req 14588, 14592,0, 14546,0, 14589,0, 14590,0;
+	// setquestinfo_level 14588,10,13;
 
-	questinfo 14589, QTYPE_QUEST, 1;
-	setquestinfo_req 14589, 14592,0, 14546,0, 14588,0, 14590,0;
-	setquestinfo_level 14589,14,15;
+	questinfo(14589, QTYPE_QUEST, 1);
+	// setquestinfo_req 14589, 14592,0, 14546,0, 14588,0, 14590,0;
+	// setquestinfo_level 14589,14,15;
 
-	questinfo 14590, QTYPE_QUEST, 1;
-	setquestinfo_req 14590, 14592,0, 14546,0, 14588,0, 14589,0;
-	setquestinfo_level 14590,16,19;
+	questinfo(14590, QTYPE_QUEST, 1);
+	// setquestinfo_req 14590, 14592,0, 14546,0, 14588,0, 14589,0;
+	// setquestinfo_level 14590,16,19;
 	end;
 }
 
@@ -3744,7 +3748,7 @@ lasagna,85,93,5	script	Shaman meow#dorcon	4_DR_KID_01,{
 	if (conch_in_boatswain == 1) {
 		mes "[Shaman meow]";
 		mes "Today won't be boring? I wonder who'll visit me today. Who is it?";
-		npctalk "Meow meow", "", bc_self;
+		npctalk("Meow meow", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Is anybody here?";
@@ -3757,7 +3761,7 @@ lasagna,85,93,5	script	Shaman meow#dorcon	4_DR_KID_01,{
 		next;
 		mes "[Shaman meow]";
 		mes "Not me!";
-		npctalk "Meow meow", "", bc_self;
+		npctalk("Meow meow", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Who else?";
@@ -3782,14 +3786,14 @@ lasagna,85,93,5	script	Shaman meow#dorcon	4_DR_KID_01,{
 		next;
 		mes "[Shaman meow]";
 		mes "What pain is that? If grandma and I can take care of it, we will. One shouldn't turn away from a sufferer.";
-		npctalk "Meow meow", "", bc_self;
+		npctalk("Meow meow", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Well, he's in denial but I think he's been possessed by an evil spirit. He opened a sealed jar on an uninhabited island.";
 		next;
 		mes "[Shaman meow]";
 		mes "Oh my. Who would've thought that there would be another idiot like the ^0000cdboatswain of Con-Chliina^000000.";
-		npctalk "Meow meow", "", bc_self;
+		npctalk("Meow meow", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Uh, that boatswain is the person who had asked for my help.";
@@ -3809,17 +3813,17 @@ lasagna,85,93,5	script	Shaman meow#dorcon	4_DR_KID_01,{
 		next;
 		mes "[Shaman meow]";
 		mes "But if someone opens the jar, those evil spirits cling onto that idiot and repeat the same process. there's no way to detach them until the host dies. In other words, there's no solution that would make the boatswain happy.";
-		npctalk "Meow meow", "", bc_self;
+		npctalk("Meow meow", "");
 		next;
 		mes "[Shaman meow]";
-		mes "When I told him that ¡°a noble person from a new place solves the problem,¡± I meant that the the problem will move onto ^0000cda new person^000000. Seems like he misunderstood me and sent you.";
+		mes "When I told him that ï¿½ï¿½a noble person from a new place solves the problem,ï¿½ï¿½ I meant that the the problem will move onto ^0000cda new person^000000. Seems like he misunderstood me and sent you.";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "T-then, you've also...";
 		next;
 		mes "[Shaman meow]";
 		mes "I opened the jar. It was an unfortunate accident.";
-		npctalk "Meow meow meow meow meow meow!!!", "", bc_self;
+		npctalk("Meow meow meow meow meow meow!!!", "");
 		next;
 		mes "[Shaman meow]";
 		mes "I-I don't mean that I dislike grandma. Yes, yes. I'll be careful.";
@@ -3829,7 +3833,7 @@ lasagna,85,93,5	script	Shaman meow#dorcon	4_DR_KID_01,{
 		next;
 		mes "[Shaman meow]";
 		mes "Those with much knowledge have a bit more options.";
-		npctalk "Meow meow.", "", bc_self;
+		npctalk("Meow meow.", "");
 		next;
 		mes "[Shaman meow]";
 		mes "If he chooses not to become a shaman meow, then he must live every day ^0000cddependent on a new talisman^000000. But if he chooses to become a shaman meow, then tell him to come see me.";
@@ -3854,18 +3858,18 @@ lasagna,85,93,5	script	Shaman meow#dorcon	4_DR_KID_01,{
 		next;
 		mes "[Shaman meow]";
 		mes "Oh my, he really is an idiot. Had he come to me earlier, I would have told him about a less painful path.";
-		npctalk "Meow meow.", "", bc_self;
+		npctalk("Meow meow.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "At any rate, if he must depend on a new talisman every day, what's today's talisman? I'm sure the boatswain needs some time to think things over, so until then, he'll need talisman.";
 		next;
 		mes "[Shaman meow]";
 		mes "Today's talisman... Let me see.";
-		npctalk "Meow meow.", "", bc_self;
+		npctalk("Meow meow.", "");
 		next;
 		mes "[Shaman meow]";
 		mes "Oh, that? Really? Ooh, That's awful... Seriously, how would that...ugh.";
-		npctalk "Meow meow.", "", bc_self;
+		npctalk("Meow meow.", "");
 		next;
 		mes "[Shaman meow]";
 		mes "Today's talisman is ^0000cd20 basils and 5 basil locks^000000. Tie them firmly and carry them around. Then he'll be safe today.";
@@ -3878,14 +3882,14 @@ lasagna,85,93,5	script	Shaman meow#dorcon	4_DR_KID_01,{
 		next;
 		mes "[Shaman meow]";
 		mes "But they really are way too filthy. I bet the boatswain will ask you for a favor since he won't want to catch one with his own hands.";
-		npctalk "Meow meow.", "", bc_self;
+		npctalk("Meow meow.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Sure. I'll tell him.";
 		next;
 		mes "[Shaman meow]";
 		mes "Then see you again soon.";
-		npctalk "Meow meow.", "", bc_self;
+		npctalk("Meow meow.", "");
 		erasequest 14556;// There also is a scary thing for me
 		setquest 14557;// Truth is alway harsh
 		conch_in_boatswain = 2;
@@ -3897,12 +3901,12 @@ lasagna,85,93,5	script	Shaman meow#dorcon	4_DR_KID_01,{
 		close;
 	}
 	if (conch_in_boatswain == 4) {
-		switch( checkquest(14559,PLAYTIME) ) {
+		switch( questprogress(14559,PLAYTIME) ) {
 		case -1:
 			mes "[Shaman meow]";
-			if (isbegin_quest(14560) == 1)
+			if (questprogress(14560) == 1)
 				mes "Today's talisman is ^0000cd5 basil locks and 1 holy water^000000. In the new world, the holy water drives the evil spirits away. It must've worked when the boatswain came in contact with the people of the new world.";
-			else if (isbegin_quest(14561) == 1) {
+			else if (questprogress(14561) == 1) {
 				mes "Today's talisman is ^0000cd20 basil locks^000000. You'll get your hands very dirty today. I'm sorry. But grandma has spoken so That's the bottom line.";
 				next;
 				mes "[Shaman meow]";
@@ -3923,7 +3927,7 @@ lasagna,85,93,5	script	Shaman meow#dorcon	4_DR_KID_01,{
 			next;
 			mes "[Shaman meow]";
 			mes "Where... yes, yeah... today is that one? Got it.";
-			npctalk "Meow meow", "", bc_self;
+			npctalk("Meow meow", "");
 			next;
 			mes "[Shaman meow]";
 			mes "I'll tell you today's talisman. It is...";
@@ -3987,7 +3991,7 @@ lasagna,174,160,3	script	Vigilante Guide#lasa	4_DR_SOLDIER,5,5,{
 			mes "[Vigilante Guide]";
 			mes "He should be at the Adventurers' Club around now...";
 			mes "The Adventurers' Club is to the east from here, so it shouldn't be difficult to find.";
-			if (isbegin_quest(11435) == 0)
+			if (questprogress(11435) == 0)
 				setquest 11435;// Vigilante Corp
 			navigateto "lasagna",235,198, NAV_KAFRA_ONLY, 0;
 			lasagna_quest[1] = 1;
@@ -4008,8 +4012,8 @@ lasagna,174,160,3	script	Vigilante Guide#lasa	4_DR_SOLDIER,5,5,{
 		close;
 	}
 OnTouch:
-	npctalk "Vigilante Guide: Welcome to the port town Lasagna.", "", bc_self;
-	npctalk "Vigilante Guide: If you're ever in need of help, please visit the Vigilante Corp at any time.", "", bc_self;
+	npctalk("Vigilante Guide: Welcome to the port town Lasagna.", "");
+	npctalk("Vigilante Guide: If you're ever in need of help, please visit the Vigilante Corp at any time.", "");
 	end;
 OnInit:
 	questinfo 11435, QTYPE_QUEST, 1;
@@ -4779,7 +4783,7 @@ lasagna,205,325,5	script	Eggling#dorcon	4_M_MERCAT1,2,2,{
 		mes "Well, well. You seem to know how things work around here. You can bring it to the Sous Chef. However, the Sous Chef is kind of eccentric. You have to say something when you hand over things to him.";
 		next;
 		mes "[Eggling]";
-		mes "You should toss this to him, saying ¡°^0000cd[Here comes the newbie!]^000000 He believes that a Doram should say this on his or her first voyage for good luck. Anyways, he seems to think that it is the right way to do.";
+		mes "You should toss this to him, saying ï¿½ï¿½^0000cd[Here comes the newbie!]^000000 He believes that a Doram should say this on his or her first voyage for good luck. Anyways, he seems to think that it is the right way to do.";
 		next;
 		mes "[Eggling]";
 		mes "You know what I mean, right?";
@@ -5001,7 +5005,7 @@ S_quest21:
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "What is a Basilrock?";
-		npctalk "Now we are talking.", "", bc_self;
+		npctalk("Now we are talking.", "");
 		next;
 		mes "[Eggling]";
 		mes "No one knows what it is. However, all sailors have it. You should really stop asking. Go get it now. I give 10 seconds.";
@@ -5017,7 +5021,7 @@ S_quest21:
 		next;
 		mes "[Eggling]";
 		mes "Well... I don't mean... Hum... Well 10 seconds has passed. Bring me ^0000cd3 Basilrocks^000000, no less. Bring them without anyone knowing. I will make you regret if you tell anyone.";
-		if (isbegin_quest(14540) == 0)
+		if (questprogress(14540) == 0)
 			setquest 14540;// An errand out of nowhere
 		close;
 	}
@@ -5037,28 +5041,28 @@ conch_in,65,58,3	script	Purser#dorcon	4_CAT_ADV1,{
 		if (Class != Job_Summoner) {
 			mes "[Purser]";
 			mes "Welcome on board. Welcome to ^0000cdCon-Chliina^000000. We will send you safely to your destination. However, we cannot sail off right at this moment.";
-			npctalk "However, we cannot sail off right at this moment.", "", bc_self;
+			npctalk("However, we cannot sail off right at this moment.", "");
 			next;
 			mes "[" + strcharinfo(0) + "]";
 			mes "What is going on?";
 			next;
 			mes "[Purser]";
 			mes "Look at Lasagna out there.";
-			npctalk "There. Over there.", "", bc_self;
+			npctalk("There. Over there.", "");
 			next;
 			mes "[" + strcharinfo(0) + "]";
 			mes "I don't see anything.";
 			next;
 			mes "[Purser]";
 			mes "Right. You cannot see anything. There is this ^0000cdthick fog^000000. I wonder if we would be able to set off now.";
-			npctalk "There is this thick fog. I wonder if we would be able to set off no", "", bc_self;
+			npctalk("There is this thick fog. I wonder if we would be able to set off no", "");
 			next;
 			mes "[" + strcharinfo(0) + "]";
 			mes "I am in a hurry.";
 			next;
 			mes "[Purser]";
 			mes "If you are in a hurry, you should meet ^0000cdthe Captain and the Chief Officer^000000. They decide whether to sail off or not. They are in the Captain's Cabin up there/";
-			npctalk "The Captain's Cabin is the chamber up there in front of us.", "", bc_self;
+			npctalk("The Captain's Cabin is the chamber up there in front of us.", "");
 			erasequest 14531;// Everything about Con-Chliina
 			setquest 14547;// Can we set out the sailing?
 			lasagna_quest[1] = 14;
@@ -5067,7 +5071,7 @@ conch_in,65,58,3	script	Purser#dorcon	4_CAT_ADV1,{
 		mes "[Purser]";
 		mes "I smell something. The smell of a rookie...";
 		mes "You are?";
-		npctalk "Tell me your name.", "", bc_self;
+		npctalk("Tell me your name.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Eh, my name is " + strcharinfo(0) + ".";
@@ -5080,11 +5084,11 @@ conch_in,65,58,3	script	Purser#dorcon	4_CAT_ADV1,{
 		next;
 		mes "[Purser]";
 		mes "don't need to sweat. I believe you have got enough training out there so there is not much for you to do now. Why don't you go and familiarize yourself with the crews and their name?";
-		npctalk "I have a feeling that I'll see you around often.", "", bc_self;
+		npctalk("I have a feeling that I'll see you around often.", "");
 		next;
 		mes "[Purser]";
 		mes "When you go somewhere where you know nobody, a Doram from the same town can be your best friend. So I recommend you to meet as many of them as possible now.";
-		npctalk "A Doram from the same town can be your best friend.", "", bc_self;
+		npctalk("A Doram from the same town can be your best friend.", "");
 		next;
 		mes "[Purser]";
 		mes "There are 12 Part Leaders on this ship other than the Captain, and there are many other crews. You don't need to meet them all. You can meet the important ones.";
@@ -5094,7 +5098,7 @@ conch_in,65,58,3	script	Purser#dorcon	4_CAT_ADV1,{
 		next;
 		mes "[Purser]";
 		mes "The ^0000cdCaptain's Cabin^000000 is right over there. Since the Captain values courtesy and manners. make sure not to make any mistakes.";
-		npctalk "The Captain's Cabin is right up the stairs.", "", bc_self;
+		npctalk("The Captain's Cabin is right up the stairs.", "");
 		erasequest 14531;// Everything about Con-Chliina
 		setquest 14532;// Greetings to Captain Gamberi
 		getexp 200,300;
@@ -5122,14 +5126,14 @@ conch_in,65,58,3	script	Purser#dorcon	4_CAT_ADV1,{
 	if (lasagna_quest[1] == 17) {
 		mes "[Purser]";
 		mes "Well. Have you met all of them?";
-		npctalk "They are all good people.", "", bc_self;
+		npctalk("They are all good people.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Not all of them. I couldn't find them all.";
 		next;
 		mes "[Purser]";
 		mes "I suppose so. They must be drinking Kahlugna Milk and snoring somewhere. They will come back when it is the time to set off. You can meet them then...";
-		npctalk "They will come back when it is the time to set off anyway.", "", bc_self;
+		npctalk("They will come back when it is the time to set off anyway.", "");
 		next;
 		mes "[Purser]";
 		mes "Isn't that ^0000cdKahlugnag^000000 you are holding in your hand? Not anyone can have it, you know.";
@@ -5139,7 +5143,7 @@ conch_in,65,58,3	script	Purser#dorcon	4_CAT_ADV1,{
 		next;
 		mes "[Purser]";
 		mes "Why didn't you give it to the Head Chef then? Go ahead and deliver it to him!";
-		npctalk "Go ahead and deliver it to the Head Chef!", "", bc_self;
+		npctalk("Go ahead and deliver it to the Head Chef!", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Yes, yes!";
@@ -5156,14 +5160,14 @@ conch_in,65,58,3	script	Purser#dorcon	4_CAT_ADV1,{
 	if (lasagna_quest[1] == 19) {
 		mes "[Purser]";
 		mes "Hum, we have a problem.";
-		npctalk "Nya nya nya... A problem.", "", bc_self;
+		npctalk("Nya nya nya... A problem.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "I have handed it over. And the Boatswain wanted to know when the ^0000cdSailing Signal^000000 would be issued.";
 		next;
 		mes "[Purser]";
 		mes "I was thinking about it just now. Well, have you been trained properly for the adventure? don't you want ^0000cdtest your strength^000000 before that?";
-		npctalk "It is crucial to test your strength before setting off on an adventure.", "", bc_self;
+		npctalk("It is crucial to test your strength before setting off on an adventure.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "May I help you?";
@@ -5176,7 +5180,7 @@ conch_in,65,58,3	script	Purser#dorcon	4_CAT_ADV1,{
 		next;
 		mes "[Purser]";
 		mes "That's not what I want to hear. Take a look at the sea we are about to explore.";
-		npctalk "You don't need to say the things you don't need to say.", "", bc_self;
+		npctalk("You don't need to say the things you don't need to say.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "The fog...?";
@@ -5189,7 +5193,7 @@ conch_in,65,58,3	script	Purser#dorcon	4_CAT_ADV1,{
 		next;
 		mes "[Purser]";
 		mes "We are unable to issue the sailing signal because of the fog. Ask the ^0000cdChief Officer^000000 if there would be any change in the sailing schedule. If there is any, go fix it.";
-		npctalk "Only the Chief Officer can tell whether we can go to the new continent or now.", "", bc_self;
+		npctalk("Only the Chief Officer can tell whether we can go to the new continent or now.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "What? I finished the training yesterday.";
@@ -5199,7 +5203,7 @@ conch_in,65,58,3	script	Purser#dorcon	4_CAT_ADV1,{
 		next;
 		mes "[Purser]";
 		mes "Consider it as a warming up for all the difficulties you would encounter in the new continent.";
-		npctalk "The Chief Officer is in the Captain's Cabin over there.", "", bc_self;
+		npctalk("The Chief Officer is in the Captain's Cabin over there.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Yes!";
@@ -5239,12 +5243,12 @@ conch_in,65,58,3	script	Purser#dorcon	4_CAT_ADV1,{
 	close;
 
 OnInit:
-	questinfo 14532, QTYPE_QUEST, 1;
-	setquestinfo_req 14532,14531,1;
-	questinfo 14536, QTYPE_QUEST, 1;
-	setquestinfo_req 14536,14535,1;
-	questinfo 14547, QTYPE_QUEST, 1;
-	setquestinfo_req 14547,14531,1;
+	questinfo(14532, QTYPE_QUEST, 1);
+	// setquestinfo_req 14532,14531,1;
+	questinfo(14536, QTYPE_QUEST, 1);
+	// setquestinfo_req 14536,14535,1;
+	questinfo(14547, QTYPE_QUEST, 1);
+	// setquestinfo_req 14547,14531,1;
 	end;
 }
 
@@ -5252,7 +5256,7 @@ conch_in,52,60,0	script	#dorcon95	HIDDEN_WARP_NPC,1,1,{
 	end;
 OnTouch:
 	if (lasagna_quest[1] != 14)
-		npctalk "- Knock knock -", "", bc_self;
+		npctalk("- Knock knock -", "");
 	end;
 }
 
@@ -5287,8 +5291,8 @@ conch_in,24,62,5	script	Stello#dorcon	4_DR_STELO,{
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "The Purser asked me to check if there wouldn't be any problem sailing off with the thick ^0000cdfog^000000.";
-		npctalk "The fog!", "Captain Gamberi#dorcon0", bc_self;
-		npctalk "Right.", "", bc_self;
+		npctalk("The fog!", "Captain Gamberi#dorcon0");
+		npctalk("Right.", "");
 		next;
 		mes "[Stello]";
 		mes "Hum... This fog must be...";
@@ -5298,11 +5302,11 @@ conch_in,24,62,5	script	Stello#dorcon	4_DR_STELO,{
 		next;
 		mes "[Stello]";
 		mes "Yes. Again. Umm, what should we do? We have no one to send there. Everyone's so busy preparing for the sailing.";
-		npctalk "This is annoying.", "", bc_self;
+		npctalk("This is annoying.", "");
 		next;
 		mes "[Captain Gamberi]";
 		mes "Stello, I guess you should go down there yourself.";
-		npctalk "There is no other way.", "Captain Gamberi#dorcon0", bc_self;
+		npctalk("There is no other way.", "Captain Gamberi#dorcon0");
 		next;
 		mes "[Stello]";
 		mes "Let's send Eggling.";
@@ -5312,12 +5316,12 @@ conch_in,24,62,5	script	Stello#dorcon	4_DR_STELO,{
 		next;
 		mes "[Stello]";
 		mes "... I guess I should go. Damn it.";
-		npctalk "He will just make things worse.", "", bc_self;
+		npctalk("He will just make things worse.", "");
 		next;
 		mes "[Captain Gamberi]";
 		mes "Stello. a gentleman should use a good language at all time.";
-		npctalk "I should get going. Oh, my dear.", "", bc_self;
-		npctalk "Stello?", "Captain Gamberi#dorcon0", bc_self;
+		npctalk("I should get going. Oh, my dear.", "");
+		npctalk("Stello?", "Captain Gamberi#dorcon0");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Well... The Purser has sent me to take care of the problem.";
@@ -5335,7 +5339,7 @@ conch_in,24,62,5	script	Stello#dorcon	4_DR_STELO,{
 		next;
 		mes "[Captain Gamberi]";
 		mes "In front of us.";
-		npctalk "Yes, there is.", "", bc_self;
+		npctalk("Yes, there is.", "");
 		next;
 		emotion ET_SWEAT, playerattached();
 		mes "[Stello]";
@@ -5346,7 +5350,7 @@ conch_in,24,62,5	script	Stello#dorcon	4_DR_STELO,{
 		next;
 		mes "[Stello]";
 		mes "Whatever it is. Well, good. I'll assign your first mission as your first practice.";
-		npctalk "Is an ass that different from a butt?", "", bc_self;
+		npctalk("Is an ass that different from a butt?", "");
 		next;
 		mes "[Stello]";
 		mes "The seaway we are about to take is ^0000cdno typical seaway^000000. You need to read the movements of the stars and wind. You need to take the way which is not marked on the map which makes you wonder if you will ever find the land.";
@@ -5365,7 +5369,7 @@ conch_in,24,62,5	script	Stello#dorcon	4_DR_STELO,{
 		next;
 		mes "[Stello]";
 		mes "Not quite. There is a dragon living in a nearby cave. The dragon breathes fire which burns up everything around it. The fog is made of the smoke.";
-		npctalk "I guess you have read quite a lot of adventure novels, dear adventurer.", "", bc_self;
+		npctalk("I guess you have read quite a lot of adventure novels, dear adventurer.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "No wonder the fog smells like smoke.";
@@ -5413,15 +5417,15 @@ conch_in,24,62,5	script	Stello#dorcon	4_DR_STELO,{
 		next;
 		mes "[Stello]";
 		mes "No, not at all. Captain, what are you talking about?";
-		npctalk "He sometimes says such sanguinary words with a straight face.", "", bc_self;
+		npctalk("He sometimes says such sanguinary words with a straight face.", "");
 		next;
 		mes "[Captain Gamberi]";
 		mes "Stello, it is called a joke.";
-		npctalk "A gentleman is supposed to have a sense of humor.", "Captain Gamberi#dorcon0", bc_self;
+		npctalk("A gentleman is supposed to have a sense of humor.", "Captain Gamberi#dorcon0");
 		next;
 		mes "[Stello]";
 		mes "A joke should be pleasant for the both parties. This is just a curse.";
-		npctalk "You startled me at least.", "", bc_self;
+		npctalk("You startled me at least.", "");
 		next;
 		mes "[Captain Gamberi]";
 		mes "Stello, you must learn about this thing called social codes.";
@@ -5437,8 +5441,8 @@ conch_in,24,62,5	script	Stello#dorcon	4_DR_STELO,{
 		next;
 		mes "[Stello]";
 		mes "Oh, yes. Let's give a big hand to the adventurer who has returned from the mission!";
-		npctalk "Whoa. Clap, clap, clap.", "", bc_self;
-		npctalk "Stello? You need to really mean it.", "Captain Gamberi#dorcon0", bc_self;
+		npctalk("Whoa. Clap, clap, clap.", "");
+		npctalk("Stello? You need to really mean it.", "Captain Gamberi#dorcon0");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Oh, yes. Well, thanks.";
@@ -5462,7 +5466,7 @@ conch_in,24,62,5	script	Stello#dorcon	4_DR_STELO,{
 			next;
 			mes "[Captain Gamberi]";
 			mes "The thing that you cannot buy with money when you leave Lasagna.";
-			npctalk "Oh, that! I must have put it near here...", "", bc_self;
+			npctalk("Oh, that! I must have put it near here...", "");
 			next;
 			mes "[" + strcharinfo(0) + "]";
 			mes "Anchovy?";
@@ -5562,12 +5566,12 @@ conch_in,26,64,5	script	Captain Gamberi#dorcon0	4_DR_GAMBERI,{
 			emotion ET_OK;
 			mes "[Captain Gamberi]";
 			mes "Stello, say it again.";
-			npctalk "Stello?", "", bc_self;
+			npctalk("Stello?", "");
 			next;
 			mes "[Stello]";
 			mes "Yes, sir.";
-			npctalk "Does he always have to hear the answer?", "Stello#dorcon", bc_self;
-			npctalk "Stello?", "", bc_self;
+			npctalk("Does he always have to hear the answer?", "Stello#dorcon");
+			npctalk("Stello?", "");
 			next;
 			mes "[" + strcharinfo(0) + "]";
 			mes "Excuse me.";
@@ -5583,7 +5587,7 @@ conch_in,26,64,5	script	Captain Gamberi#dorcon0	4_DR_GAMBERI,{
 			next;
 			mes "[Captain Gamberi]";
 			mes "Stello, I don't think that is the matter of the question. Look outside.";
-			npctalk "The fog...", "Stello#dorcon", bc_self;
+			npctalk("The fog...", "Stello#dorcon");
 			next;
 			mes "[Stello]";
 			mes "Oh, the red ^0000cdfog^000000! It seemed all right just a while ago!";
@@ -5593,7 +5597,7 @@ conch_in,26,64,5	script	Captain Gamberi#dorcon0	4_DR_GAMBERI,{
 			next;
 			mes "[Stello]";
 			mes "We cannot sail off like this.";
-			npctalk "Never.", "Stello#dorcon", bc_self;
+			npctalk("Never.", "Stello#dorcon");
 			next;
 			mes "[Captain Gamberi]";
 			mes "I seems so.";
@@ -5609,7 +5613,7 @@ conch_in,26,64,5	script	Captain Gamberi#dorcon0	4_DR_GAMBERI,{
 			next;
 			mes "[Stello]";
 			mes "It Isn't. This fog is made of the smoke which is fumed by ^0000cdthe dragon living in the cave^000000 when it is upset. Please wait until ^0000cdthe vigilantes^000000 take care of it.";
-			npctalk "They are professionals. They will take care of it in no time!", "Stello#dorcon", bc_self;
+			npctalk("They are professionals. They will take care of it in no time!", "Stello#dorcon");
 			next;
 			mes "[" + strcharinfo(0) + "]";
 			mes "Then when would we be able to set off?";
@@ -5622,7 +5626,7 @@ conch_in,26,64,5	script	Captain Gamberi#dorcon0	4_DR_GAMBERI,{
 			next;
 			mes "[Stello]";
 			mes "The seaway we are about to take is ^0000cdno typical seaway^000000. You need to read the movements of the stars and wind. You need to take the way which is not marked on the map which makes you wonder if you will ever find the land.";
-			npctalk "It is such a trouble to find the way.", "Stello#dorcon", bc_self;
+			npctalk("It is such a trouble to find the way.", "Stello#dorcon");
 			next;
 			mes "[Stello]";
 			mes "That is why we need to get rid of all the ^0000cdfog^000000 which blocks us from reading the sun and wind.";
@@ -5635,8 +5639,8 @@ conch_in,26,64,5	script	Captain Gamberi#dorcon0	4_DR_GAMBERI,{
 			next;
 			mes "[Captain Gamberi]";
 			mes "Stello. This adventurer seems very experienced. This could be a new adventure as well. It could help us.";
-			npctalk "I guess so. This adventurer sure seems quite tough.", "Stello#dorcon", bc_self;
-			npctalk "How do you think, Stello?", "", bc_self;
+			npctalk("I guess so. This adventurer sure seems quite tough.", "Stello#dorcon");
+			npctalk("How do you think, Stello?", "");
 			next;
 			mes "[Stello]";
 			mes "Hum... OK. Please go to see ^0000cdthe vigilante guarding the south bridge of the village^000000, and check the state of the dragon.";
@@ -5649,7 +5653,7 @@ conch_in,26,64,5	script	Captain Gamberi#dorcon0	4_DR_GAMBERI,{
 			next;
 			mes "[" + strcharinfo(0) + "]";
 			mes "I see. Let me take a quick tour.";
-			npctalk "Take care of yourself.", "", bc_self;
+			npctalk("Take care of yourself.", "");
 			erasequest 14547;// Can we set out the sailing?
 			setquest 14548;// Crazy Dragon
 			lasagna_quest[1] = 21;// jump to 21
@@ -5667,12 +5671,12 @@ conch_in,26,64,5	script	Captain Gamberi#dorcon0	4_DR_GAMBERI,{
 		emotion ET_OK, getnpcid(0, "Stello#dorcon");
 		mes "[Captain Gamberi]";
 		mes "Stello, say it again.";
-		npctalk "Stello?", "", bc_self;
+		npctalk("Stello?", "");
 		next;
 		mes "[Stello]";
 		mes "Yes, sir.";
-		npctalk "Does he always have to hear the answer?", "Stello#dorcon", bc_self;
-		npctalk "Stello?", "", bc_self;
+		npctalk("Does he always have to hear the answer?", "Stello#dorcon");
+		npctalk("Stello?", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Well, is this...";
@@ -5685,27 +5689,27 @@ conch_in,26,64,5	script	Captain Gamberi#dorcon0	4_DR_GAMBERI,{
 		next;
 		mes "[Captain Gamberi]";
 		mes "A new adventurer. A polite Doram always knocks before entering. Since you must be nervous before the adventure, I'll let it slide this time.";
-		npctalk "Knock... Yes, it is very important to knock.", "Stello#dorcon", bc_self;
+		npctalk("Knock... Yes, it is very important to knock.", "Stello#dorcon");
 		next;
 		mes "[Captain Gamberi]";
 		mes "I am Captain ^0000cdGamberi^000000 in charge of this ship. Welcome aboard.";
-		npctalk "I am Captain Gamberi in charge of this ship.", "Stello#dorcon", bc_self;
-		npctalk "Stello?", "", bc_self;
-		npctalk "Huh! I am sorry.", "Stello#dorcon", bc_self;
+		npctalk("I am Captain Gamberi in charge of this ship.", "Stello#dorcon");
+		npctalk("Stello?", "");
+		npctalk("Huh! I am sorry.", "Stello#dorcon");
 		next;
 		mes "[Stello]";
 		mes "The Purser must have sent up another irrelevant visitor. He must have told you how the people from the same home town should stick together and all.";
 		next;
 		mes "[Stello]";
 		mes "Oh, I am not blaming you. I'll do my best to give you the best sailing adventure. I am ^0000cdStello^000000.";
-		npctalk "The Chief Officer.", "Stello#dorcon", bc_self;
+		npctalk("The Chief Officer.", "Stello#dorcon");
 		next;
 		mes "[Captain Gamberi]";
 		mes "It may help you ease your nerve to walk around the ship. As long as you watch your manners, everyone will welcome you.";
 		next;
 		mes "[Stello]";
 		mes "Especially, you need to adjust your attire. The right outfit leads to a correct posture, and the correct posture is the first step to become a gentleman.";
-		npctalk "That's right.", "", bc_self;
+		npctalk("That's right.", "");
 		next;
 		mes "[Stello]";
 		mes "All the crews are such gentlemen, but they have no mercy for bad manners. You should be careful about this.";
@@ -5760,23 +5764,23 @@ conch_in,26,64,5	script	Captain Gamberi#dorcon0	4_DR_GAMBERI,{
 		next;
 		mes "[Captain Gamberi]";
 		mes "Hum! Then you have found the right man. It is another adventure for me to tell an adventure story to an adventurer. Which story do you want hear now?";
-		npctalk "It's been a long time since I had a visitor like you.", "Stello#dorcon", bc_self;
+		npctalk("It's been a long time since I had a visitor like you.", "Stello#dorcon");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "I am interested in the story about you the most.";
 		next;
 		mes "[Gamberi]";
 		mes "I am from Lasagna. I was born to an honorable family and gentle parents. I grew up to become a curious and adventurous child.";
-		npctalk "There was no one in the village who didn't know me.", "Stello#dorcon", bc_self;
+		npctalk("There was no one in the village who didn't know me.", "Stello#dorcon");
 		next;
 		mes "[Gamberi]";
 		mes "I wanted to break free from the name of the family. I ran off and wandered around Lasagna.";
-		npctalk "My house was the invisible prison trapping me inside and I was a bird longing for freedom...", "Stello#dorcon", bc_self;
+		npctalk("My house was the invisible prison trapping me inside and I was a bird longing for freedom...", "Stello#dorcon");
 		next;
 		mes "[Stello]";
 		mes "Oh, strange. This is not the story I have heard from your mother, Captain. She said you didn't want to help the butcher's shop business, and you went out from the early morning.";
-		npctalk "Who is lying?", "Stello#dorcon", bc_self;
-		npctalk "Stello?", "", bc_self;
+		npctalk("Who is lying?", "Stello#dorcon");
+		npctalk("Stello?", "");
 		next;
 		mes "[Gamberi]";
 		mes "Stello, it is not polite to interrupt. I had a strong sense of justice and couldn't just let those bad Dorams disturbing peace in Lasagna. I had to ^0000cdlead them into the right path^000000.";
@@ -5786,16 +5790,16 @@ conch_in,26,64,5	script	Captain Gamberi#dorcon0	4_DR_GAMBERI,{
 		next;
 		mes "[Stello]";
 		mes "I heard that story. That's why you were called the mad...";
-		npctalk "Stello?", "", bc_self;
-		npctalk "No, never mind.", "Stello#dorcon", bc_self;
+		npctalk("Stello?", "");
+		npctalk("No, never mind.", "Stello#dorcon");
 		next;
 		mes "[Gamberi]";
 		mes "I was interested in the fishing industry, and I went into the ^0000cdanchovy processing^000000 business with Pepperoncino. We made a fortune. We wondered what to do with all the money we had...";
 		next;
 		mes "[Stello]";
 		mes "It really was...";
-		npctalk "Really was?", "", bc_self;
-		npctalk "No, never mind me...", "Stello#dorcon", bc_self;
+		npctalk("Really was?", "");
+		npctalk("No, never mind me...", "Stello#dorcon");
 		next;
 		mes "[Gamberi]";
 		mes "You may not see it now, but Lasagna used to be a dark place. Bad Dorams everywhere on the street, and there were a lot of fights.";
@@ -5808,15 +5812,15 @@ conch_in,26,64,5	script	Captain Gamberi#dorcon0	4_DR_GAMBERI,{
 		next;
 		mes "[Stello]";
 		mes "You needed some manpower...";
-		npctalk "......", "", bc_self;
-		npctalk "....... Huh...", "Stello#dorcon", bc_self;
+		npctalk("......", "");
+		npctalk("....... Huh...", "Stello#dorcon");
 		next;
 		mes "[Gamberi]";
 		mes "I met Stello then. I ^0000cdcorrected Stello who was a pickpocket^000000 back then. He has become the Chief Office.";
 		next;
 		mes "[Stello]";
 		mes "Hum, Let's stop talking about it. It was ages ago.";
-		npctalk "What are you talking about to the guest?", "", bc_self;
+		npctalk("What are you talking about to the guest?", "");
 		next;
 		mes "[Gamberi]";
 		mes "I, Pepperoncino and Thomas wanted to pull off a major gig. A really big one. Nothing like what we had done by then. A business. I mean.";
@@ -5826,18 +5830,18 @@ conch_in,26,64,5	script	Captain Gamberi#dorcon0	4_DR_GAMBERI,{
 		next;
 		mes "[Gamberi]";
 		mes "At the same time, we ran a ^0000cdvigilante corps^000000 to clean up the streets of Lasagna. Many people joined us for our cause.";
-		npctalk "When I formed the vigilante corps, many people were drawn to my personality and joined me.", "", bc_self;
+		npctalk("When I formed the vigilante corps, many people were drawn to my personality and joined me.", "");
 		next;
 		mes "[Stello]";
 		mes "Are you going to join me or get punched in the face? Are you going to keep living in the gutter? Who wouldn't join the vigilante corps hearing those threats...";
 		next;
 		mes "[Gamberi]";
 		mes "Stello?";
-		npctalk "Really? Did you join by force?", "", bc_self;
+		npctalk("Really? Did you join by force?", "");
 		next;
 		mes "[Stello]";
 		mes "No! I really wanted to join!";
-		npctalk "No! I really wanted to join!", "Stello#dorcon", bc_self;
+		npctalk("No! I really wanted to join!", "Stello#dorcon");
 		next;
 		mes "[Gamberi]";
 		mes "I corrected those bad Dorams and formed the merchant group and the vigilante corps to engage in^0000cd trades^000000. The business thrived, and all the cities nearby were filled with the goods from Lasagna.";
@@ -5847,15 +5851,15 @@ conch_in,26,64,5	script	Captain Gamberi#dorcon0	4_DR_GAMBERI,{
 		next;
 		mes "[Stello]";
 		mes "That was because Pepperoncino...";
-		npctalk "It was because of Pepperoncino.", "", bc_self;
-		npctalk "Well, he may have had some influence...", "Stello#dorcon", bc_self;
+		npctalk("It was because of Pepperoncino.", "");
+		npctalk("Well, he may have had some influence...", "Stello#dorcon");
 		next;
 		mes "[Gamberi]";
 		mes "And we were caught in a storm and parted with ^0000cdThomas' ship, Navi^000000. We kept on looking for Navi.";
 		next;
 		mes "[Gamberi]";
 		mes "Then I pioneered the seaway to Malangdo with ^0000cdStello^000000 whom I had straightened, and reunited with Thomas. Eventually, we decided to advance into the new continent.";
-		npctalk "Ahem, please tell that part in detail!", "", bc_self;
+		npctalk("Ahem, please tell that part in detail!", "");
 		next;
 		mes "[Gamberi]";
 		mes "Ever since, we have been not only leading the trade with the new continent but also connecting the continents. The adventurers from both continents use ^0000cdCon-Chliina^000000, and we are proud of it.";
@@ -5871,7 +5875,7 @@ conch_in,26,64,5	script	Captain Gamberi#dorcon0	4_DR_GAMBERI,{
 		next;
 		mes "[Captain Gamberi]";
 		mes "Please come back later and tell me your story.";
-		npctalk "I'd like to hear it too.", "Stello#dorcon", bc_self;
+		npctalk("I'd like to hear it too.", "Stello#dorcon");
 		erasequest 14579;// Interview with Captain
 		setquest 14580;// To Recorder
 		conch_in_recorder = 2;
@@ -5911,7 +5915,7 @@ conch_in,96,29,5	script	Recorder#dorcon	4_CAT_MERMASTER,{
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Hello, I am " + strcharinfo(0) + ", looking for adventure from the new continent. I am here to say hi as the Purser has advised.";
-		npctalk "Oh, I see.", "", bc_self;
+		npctalk("Oh, I see.", "");
 		next;
 		mes "[Recorder]";
 		mes "Nice to meet you. I am the Recorder of this ship who is in charge of all records of this ship. You may come by whenever you have a question. You are free to access any records except the classified ones.";
@@ -5921,7 +5925,7 @@ conch_in,96,29,5	script	Recorder#dorcon	4_CAT_MERMASTER,{
 		next;
 		mes "[Recorder]";
 		mes "Your name is... " + strcharinfo(0) + "... The height must be... and the color is... like this... The accent of yours... You must have lived in Pane and moved to Bongola.";
-		npctalk "And you are here in Lasagna...", "", bc_self;
+		npctalk("And you are here in Lasagna...", "");
 		next;
 		mes "[Recorder]";
 		mes "The dirt and grass on your feet... You are not a neat person... Oh, never mind. I am not writing down your faults... This is enough.";
@@ -6002,7 +6006,7 @@ conch_in,96,29,5	script	Recorder#dorcon	4_CAT_MERMASTER,{
 		next;
 		mes "[Recorder]";
 		mes "Let me record your profile now. Oh, you don't need to do anything. You may just stand there. Your name is... " + strcharinfo(0) + "...The height must be... and the color is... like this...";
-		npctalk "The people from the new continent are so tall.", "", bc_self;
+		npctalk("The people from the new continent are so tall.", "");
 		next;
 		mes "[Recorder]";
 		mes "Oh, never mind. I am not writing down your faults... This is enough.";
@@ -6012,11 +6016,11 @@ conch_in,96,29,5	script	Recorder#dorcon	4_CAT_MERMASTER,{
 		next;
 		mes "[Recorder]";
 		mes "You just need to pay a little attention. It is just a technique I have picked up from observing people for a long time.";
-		npctalk "It is also an occupational sickness.", "", bc_self;
+		npctalk("It is also an occupational sickness.", "");
 		next;
 		mes "[Recorder]";
 		mes "Anyways, just in time. A mysterious thing has just happened, and I need ^0000cda fresh eye who is not involved in it^000000.";
-		npctalk "I cannot trust anyone.", "", bc_self;
+		npctalk("I cannot trust anyone.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "I have a hunch that I have to leave this place now.";
@@ -6040,7 +6044,7 @@ conch_in,96,29,5	script	Recorder#dorcon	4_CAT_MERMASTER,{
 		next;
 		mes "[Recorder]";
 		mes "Good. Please take a look at this shelf here.";
-		npctalk "Aren't they just beautiful?", "", bc_self;
+		npctalk("Aren't they just beautiful?", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "There are a lot of books.";
@@ -6069,18 +6073,18 @@ conch_in,96,29,5	script	Recorder#dorcon	4_CAT_MERMASTER,{
 		next;
 		mes "[Recorder]";
 		mes "No. The missing pages have been found. In the oven of the kitchen.";
-		npctalk "You must be a mystery fan, I guess.", "", bc_self;
+		npctalk("You must be a mystery fan, I guess.", "");
 		next;
 		mes "[Recorder]";
 		mes "Unfortunately, most of the pages were gone in the fire. I could barely recognize the remaining of the document.";
-		npctalk "It was a relief that not all of it had been gone...", "", bc_self;
+		npctalk("It was a relief that not all of it had been gone...", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "What were the missing pages about?";
 		next;
 		mes "[Recorder]";
 		mes "Unfortunately, those pages contained ^0000cdthe record about Captain Gamberi^000000. Since Gamberi is our captain, I have done my best to make the record.";
-		npctalk "It was the longest which had taken a long time and effort.", "", bc_self;
+		npctalk("It was the longest which had taken a long time and effort.", "");
 		next;
 		mes "[Recorder]";
 		mes "The story about Captain Gamberi is included in all the books as well. And all of it was reduced to ashes.";
@@ -6105,7 +6109,7 @@ conch_in,96,29,5	script	Recorder#dorcon	4_CAT_MERMASTER,{
 		next;
 		mes "[Recorder]";
 		mes "No. I have found the thief already. I plan to punish him in the most painful way possible. However, there are things I have to take care of before that. That's why I am keeping it quiet.";
-		npctalk "There is a time for everything.", "", bc_self;
+		npctalk("There is a time for everything.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Then what do you need a fresh eye for?";
@@ -6124,7 +6128,7 @@ conch_in,96,29,5	script	Recorder#dorcon	4_CAT_MERMASTER,{
 		next;
 		mes "[Recorder]";
 		mes "Yes, indeed. It should remain a secret. If Captain Gamberi finds out, you and I'd never get away.";
-		npctalk "Everything depends on you.", "", bc_self;
+		npctalk("Everything depends on you.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "I see.";
@@ -6146,14 +6150,14 @@ conch_in,96,29,5	script	Recorder#dorcon	4_CAT_MERMASTER,{
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "I have heard from the story from Captain Gamberi, but I am very confused.";
-		npctalk "Please, tell me the story!", "", bc_self;
+		npctalk("Please, tell me the story!", "");
 		next;
 		mes "[When you told the story you heard from Captain Gamberi and about how Stello interrupted, the Recorder started writing it down.]";
 		next;
 		emotion ET_SCRATCH;
 		mes "[Recorder]";
 		mes "That is strange. I cannot remember all the records, but the story told by Captain Gamberi ^0000cdis different^000000 from the part of the record I do remember.";
-		npctalk "It wasn't supposed to be lengthy like this.", "", bc_self;
+		npctalk("It wasn't supposed to be lengthy like this.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Was the story of the Chief Officer true then?";
@@ -6169,7 +6173,7 @@ conch_in,96,29,5	script	Recorder#dorcon	4_CAT_MERMASTER,{
 		next;
 		mes "[Recorder]";
 		mes "Although this person is not from Lasagna, he has spent meaningful amount of time with Captain Gamberi. You may go talk to him. We can compare the story from him with the interview with Captain Gamberi.";
-		npctalk "I should have done this earlier.", "", bc_self;
+		npctalk("I should have done this earlier.", "");
 		next;
 		mes "[Recorder]";
 		mes "I am sorry to ask you again.";
@@ -6179,11 +6183,11 @@ conch_in,96,29,5	script	Recorder#dorcon	4_CAT_MERMASTER,{
 		next;
 		mes "[Recorder]";
 		mes "I mean ^0000cdPepperoncino the leader of the vigilante corps^000000. He must be having an early meal at the new Adventurer Club now.";
-		npctalk "He could be at table.", "", bc_self;
+		npctalk("He could be at table.", "");
 		next;
 		mes "[Recorder]";
 		mes "You can enter the restaurant when you head to the south gate of the <NAVI>^4D4DFF[Adventurer Club]^000000<INFO>lasagna,56,186,000,1,</INFO></NAVI>.";
-		npctalk "You can follow this Red Yarn. The Red Yarn always leads you to the right way.", "", bc_self;
+		npctalk("You can follow this Red Yarn. The Red Yarn always leads you to the right way.", "");
 		erasequest 14580;// To Recorder
 		setquest 14581;// Interview with the Chief
 		conch_in_recorder = 3;
@@ -6214,14 +6218,14 @@ conch_in,96,29,5	script	Recorder#dorcon	4_CAT_MERMASTER,{
 		next;
 		mes "[Recorder]";
 		mes "Not we cannot quite trust the story told by Pepperoncino. I cannot record the story I cannot trust.";
-		npctalk "I cannot believe how pretentious our captain and the leader really are!", "", bc_self;
+		npctalk("I cannot believe how pretentious our captain and the leader really are!", "");
 		next;
 		mes "[Recorder]";
 		mes "However, I cannot let the records be lost like this. What should I do...";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "How about asking Captain Thomas of Navi?";
-		npctalk "Captain Thomas?", "", bc_self;
+		npctalk("Captain Thomas?", "");
 		next;
 		mes "[Recorder]";
 		mes "As you can see, Captain Gamberi and Pepperoncino only tell the stories they like to tell. We cannot trust the story of Captain Thomas either.";
@@ -6234,7 +6238,7 @@ conch_in,96,29,5	script	Recorder#dorcon	4_CAT_MERMASTER,{
 		next;
 		mes "[Recorder]";
 		mes "Oh, you are right. There is ^0000cdthis one person^000000.";
-		npctalk "The living history of Lasagna.", "", bc_self;
+		npctalk("The living history of Lasagna.", "");
 		next;
 		mes "[Recorder]";
 		mes "Where the Adventurer Club is now, there used to be ^0000cdPub-Oven^000000. The place used to sell Kahlugna Milk. You can go to see ^0000cdthe first owner^000000 of the place. However...";
@@ -6268,19 +6272,19 @@ conch_in,96,29,5	script	Recorder#dorcon	4_CAT_MERMASTER,{
 		next;
 		mes "[Recorder]";
 		mes "Nice work. The story matches some of the details I remember. He sure is a living history. I guess I should fill in the records based on the story.";
-		npctalk "The living history of Lasagna.", "", bc_self;
+		npctalk("The living history of Lasagna.", "");
 		next;
 		mes "[Recorder]";
 		mes "It will be filled with more abundant detailed than the previous record.";
 		next;
-		classchange( 4_DR_GAMBERI, "Captain Gamberi#dorcon0_2", bc_self );
+		classchange( 4_DR_GAMBERI, "Captain Gamberi#dorcon02", bc_self );
 		mes "[Recorder]";
 		mes "Dear captain, what are you doing here?";
 		next;
 		emotion ET_HUK, getnpcid(0, "Captain Gamberi#dorcon0");
 		mes "[Captain Gamberi]";
 		mes "You were in place. I am just checking if everyone is in the right place prior to the voyage.";
-		npctalk "Hum! Hum! I thought there was no one around here.", "Captain Gamberi#dorcon0_2", bc_self;
+		npctalk("Hum! Hum! I thought there was no one around here.", "Captain Gamberi#dorcon02");
 		next;
 		mes "[Recorder]";
 		mes "Since when it has been your duty to check it? So quietly? Without a knock on the door?";
@@ -6291,14 +6295,14 @@ conch_in,96,29,5	script	Recorder#dorcon	4_CAT_MERMASTER,{
 		emotion ET_HUK, playerattached();
 		mes "[Recorder]";
 		mes "I see. ^0000cdIt must be the duty of the captain to tear and burn the document as well^000000, I guess.";
-		npctalk "Did you really think that I wouldn't find out? You have left a long trail od evidence after you.", "", bc_self;
-		npctalk "I don't know what you are talking about.", "Captain Gamberi#dorcon0_2", bc_self;
+		npctalk("Did you really think that I wouldn't find out? You have left a long trail od evidence after you.", "");
+		npctalk("I don't know what you are talking about.", "Captain Gamberi#dorcon02");
 		next;
 		mes "[Captain Gamberi]";
 		mes "Oh, hum. I should go check if the Boatswain in the right place.";
-		npctalk "I should stop by so many places.", "Captain Gamberi#dorcon0_2", bc_self;
+		npctalk("I should stop by so many places.", "Captain Gamberi#dorcon02");
 		next;
-		classchange( HIDDEN_WARP_NPC, "Captain Gamberi#dorcon0_2", bc_self );
+		classchange( HIDDEN_WARP_NPC, "Captain Gamberi#dorcon02", bc_self );
 		mes "[Recorder]";
 		mes "don't even think about it from now on!";
 		next;
@@ -6307,11 +6311,11 @@ conch_in,96,29,5	script	Recorder#dorcon	4_CAT_MERMASTER,{
 		next;
 		mes "[Recorder]";
 		mes "As more people started using the ship and accessing the record, he must have felt embarrassed by the record filled with his not so pretty past.";
-		npctalk "It is not something to be embarrassed by in Lasagna.", "", bc_self;
+		npctalk("It is not something to be embarrassed by in Lasagna.", "");
 		next;
 		mes "[Recorder]";
 		mes "I knew he would come again. He must have heard that I am recollecting the record. I though he would come back to get rid of it again. I guess I should be more careful not to lose it.";
-		npctalk "I'd better make multiple copies and hide them everywhere.", "", bc_self;
+		npctalk("I'd better make multiple copies and hide them everywhere.", "");
 		next;
 		mes "[Recorder]";
 		mes "Dear adventurer. since you have completed your mission, here is the reward for you. You may access all documents in the recording room freely from now on. Well then.";
@@ -6327,7 +6331,7 @@ conch_in,96,29,5	script	Recorder#dorcon	4_CAT_MERMASTER,{
 	}
 }
 
-conch_in,101,31,3	script	Captain Gamberi#dorcon0_2	HIDDEN_WARP_NPC,{ end; }
+conch_in,101,31,3	script	Captain Gamberi#dorcon02	HIDDEN_WARP_NPC,{ end; }
 
 conch_in,98,33,5	script	Con-Chliina Ship's Log#	HIDDEN_NPC,{
 	if (conch_in_recorder < 7) {
@@ -6621,8 +6625,8 @@ conch_in,181,61,5	script	Boatswain#dorcon	4_M_BOSSCAT,{
 		next;
 		mes "[Sous Chef]";
 		mes "......";
-		npctalk "You are cold.", "", bc_self;
-		npctalk "He probably didn't hear it.", "Helmsman#dorcon", bc_self;
+		npctalk("You are cold.", "");
+		npctalk("He probably didn't hear it.", "Helmsman#dorcon");
 		next;
 		mes "[Boatswain]";
 		mes "Oh, you are the newly trained adventurer setting off on an adventure to the new continent. I am fond of an adventurous spirit. I used to travel from a place to another when I was young.";
@@ -6647,7 +6651,7 @@ conch_in,181,61,5	script	Boatswain#dorcon	4_M_BOSSCAT,{
 		next;
 		mes "[Boatswain]";
 		mes "The Sous Chef is always on the edge before sailing off. don't take it personally.";
-		npctalk "It doesn't mean that he doesn't like you.", "Helmsman#dorcon", bc_self;
+		npctalk("It doesn't mean that he doesn't like you.", "Helmsman#dorcon");
 		next;
 		mes "[Helmsman]";
 		mes "A mature Doram doesn't hold on to such things. You may go. We are about to set off.";
@@ -6682,7 +6686,7 @@ conch_in,181,61,5	script	Boatswain#dorcon	4_M_BOSSCAT,{
 		next;
 		mes "[Boatswain]";
 		mes "What! Who broke this Pussy Willow branch!";
-		npctalk "Oh, not again.", "Helmsman#dorcon", bc_self;
+		npctalk("Oh, not again.", "Helmsman#dorcon");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "You seem to be in trouble. What is the matter?";
@@ -6694,14 +6698,14 @@ conch_in,181,61,5	script	Boatswain#dorcon	4_M_BOSSCAT,{
 		}
 		mes "[Boatswain]";
 		mes "We need to take off anytime soon, and the preparation for sailing is not made properly.";
-		npctalk "Oh! You adventurer! You don't want to deal with him so seriously...!", "Helmsman#dorcon", bc_self;
+		npctalk("Oh! You adventurer! You don't want to deal with him so seriously...!", "Helmsman#dorcon");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "I don't know much about sailing, but none of those sounds relevant to the ship.";
 		next;
 		mes "[Boatswain]";
 		mes "It is not your business... Well, ^0000cda stranger from a new place is supposed to solve this problem^000000.";
-		npctalk "And here is a stranger from a new place in front of me.", "", bc_self;
+		npctalk("And here is a stranger from a new place in front of me.", "");
 		next;
 		mes "[Boatswain]";
 		mes "I am the sailor of sailors. The real seaman. I am the boatswain of this ship who is in charge of taking care of tough sailors and all the business on the deck. The story I am about to tell you... You shouldn't tell it to anyone else.";
@@ -6728,7 +6732,7 @@ conch_in,181,61,5	script	Boatswain#dorcon	4_M_BOSSCAT,{
 		next;
 		mes "[Boatswain]";
 		mes "You are right. I had no fear. I enjoyed running into adventures and stuff. That's how I ended up in Lasagna and became the boatswain of Con-Chliina after meeting Captain Gamberi.";
-		npctalk "It was the most cherished moment of my lift.", "", bc_self;
+		npctalk("It was the most cherished moment of my lift.", "");
 		next;
 		mes "[Boatswain]";
 		mes "I have been to everywhere. And one day, I found it.";
@@ -6738,11 +6742,11 @@ conch_in,181,61,5	script	Boatswain#dorcon	4_M_BOSSCAT,{
 		next;
 		mes "[Boatswain]";
 		mes "When the ship was anchored in an unknown island to replenish water, I explored the island as I always did. And I found a ^0000cdsealed pot^000000 there.";
-		npctalk "I should have left it there and walked away.", "", bc_self;
+		npctalk("I should have left it there and walked away.", "");
 		next;
 		mes "[Boatswain]";
 		mes "I shook it, but there was no sound. I was wondering what was in there making no sound when it had been sealed so carefully.";
-		npctalk "Curiosity kills the Doram, they say...", "", bc_self;
+		npctalk("Curiosity kills the Doram, they say...", "");
 		next;
 		mes "[Boatswain]";
 		mes "Gamberi who came there tried to stop me, but I opened the seal. There was nothing in the ^0000cdpot^000000, and nothing happened.";
@@ -6770,7 +6774,7 @@ conch_in,181,61,5	script	Boatswain#dorcon	4_M_BOSSCAT,{
 		next;
 		mes "[Boatswain]";
 		mes "The pot turned out to be a pot in which an evil ghost has been sealed. Gamberi knew it and tried to stop me. However, it was too late. I had already broken the seal. I grew up in the land, and did not know about that at all.";
-		npctalk "People can only see as much as they know.", "", bc_self;
+		npctalk("People can only see as much as they know.", "");
 		next;
 		mes "[Boatswain]";
 		mes "I have been suffering from ^0000cdthe supernatural phenomenon^000000 ever since.";
@@ -6786,7 +6790,7 @@ conch_in,181,61,5	script	Boatswain#dorcon	4_M_BOSSCAT,{
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Is depending on all kinds of superstitions the way to weaken it?";
-		npctalk "Superstitions? No, they are based on pure science.", "", bc_self;
+		npctalk("Superstitions? No, they are based on pure science.", "");
 		next;
 		mes "[Boatswain]";
 		mes "No other crews of Con-Chliina, except Captain Gamberi and I, know about this.";
@@ -6802,7 +6806,7 @@ conch_in,181,61,5	script	Boatswain#dorcon	4_M_BOSSCAT,{
 		next;
 		mes "[Boatswain]";
 		mes "The Boatswain of Con-Chliina doesn't lie. If you don't trust me, you should trust Gamberi who has hired me as the Boatswain of Con-Chliina.";
-		npctalk "I will never betray Gamberi.", "", bc_self;
+		npctalk("I will never betray Gamberi.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "I'll be back soon.";
@@ -6826,11 +6830,11 @@ conch_in,181,61,5	script	Boatswain#dorcon	4_M_BOSSCAT,{
 		next;
 		mes "[Boatswain]";
 		mes "What? I should become a Shaman meow? What a nonsense! I am a sailor! I shall die on the sea as a sailor!";
-		npctalk "Hey, you! Keep quiet! don't laugh!", "", bc_self;
+		npctalk("Hey, you! Keep quiet! don't laugh!", "");
 		next;
 		mes "[Boatswain]";
 		mes "I'd rather spend the rest of life fighting than living with the ghosts!";
-		npctalk "Yes! You are the ghosts!", "", bc_self;
+		npctalk("Yes! You are the ghosts!", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Shaman meow is not as bad as you think. Why don't you go get a counseling when you have time.";
@@ -6843,7 +6847,7 @@ conch_in,181,61,5	script	Boatswain#dorcon	4_M_BOSSCAT,{
 		next;
 		mes "[Boatswain]";
 		mes "What? Wait... That is...";
-		npctalk "That is not good... I won't last?", "", bc_self;
+		npctalk("That is not good... I won't last?", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "You can survive through a day with a ^0000cddaily amulet^000000. I guess you should be closer to the Shaman meow now.";
@@ -6856,7 +6860,7 @@ conch_in,181,61,5	script	Boatswain#dorcon	4_M_BOSSCAT,{
 		next;
 		mes "[Boatswain]";
 		mes "Ba... Basilisks... Out of the frying pan into the fire. I don't like to deal with those dirty things.";
-		npctalk "Should I just jump off the deck...?", "", bc_self;
+		npctalk("Should I just jump off the deck...?", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Well, That's it from me. I should get going...";
@@ -6869,7 +6873,7 @@ conch_in,181,61,5	script	Boatswain#dorcon	4_M_BOSSCAT,{
 		next;
 		mes "[Boatswain]";
 		mes "No, no, never. You cannot get out of this like that. ^0000cdIt must have been our destiny.^000000 It is a fate! You should help me.";
-		npctalk "And you are going to help me.", "", bc_self;
+		npctalk("And you are going to help me.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "...Well, just as I heard from Shaman meow. I was told that the Boatswain would make me do it.";
@@ -6895,12 +6899,12 @@ conch_in,181,61,5	script	Boatswain#dorcon	4_M_BOSSCAT,{
 		next;
 		mes "[Boatswain]";
 		mes "Argh... Give it to me. No, no. Not like that. Just wrap it a little so that no one can see. Right. Like that. Give me all you have.";
-		npctalk "I can't believe I should keep it with me all day...", "", bc_self;
+		npctalk("I can't believe I should keep it with me all day...", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "This is difficult.";
-		npctalk "Hey, you seem suspicious.", "Helmsman#dorcon", bc_self;
-		npctalk "No, never mind!", "", bc_self;
+		npctalk("Hey, you seem suspicious.", "Helmsman#dorcon");
+		npctalk("No, never mind!", "");
 		next;
 		mes "[Boatswain]";
 		mes "This... This is...";
@@ -6914,8 +6918,8 @@ conch_in,181,61,5	script	Boatswain#dorcon	4_M_BOSSCAT,{
 		next;
 		mes "[Boatswain]";
 		mes "It is unfair that I haven't known about this method so far!";
-		npctalk "What is unfair?", "Helmsman#dorcon", bc_self;
-		npctalk "Nothing! don't you have other things to do?", "", bc_self;
+		npctalk("What is unfair?", "Helmsman#dorcon");
+		npctalk("Nothing! don't you have other things to do?", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "It only lasts a day. When it expires, it will be burnt up. I guess you should be close to Shaman meow from now on.";
@@ -6935,11 +6939,11 @@ conch_in,181,61,5	script	Boatswain#dorcon	4_M_BOSSCAT,{
 		next;
 		mes "[Boatswain]";
 		mes "I will reward you handsomely. However, you haven't been able to solve the problem permanently so I don't have to keep the promise I have made.";
-		npctalk "You haven't really solved the problem for good.", "", bc_self;
+		npctalk("You haven't really solved the problem for good.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "This is unfair.";
-		npctalk "The Boatswain is kind of sleazy.", "Helmsman#dorcon", bc_self;
+		npctalk("The Boatswain is kind of sleazy.", "Helmsman#dorcon");
 		next;
 		mes "[Boatswain]";
 		mes "I will reward you handsomely. Please do me another favor tomorrow.";
@@ -6949,7 +6953,7 @@ conch_in,181,61,5	script	Boatswain#dorcon	4_M_BOSSCAT,{
 		next;
 		mes "[Boatswain]";
 		mes "Oh, you would come. I have a hunch.";
-		npctalk "My hunch is never wrong.", "", bc_self;
+		npctalk("My hunch is never wrong.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "I am pretty sure that it is the evil ghost talking to you.";
@@ -6965,11 +6969,11 @@ conch_in,181,61,5	script	Boatswain#dorcon	4_M_BOSSCAT,{
 		close;
 	}
 	if (conch_in_boatswain == 4) {
-		switch( checkquest(14559,PLAYTIME) ) {
+		switch( questprogress(14559,PLAYTIME) ) {
 		case -1:
-			if (isbegin_quest(14560) == 1)
+			if (questprogress(14560) == 1)
 				.@count = ( countitem(25049) < 5 || countitem(523) < 1 );
-			else if (isbegin_quest(14561) == 1)
+			else if (questprogress(14561) == 1)
 				.@count = ( countitem(25049) < 20 );
 			else
 				.@count = ( countitem(25049) < 5 || countitem(22985) < 20 );
@@ -6986,14 +6990,14 @@ conch_in,181,61,5	script	Boatswain#dorcon	4_M_BOSSCAT,{
 			next;
 			mes "[Boatswain]";
 			specialeffect EF_CURE;
-			if (isbegin_quest(14560) == 1) {
+			if (questprogress(14560) == 1) {
 				mes "It feels like watching the blue horizon on a clear and windless day. It is refreshing.";
 				next;
 				erasequest 14560;// New Ingredient
 				delitem 25049,5;// Basilac Clam
 				delitem 523,1;// Holy Water
 			}
-			else if (isbegin_quest(14561) == 1) {
+			else if (questprogress(14561) == 1) {
 				mes "It feels like watching the clouds go by lying on my back on a green hill.";
 				next;
 				delitem 25049,20;// Basilac Clam
@@ -7022,7 +7026,7 @@ conch_in,181,61,5	script	Boatswain#dorcon	4_M_BOSSCAT,{
 		case 2:
 			mes "[Boatswain]";
 			mes "You said you would come if you wanted to.";
-			npctalk "You didn't feel comfortable not coming, right?", "", bc_self;
+			npctalk("You didn't feel comfortable not coming, right?", "");
 			next;
 			mes "[Boatswain]";
 			mes "However, you shouldn't have come to me. You should have gone to ^0000cdShamanyang^000000 and asked about today's amulet.";
@@ -7051,8 +7055,8 @@ conch_in,181,58,3	script	Helmsman#dorcon	4_CAT_SAILOR5,{
 		next;
 		mes "[Sous Chef]";
 		mes "......";
-		npctalk "You are cold.", "Boatswain#dorcon", bc_self;
-		npctalk "He probably didn't hear it.", "", bc_self;
+		npctalk("You are cold.", "Boatswain#dorcon");
+		npctalk("He probably didn't hear it.", "");
 		next;
 		mes "[Boatswain]";
 		mes "Oh, you are the newly trained adventurer setting off on an adventure to the new continent. I am fond of an adventurous spirit. I used to travel from a place to another when I was young.";
@@ -7077,7 +7081,7 @@ conch_in,181,58,3	script	Helmsman#dorcon	4_CAT_SAILOR5,{
 		next;
 		mes "[Boatswain]";
 		mes "The Sous Chef is always on the edge before sailing off. don't take it personally.";
-		npctalk "It doesn't mean that he doesn't like you.", "", bc_self;
+		npctalk("It doesn't mean that he doesn't like you.", "");
 		next;
 		mes "[Helmsman]";
 		mes "A mature Doram doesn't hold on to such things. You may go. We are about to set off.";
@@ -7111,9 +7115,9 @@ conch_in,179,64,5	script	Cow#dorcon01_bis	4_WHITE_COW,{
 	next;
 	mes "[Boatswain]";
 	mes "So? What! I won her on a bet. Every time I call her name, it reminds me of that moment of victory. It's beautiful.";
-	npctalk "Moo -", "", bc_self;
+	npctalk("Moo -", "");
 	emotion ET_BIGTHROB;
-	npctalk "Right?", "Boatswain#dorcon", bc_self;
+	npctalk("Right?", "Boatswain#dorcon");
 	emotion ET_THROB;
 	next;
 	mes "[" + strcharinfo(0) + "]";
@@ -7121,19 +7125,19 @@ conch_in,179,64,5	script	Cow#dorcon01_bis	4_WHITE_COW,{
 	next;
 	mes "[Boatswain]";
 	mes "Why? Because we want to drink fresh milk every day!";
-	npctalk "Moo- Moo -", "", bc_self;
+	npctalk("Moo- Moo -", "");
 	next;
 	mes "[" + strcharinfo(0) + "]";
 	mes "You brought a cow on board for fresh milk?";
 	next;
 	mes "[Helmsman]";
 	mes "The boatswain can't leave her side for a second because she's his goddess of fortune. Lucky for us, we can have kaluna milk every day.";
-	npctalk "Who would've imagined that we can have kaluna milk on a ship every day?", "Helmsman#dorcon", bc_self;
+	npctalk("Who would've imagined that we can have kaluna milk on a ship every day?", "Helmsman#dorcon");
 	next;
 	mes "[Boatswain]";
 	mes "Hey! Keep talking and you'll jinx it!";
-	npctalk "Moo --------", "", bc_self;
-	npctalk "No, no - that person won't hurt you-", "Boatswain#dorcon", bc_self;
+	npctalk("Moo --------", "");
+	npctalk("No, no - that person won't hurt you-", "Boatswain#dorcon");
 	close;
 }
 
@@ -7141,7 +7145,7 @@ conch_in,189,63,3	script	Head Chef#dorcon	4_DR_TORTEL,{
 	emotion ET_SLEEPY;
 	mes "[Head Chef]";
 	mes "*Snore*";
-	npctalk "*Snore*", "", bc_self;
+	npctalk("*Snore*", "");
 	close;
 }
 
@@ -7162,8 +7166,8 @@ conch_in,186,57,3	script	Sous Chef#dorcon	4_CAT_CHEF,{
 		next;
 		mes "[Sous Chef]";
 		mes "......";
-		npctalk "You are cold.", "Boatswain#dorcon", bc_self;
-		npctalk "He probably didn't hear it.", "Helmsman#dorcon", bc_self;
+		npctalk("You are cold.", "Boatswain#dorcon");
+		npctalk("He probably didn't hear it.", "Helmsman#dorcon");
 		next;
 		mes "[Boatswain]";
 		mes "Oh, you are the newly trained adventurer setting off on an adventure to the new continent. I am fond of an adventurous spirit. I used to travel from a place to another when I was young.";
@@ -7188,7 +7192,7 @@ conch_in,186,57,3	script	Sous Chef#dorcon	4_CAT_CHEF,{
 		next;
 		mes "[Boatswain]";
 		mes "The Sous Chef is always on the edge before sailing off. don't take it personally.";
-		npctalk "It doesn't mean that he doesn't like you.", "Helmsman#dorcon", bc_self;
+		npctalk("It doesn't mean that he doesn't like you.", "Helmsman#dorcon");
 		next;
 		mes "[Helmsman]";
 		mes "A mature Doram doesn't hold on to such things. You may go. We are about to set off.";
@@ -7217,29 +7221,29 @@ conch_in,186,57,3	script	Sous Chef#dorcon	4_CAT_CHEF,{
 		next;
 		mes "[Sous Chef]";
 		mes "What are you doing? Is it a new way to get yourself killed? I am not afraid of challenges. Draw your weapon.";
-		npctalk "Did you hear what I heard?", "Boatswain#dorcon", bc_self;
-		npctalk "Yes, I did. The kids these days...They sure are reckless...", "Helmsman#dorcon", bc_self;
+		npctalk("Did you hear what I heard?", "Boatswain#dorcon");
+		npctalk("Yes, I did. The kids these days...They sure are reckless...", "Helmsman#dorcon");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "I don't mean.... I don't mean... That...";
 		next;
 		mes "[Sous Chef]";
 		mes "You tiny rat! Now tell me. I don't think a rookie like you would come up with this on your own. Who sent you here?";
-		npctalk "There is a puppet master for this!", "Boatswain#dorcon", bc_self;
-		npctalk "How did the Sous Chef figure it out?", "Helmsman#dorcon", bc_self;
-		npctalk "Wait, that guy is holding...", "Boatswain#dorcon", bc_self;
+		npctalk("There is a puppet master for this!", "Boatswain#dorcon");
+		npctalk("How did the Sous Chef figure it out?", "Helmsman#dorcon");
+		npctalk("Wait, that guy is holding...", "Boatswain#dorcon");
 		next;
 		mes "[Helmsman]";
 		mes "Sous Chef! I think this guy's telling the truth. It is ordered by you, right?";
 		next;
 		mes "[Sous Chef]";
 		mes "^0000cdKahlugnag^000000? That Eggring! He made this newbie do this and pull off a prank! Hey, I am sorry. Please accept my apology.";
-		npctalk "You need to apologize quickly and neatly.", "Boatswain#dorcon", bc_self;
-		npctalk "That's what a gentleman does.", "Helmsman#dorcon", bc_self;
+		npctalk("You need to apologize quickly and neatly.", "Boatswain#dorcon");
+		npctalk("That's what a gentleman does.", "Helmsman#dorcon");
 		next;
 		mes "[Sous Chef]";
 		mes "I'll make sure to tell him to say sorry to you. He is such a trouble. He will always be nothing but a sailor boy.";
-		npctalk "Eggling may rest in peace.", "Boatswain#dorcon", bc_self;
+		npctalk("Eggling may rest in peace.", "Boatswain#dorcon");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "No, never mind.";
@@ -7258,7 +7262,7 @@ conch_in,186,57,3	script	Sous Chef#dorcon	4_CAT_CHEF,{
 		next;
 		mes "[Sous Chef]";
 		mes "When you come back later, ^0000cdI'll teach you how to cook^000000. It is my way of saying sorry. Well, you may go now.";
-		npctalk "Teaching how to cook? What on earth!", "Boatswain#dorcon", bc_self;
+		npctalk("Teaching how to cook? What on earth!", "Boatswain#dorcon");
 		next;
 		mes "[Boatswain]";
 		mes "Hey newbie! Ask the Purser when we will be sailing off on your way. I think something has gone wrong since there is no sign so far.";
@@ -7277,7 +7281,7 @@ conch_in,186,57,3	script	Sous Chef#dorcon	4_CAT_CHEF,{
 		mes "It is going to be the time to eat soon. I should hurry up.";
 		close;
 	}
-	if (lasagna_quest[1] == 29 && isbegin_quest(14536) == 0) {// Delivery to Chef
+	if (lasagna_quest[1] == 29 && questprogress(14536) == 0) {// Delivery to Chef
 		mes "[Sous Chef]";
 		mes "Are you here to learn how to cook?";
 		next;
@@ -7293,7 +7297,7 @@ conch_in,186,57,3	script	Sous Chef#dorcon	4_CAT_CHEF,{
 			mes "[Sous Chef]";
 			mes "I have heard that there is someone who teaches how to cook in the palace of the new continent. It would be a good idea to check out.";
 			for ( .@quest_id = 14154; .@quest_id < 14157; .@quest_id++ ) {
-				if (isbegin_quest(.@quest_id) > 0)
+				if (questprogress(.@quest_id) > 0)
 					erasequest .@quest_id;
 			}
 			setquest 14536;// Delivery to Chef
@@ -7348,7 +7352,7 @@ conch_in,186,57,3	script	Sous Chef#dorcon	4_CAT_CHEF,{
 		}
 		if (sous_chef_quest == 1) {
 			for ( .@i = 14154; .@i < 14158; .@i++ ) {
-				if (isbegin_quest(.@i) == 1) {
+				if (questprogress(.@i) == 1) {
 					.@quest_id = .@i;
 					break;
 				}
@@ -7417,11 +7421,11 @@ conch_in,186,57,3	script	Sous Chef#dorcon	4_CAT_CHEF,{
 				mes "[Sous Chef]";
 				mes "The ingredients are ^0000cd1 Clover, 1 Green Herb and 1 Red Herb^000000.";
 				next;
-				cutin "·ç³ªÆ½Ä«µå.bmp",3;
+				cutin "ï¿½ç³ªÆ½Ä«ï¿½ï¿½.bmp",3;
 				mes "[Sous Chef]";
 				mes "You can get Clovers and Red Herbs from Leaf Lunatic or Grass Fabre in the field outside.";
 				next;
-				cutin "ÆÄºê¸£Ä«µå.bmp",3;
+				cutin "ï¿½Äºê¸£Ä«ï¿½ï¿½.bmp",3;
 				mes "[Sous Chef]";
 				mes "You can get Green Herbs from Grass Fabre.";
 				next;
@@ -7440,11 +7444,11 @@ conch_in,186,57,3	script	Sous Chef#dorcon	4_CAT_CHEF,{
 				mes "[Sous Chef]";
 				mes "The ingredients are ^0000cd1 Apple and 2 Carrots^000000.";
 				next;
-				cutin "¿¡±×¸µÄ«µå.bmp",3;
+				cutin "ï¿½ï¿½ï¿½×¸ï¿½Ä«ï¿½ï¿½.bmp",3;
 				mes "[Sous Chef]";
 				mes "You can get Apples from the Eggring jumping in the outer field of Izlude.";
 				next;
-				cutin "¸®ÇÁ·ç³ªÆ½Ä«µå.bmp",3;
+				cutin "ï¿½ï¿½ï¿½ï¿½ï¿½ç³ªÆ½Ä«ï¿½ï¿½.bmp",3;
 				mes "[Sous Chef]";
 				mes "You can get the Carrots from Leaf Lunatic.";
 				next;
@@ -7460,15 +7464,15 @@ conch_in,186,57,3	script	Sous Chef#dorcon	4_CAT_CHEF,{
 				mes "[Sous Chef]";
 				mes "The ingredients are ^0000cd1 Jellopy , 1 Fluff, and 1 Feather^000000.";
 				next;
-				cutin "¿¡±×¸µÄ«µå.bmp",3;
+				cutin "ï¿½ï¿½ï¿½×¸ï¿½Ä«ï¿½ï¿½.bmp",3;
 				mes "[Sous Chef]";
 				mes "You can get Jellopies from the Eggring jumping in the outer field.";
 				next;
-				cutin "±×·¡½ºÆÄºê¸£Ä«µå.bmp",3;
+				cutin "ï¿½×·ï¿½ï¿½ï¿½ï¿½Äºê¸£Ä«ï¿½ï¿½.bmp",3;
 				mes "[Sous Chef]";
 				mes "You can get Fluffs from Grass Fabre or Leaf Lunatic.";
 				next;
-				cutin "¸®ÇÁ·ç³ªÆ½Ä«µå.bmp",3;
+				cutin "ï¿½ï¿½ï¿½ï¿½ï¿½ç³ªÆ½Ä«ï¿½ï¿½.bmp",3;
 				mes "[Sous Chef]";
 				mes "You can get Feathers from Grass Fabre or Leaf Lunatic.";
 				next;
@@ -7487,11 +7491,11 @@ conch_in,186,57,3	script	Sous Chef#dorcon	4_CAT_CHEF,{
 				mes "[Sous Chef]";
 				mes "The ingredients are ^0000cd1 Apple and 1 Clover^000000.";
 				next;
-				cutin "¿¡±×¸µÄ«µå.bmp",3;
+				cutin "ï¿½ï¿½ï¿½×¸ï¿½Ä«ï¿½ï¿½.bmp",3;
 				mes "[Sous Chef]";
 				mes "You can get Apples from the Eggring in the outer field.";
 				next;
-				cutin "±×·¡½ºÆÄºê¸£Ä«µå.bmp",3;
+				cutin "ï¿½×·ï¿½ï¿½ï¿½ï¿½Äºê¸£Ä«ï¿½ï¿½.bmp",3;
 				mes "[Sous Chef]";
 				mes "You can get Clovers from Grass Fabre or Leaf Lunatic.";
 				next;
@@ -7510,17 +7514,17 @@ conch_in,186,57,3	script	Sous Chef#dorcon	4_CAT_CHEF,{
 		mes "I need someone to ask a favor. You don't seem experienced enough.";
 		close;
 	}
-	switch( isbegin_quest(14555) ) {
+	switch( questprogress(14555) ) {
 	case 0:
 		if (Class != Job_Summoner) {
 			mes "[Sous Chef]";
 			mes "I told you not to enter the kitchen like that... Oh... Are you from the new continent?";
-			npctalk "The new continent! The new continent!", "Head Chef#dorcon", bc_self;
+			npctalk("The new continent! The new continent!", "Head Chef#dorcon");
 			next;
 			mes "[Sous Chef]";
 			mes "I see you around often these days. You look so strange. The face without any whiskers and the butt with no tail.";
-			npctalk "It is not polite to discuss the looks in front of the person!", "Boatswain#dorcon", bc_self;
-			npctalk "Bad manners!", "Helmsman#dorcon", bc_self;
+			npctalk("It is not polite to discuss the looks in front of the person!", "Boatswain#dorcon");
+			npctalk("Bad manners!", "Helmsman#dorcon");
 			next;
 			mes "[Sous Chef]";
 			mes "Please excuse me. I am the Sous Chef in charge of this kitchen.";
@@ -7544,22 +7548,22 @@ conch_in,186,57,3	script	Sous Chef#dorcon	4_CAT_CHEF,{
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "How about the Head Chef? Why is the Sous Chef in charge of the kitchen?";
-		npctalk "Oh, you shouldn't have said that!", "Boatswain#dorcon", bc_self;
-		npctalk "It starts again. The long story.", "Helmsman#dorcon", bc_self;
+		npctalk("Oh, you shouldn't have said that!", "Boatswain#dorcon");
+		npctalk("It starts again. The long story.", "Helmsman#dorcon");
 		next;
 		mes "[Sous Chef]";
 		mes "Look over there. The man sleeping on the floor who seems so far from being a gentleman. ^0000cdHe is our Head Chef^000000. The captain has always said how we have to do our best at what we do. But no use.";
 		emotion ET_SLEEPY, getnpcid(0, "Head Chef#dorcon");
-		npctalk "*Snore*","Head Chef#dorcon", bc_self;
+		npctalk("*Snore*","Head Chef#dorcon");
 		next;
 		mes "[Sous Chef]";
 		mes "Do you know what is the most important thing in cooking? It is the endless passion and pursuit of the best taste. Nevertheless, our Head Chef has no interest in such things.";
-		npctalk "Taste, it is very important.", "Head Chef#dorcon", bc_self;
+		npctalk("Taste, it is very important.", "Head Chef#dorcon");
 		next;
 		mes "[Sous Chef]";
 		mes "However, he is very good at making enough servings to feed a number of people in a short time. That is why he has become the Head Chef. But when people started complaining about the taste, I was called in.";
-		npctalk "I didn't mind the stuff cooked by the Head Chef.", "Boatswain#dorcon", bc_self;
-		npctalk "There is something wrong with your tongue.", "Helmsman#dorcon", bc_self;
+		npctalk("I didn't mind the stuff cooked by the Head Chef.", "Boatswain#dorcon");
+		npctalk("There is something wrong with your tongue.", "Helmsman#dorcon");
 		next;
 		mes "[Sous Chef]";
 		mes "Ever since, the Head Chef entrusted me with everything.";
@@ -7569,7 +7573,7 @@ conch_in,186,57,3	script	Sous Chef#dorcon	4_CAT_CHEF,{
 		next;
 		mes "[Sous Chef]";
 		mes "I'd like to go out there and taste each dish. However, if I do, the crews of this ship will starve to death.";
-		npctalk "If you want to go, you should take me with you.", "Head Chef#dorcon", bc_self;
+		npctalk("If you want to go, you should take me with you.", "Head Chef#dorcon");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Hum, there are many kinds of food. We also hunt the ingredients and cook. There are many things for sure...";
@@ -7591,8 +7595,8 @@ conch_in,186,57,3	script	Sous Chef#dorcon	4_CAT_CHEF,{
 		next;
 		mes "[Sous Chef]";
 		mes "If you bring them to me, I'll reward you handsomely.";
-		npctalk "I am excited too. New food.", "Boatswain#dorcon", bc_self;
-		npctalk "don't you just need food to fill your stomach?", "Helmsman#dorcon", bc_self;
+		npctalk("I am excited too. New food.", "Boatswain#dorcon");
+		npctalk("don't you just need food to fill your stomach?", "Helmsman#dorcon");
 		next;
 		mes "[Sous Chef]";
 		mes "Well then. I am counting on you.";
@@ -7609,8 +7613,8 @@ conch_in,186,57,3	script	Sous Chef#dorcon	4_CAT_CHEF,{
 		next;
 		mes "[Sous Chef]";
 		mes "May I ask more favors next time? You know, the ingredients.";
-		npctalk "Exploitation alert!", "Boatswain#dorcon", bc_self;
-		npctalk "He is so smooth at asking for more favors!", "Helmsman#dorcon", bc_self;
+		npctalk("Exploitation alert!", "Boatswain#dorcon");
+		npctalk("He is so smooth at asking for more favors!", "Helmsman#dorcon");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Let me drop by when I get time.";
@@ -7623,9 +7627,9 @@ conch_in,186,57,3	script	Sous Chef#dorcon	4_CAT_CHEF,{
 		delitem 11536,1;// Cat's Ship Biscuit
 		close;
 	case 2:
-		switch( checkquest(14563,PLAYTIME) ) {
+		switch( questprogress(14563,PLAYTIME) ) {
 		case -1:
-			for ( .@quest_id = 14565; .@quest_id < 14567 && isbegin_quest(.@quest_id) == 0; .@quest_id++ )
+			for ( .@quest_id = 14565; .@quest_id < 14567 && questprogress(.@quest_id) == 0; .@quest_id++ )
 				continue;
 			switch( .@quest_id ) {
 			case 14564:
@@ -7639,8 +7643,8 @@ conch_in,186,57,3	script	Sous Chef#dorcon	4_CAT_CHEF,{
 				}
 				mes "[Sous Chef]";
 				mes "Oh, this is the Bun... It sure is hot and huge. This is totally different from that of our side.";
-				npctalk "Give me one. Even one of them would be enough to keep me full all day.", "Boatswain#dorcon", bc_self;
-				npctalk "Yeah, right.", "Boatswain#dorcon", bc_self;
+				npctalk("Give me one. Even one of them would be enough to keep me full all day.", "Boatswain#dorcon");
+				npctalk("Yeah, right.", "Boatswain#dorcon");
 				next;
 				mes "[Sous Chef]";
 				mes "Thank you for bringing them to me. Thanks to you, the food of Lasagna can take another step forward.";
@@ -7659,8 +7663,8 @@ conch_in,186,57,3	script	Sous Chef#dorcon	4_CAT_CHEF,{
 				}
 				mes "[Sous Chef]";
 				mes "Cat Hardtack and Malangdo Canned Food... Well, they will last long enough.";
-				npctalk "I can feed them to my grandchildren.", "Boatswain#dorcon", bc_self;
-				npctalk "If you get to have any.", "Helmsman#dorcon", bc_self;
+				npctalk("I can feed them to my grandchildren.", "Boatswain#dorcon");
+				npctalk("If you get to have any.", "Helmsman#dorcon");
 				next;
 				mes "[Sous Chef]";
 				mes "Thank you form getting them for me. Now Con-Chliina can come up with our own ways to store food for a long time.";
@@ -7680,8 +7684,8 @@ conch_in,186,57,3	script	Sous Chef#dorcon	4_CAT_CHEF,{
 				}
 				mes "[Sous Chef]";
 				mes "The ice cubes. I am just so excited to see them. The ice cubes that don't melt! It sure is the new continent.";
-				npctalk "Cold Kahlugna Milk is the best.", "Boatswain#dorcon", bc_self;
-				npctalk "Fresh milk anytime!", "Helmsman#dorcon", bc_self;
+				npctalk("Cold Kahlugna Milk is the best.", "Boatswain#dorcon");
+				npctalk("Fresh milk anytime!", "Helmsman#dorcon");
 				next;
 				mes "[Sous Chef]";
 				mes "Thank you for bringing them to me. Thanks to you, the crews of Con-Chliina can have some fresh food.";
@@ -7698,9 +7702,9 @@ conch_in,186,57,3	script	Sous Chef#dorcon	4_CAT_CHEF,{
 			next;
 			mes "[Sous Chef]";
 			mes "Since I am on duty, I cannot proceed with any personal study of cooking. Come back after the break of day.";
-			npctalk "What is the reason to be so impetuous when you are so young.", "Boatswain#dorcon", bc_self;
-			npctalk "Impetuous because of youth.", "Helmsman#dorcon", bc_self;
-			npctalk "All the rush doesn't help when it comes to cooking.", "", bc_self;
+			npctalk("What is the reason to be so impetuous when you are so young.", "Boatswain#dorcon");
+			npctalk("Impetuous because of youth.", "Helmsman#dorcon");
+			npctalk("All the rush doesn't help when it comes to cooking.", "");
 			close;
 		case 2:
 			mes "[Sous Chef]";
@@ -7710,8 +7714,8 @@ conch_in,186,57,3	script	Sous Chef#dorcon	4_CAT_CHEF,{
 			switch( rand(3) ) {
 			case 0:
 				mes "What I need to day is the ^0000cdBun^000000. We have something similar in Lasagna, but the recipe is totally different.";
-				npctalk "The Bun sounds super delicious.", "Helmsman#dorcon", bc_self;
-				npctalk "Is there anything that doesn't sound delicious to you?", "Boatswain#dorcon", bc_self;
+				npctalk("The Bun sounds super delicious.", "Helmsman#dorcon");
+				npctalk("Is there anything that doesn't sound delicious to you?", "Boatswain#dorcon");
 				next;
 				mes "[Sous Chef]";
 				mes "I'd like to know how it is made. Please bring me some. ^0000cd20 Buns^000000 would do.";
@@ -7720,9 +7724,9 @@ conch_in,186,57,3	script	Sous Chef#dorcon	4_CAT_CHEF,{
 				close;
 			case 1:
 				mes "What I need to day are the ^0000cdCat Hardtack and Malangdo Canned Food^000000. I am curious how the crews of Navi survived through such a long voyage.";
-				npctalk "It sounds cute, but it doesn't sound quite delicious.", "Boatswain#dorcon", bc_self;
-				npctalk "But you'll still eat them, right?", "Helmsman#dorcon", bc_self;
-				npctalk "Yes.", "Boatswain#dorcon", bc_self;
+				npctalk("It sounds cute, but it doesn't sound quite delicious.", "Boatswain#dorcon");
+				npctalk("But you'll still eat them, right?", "Helmsman#dorcon");
+				npctalk("Yes.", "Boatswain#dorcon");
 				next;
 				mes "[Sous Chef]";
 				mes "I'd like to know how they are made. Please bring me some. ^0000cd5 Cat Hardtacks and 5 Malangdo Canned Food^000000 would do.";
@@ -7731,8 +7735,8 @@ conch_in,186,57,3	script	Sous Chef#dorcon	4_CAT_CHEF,{
 				close;
 			case 2:
 				mes "I need ^0000cdIce Cubes^000000 today. I have heard that the Ice Cubes from this one cave doesn't melt even in the middle of summer.";
-				npctalk "What on earth! Why doesn't it melt?", "Helmsman#dorcon", bc_self;
-				npctalk "Beats me. The world is full of mysteries.", "Boatswain#dorcon", bc_self;
+				npctalk("What on earth! Why doesn't it melt?", "Helmsman#dorcon");
+				npctalk("Beats me. The world is full of mysteries.", "Boatswain#dorcon");
 				next;
 				mes "[Sous Chef]";
 				mes "If we had those, we could keep food fresh and drink cold Kahlugna Milk anytime. ^0000cd20 Ice Cubes^000000 would do, Thank you.";
@@ -7784,7 +7788,7 @@ lasagna,298,84,5	script	Vigilante#dorcon01	4_DR_SOLDIER,{
 			next;
 			mes "[Vigilante]";
 			mes "Are you going to do that yourself?";
-			npctalk "It just has never happened before.", "", bc_self;
+			npctalk("It just has never happened before.", "");
 			next;
 			mes "[" + strcharinfo(0) + "]";
 			mes "I am in a hurry.";
@@ -7794,7 +7798,7 @@ lasagna,298,84,5	script	Vigilante#dorcon01	4_DR_SOLDIER,{
 			next;
 			mes "[" + strcharinfo(0) + "]";
 			mes "Please let me know where the dragon lives.";
-			npctalk "Are you going to go there yourself? What if anything happens? wouldn't it cause any diplomatic problem...? Oh... The end of Lasagna... No way!", "", bc_self;
+			npctalk("Are you going to go there yourself? What if anything happens? wouldn't it cause any diplomatic problem...? Oh... The end of Lasagna... No way!", "");
 			next;
 			mes "[Vigilante]";
 			mes "Come with me then. The <NAVI>^4D4DFF[Dragon's Nest]^000000<INFO>lasa_fild02,340,244,000,1,</INFO></NAVI> is in the cave at the right end of the field outside the village.";
@@ -7820,7 +7824,7 @@ lasagna,298,84,5	script	Vigilante#dorcon01	4_DR_SOLDIER,{
 		next;
 		mes "[Vigilante]";
 		mes "The patrol who went to check it ^0000cdhasn't returned yet^000000. Something must have happened. You said you would go there to check the condition of the dragon, right? Come with me.Stone";
-		npctalk "If anything has happened, he would need help.", "", bc_self;
+		npctalk("If anything has happened, he would need help.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Where?";
@@ -7844,8 +7848,8 @@ lasagna,298,84,5	script	Vigilante#dorcon01	4_DR_SOLDIER,{
 	mes "The wind is very uneasy today.";
 	close;
 OnInit:
-	questinfo 14541, QTYPE_QUEST, 1;
-	setquestinfo_req 14541,14539,1;
+	questinfo(14541, QTYPE_QUEST, 1);
+	// setquestinfo_req 14541,14539,1;
 	end;
 }
 
@@ -7856,7 +7860,7 @@ OnTouch:
 		classchange( 4_DR_SOLDIER, "", bc_self );
 		mes "[Vigilante]";
 		mes "I don't see it near here. We should go deeper!";
-		npctalk "I don't see it near here. We should go deeper!", "", bc_self;
+		npctalk("I don't see it near here. We should go deeper!", "");
 		close2;
 		classchange( HIDDEN_WARP_NPC, "", bc_self );
 		end;
@@ -7912,18 +7916,18 @@ lasa_dun01,153,103,3	script	Vigilante#dorcon02	4_DR_SOLDIER,{
 		next;
 		mes "[Machie]";
 		mes "Phew... I tried so hard to fake death. Is it gone now?";
-		npctalk "It's gone. What a relief!", "Machie#dorcon01", bc_self;
+		npctalk("It's gone. What a relief!", "Machie#dorcon01");
 		next;
 		mes "[Vigilante]";
 		mes "What?";
 		next;
 		mes "[Machie]";
 		mes "The most ferocious, heinous and brutal basilisk. This thing was dangerous. It was the scariest basilisk that I had ever seen. I had sprained my ankle out of fear.";
-		npctalk "I could have been dead if it wasn't for my acting skill.", "Machie#dorcon01", bc_self;
+		npctalk("I could have been dead if it wasn't for my acting skill.", "Machie#dorcon01");
 		next;
 		mes "[Vigilante]";
 		mes "So you played dead? Good job. A vigilante should know how to save one's life. Good for you.";
-		npctalk "You are the best when it comes to petty tricks.", "Machie#dorcon01", bc_self;
+		npctalk("You are the best when it comes to petty tricks.", "Machie#dorcon01");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Is the situation that bad?";
@@ -7933,7 +7937,7 @@ lasa_dun01,153,103,3	script	Vigilante#dorcon02	4_DR_SOLDIER,{
 			mes "Who is this? A newbie?";
 		else {
 			mes "Who is it? Someone from the new continent? A newbie to the Vigilante Corps?";
-			npctalk "Do we accept the people from the new continent now?", "", bc_self;
+			npctalk("Do we accept the people from the new continent now?", "");
 		}
 		next;
 		mes "[Vigilante]";
@@ -7954,7 +7958,7 @@ lasa_dun01,153,103,3	script	Vigilante#dorcon02	4_DR_SOLDIER,{
 			next;
 			mes "[Vigilante]";
 			mes "^0000cdTartufi^000000 is right upstairs. Go and ask him what the problem is. He doesn't bite. You don't need to be scared.";
-			npctalk "He is just a baby.", "Machie#dorcon01", bc_self;
+			npctalk("He is just a baby.", "Machie#dorcon01");
 			next;
 			mes "[" + strcharinfo(0) + "]";
 			mes "Yes, I'll go there.";
@@ -7964,7 +7968,7 @@ lasa_dun01,153,103,3	script	Vigilante#dorcon02	4_DR_SOLDIER,{
 			next;
 			mes "[Machie]";
 			mes "It sounds very pressuring.";
-			npctalk "You are mean.", "Machie#dorcon01", bc_self;
+			npctalk("You are mean.", "Machie#dorcon01");
 			next;
 			mes "[Vigilante]";
 			mes "Is that so? I just wanted you to take your time. Well, get in there. Remember, the peace of Tartufi is the peace of the ocean. It means hope.";
@@ -7993,7 +7997,7 @@ lasa_dun01,153,103,3	script	Vigilante#dorcon02	4_DR_SOLDIER,{
 		else {
 			mes "[Machie]";
 			mes "I heard that ^0000cdan outsider had been messing with the basilisks^000000.";
-			npctalk "Was it that guy over there?", "", bc_self;
+			npctalk("Was it that guy over there?", "");
 			next;
 			mes "[" + strcharinfo(0) + "]";
 			mes "I guess I may have caused it.";
@@ -8003,7 +8007,7 @@ lasa_dun01,153,103,3	script	Vigilante#dorcon02	4_DR_SOLDIER,{
 			next;
 			mes "[Machie]";
 			mes "Really?";
-			npctalk "Yeah, right! I told you!", "", bc_self;
+			npctalk("Yeah, right! I told you!", "");
 			next;
 			mes "[Vigilante]";
 			mes "What for? You don't get anything good from hunting down the basilisks.";
@@ -8020,14 +8024,14 @@ lasa_dun01,153,103,3	script	Vigilante#dorcon02	4_DR_SOLDIER,{
 			next;
 			mes "[Machie]";
 			mes "You don't have to say it like that.";
-			npctalk "What ! It is true!", "", bc_self;
+			npctalk("What ! It is true!", "");
 			next;
 			mes "[Vigilante]";
 			mes "Nothing like this would have happened if that guy just left the basilisks alone. Well, go ahead.";
 			next;
 			mes "[Vigilante]";
 			mes "Remember, the peace of Tartufi is the peace of the ocean. It means hope. Please ingratiate yourself with Tartufi.";
-			npctalk "Please.", "", bc_self;
+			npctalk("Please.", "");
 			next;
 			mes "[" + strcharinfo(0) + "]";
 			mes "Yes. I'll make sure to resolve the problem.";
@@ -8069,14 +8073,14 @@ lasa_dun_q,162,158,3	script	Tartufi#dorcon01	4_TARUTUPI,{
 	if (lasagna_quest[1] == 23) {
 		mes "[Tartufi]";
 		mes "Annoying flies. Annoying mosquitoes. Just annoying. For what fame and riches am I doing here all alone...";
-		npctalk "Mom, dad... I miss you.", "", bc_self;
+		npctalk("Mom, dad... I miss you.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Tartufi?";
 		next;
 		mes "[Tartufi]";
 		mes "You've been troublesome enough. What's up with you all today? You all tiger moths or something?";
-		npctalk "Want some tiger strike or something?", "", bc_self;
+		npctalk("Want some tiger strike or something?", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Look, I'm not a basilisk.";
@@ -8128,7 +8132,7 @@ lasa_dun_q,162,158,3	script	Tartufi#dorcon01	4_TARUTUPI,{
 		next;
 		mes "[Tartufi]";
 		mes "No. My mom and dad left just recently. I must stay here and grow up a bit more. Sleep a lot and eat a lot. Once I become strong and tough, I'll go for a sightseeing.";
-		npctalk "My mom and dad told me over and over again.", "", bc_self;
+		npctalk("My mom and dad told me over and over again.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "You're this big and still call yourself a child?";
@@ -8153,7 +8157,7 @@ lasa_dun_q,162,158,3	script	Tartufi#dorcon01	4_TARUTUPI,{
 		next;
 		mes "[Tartufi]";
 		mes "Well, Magchi used to wield some type of long pole. Maybe that would do. ^0000cdAt least 20^000000 must be taken care of before they run away.";
-		npctalk "They seem to have no learning skills since they do that every single day.", "", bc_self;
+		npctalk("They seem to have no learning skills since they do that every single day.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "I picked up a few things so let me give them a try. Wait.";
@@ -8163,13 +8167,13 @@ lasa_dun_q,162,158,3	script	Tartufi#dorcon01	4_TARUTUPI,{
 		close;
 	}
 	if (lasagna_quest[1] == 24) {
-		if (checkquest(14543,HUNTING) != 2) {// Basilisk Hunt
+		if (questprogress(14543,HUNTING) != 2) {// Basilisk Hunt
 			mes "[Tartufi]";
 			mes "They just never give up, do they? But you must try a little harder. They're nowhere near done because they know that you're weak. So you must show your strong side!";
 			next;
 			mes "[Tartufi]";
 			mes "They'll be quiet for a while if you show them that you're strong. So try a little harder. I'll help you.";
-			specialeffect2 EF_HEAL2;
+			specialeffect(EF_HEAL2, AREA, playerattached());
 			percentheal 100,100;
 			close;
 		}
@@ -8187,7 +8191,7 @@ lasa_dun_q,162,158,3	script	Tartufi#dorcon01	4_TARUTUPI,{
 		next;
 		mes "[Tartufi]";
 		mes "By the time he's ready to run around again, Magchi will come. Thanks a lot. You said you're heading for an adventure in the new world? Tell me about the new world when you're in Lasagna time to time.";
-		npctalk "I'm really curious.", "", bc_self;
+		npctalk("I'm really curious.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "I will. Farewell, then.";
@@ -8222,7 +8226,7 @@ lasa_dun03,161,292,5	script	Lord Imuk#dorcon	4_NFWISP,{
 		next;
 		mes "[???]";
 		mes "How dare you treat me like a ghost! I have lived for ^0000cd2,500 years^000000!";
-		specialeffect2 EF_LIGHTBOLT;
+		specialeffect(EF_LIGHTBOLT, AREA, playerattached());
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Oww...that hurts. I'm sorry if I've offended you, but are you Imoogi, the chief of the Basilisk?";
@@ -8292,7 +8296,7 @@ lasa_dun03,162,158,3	script	Tartufi#dorcon02	4_TARUTUPI,{
 		next;
 		mes "[Tartufi]";
 		mes "You've been troublesome enough. What's up with you all today? Tiger strike wasn't enough? You all tiger moths or something?";
-		npctalk "No snake roast!", "", bc_self;
+		npctalk("No snake roast!", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Look, I'm not a basilisk.";
@@ -8329,7 +8333,7 @@ lasa_dun03,162,158,3	script	Tartufi#dorcon02	4_TARUTUPI,{
 		next;
 		mes "[Tartufi]";
 		mes "I see. Then are you strong? You said you caught some basilisks.";
-		npctalk "You must be strong if you caught them.", "", bc_self;
+		npctalk("You must be strong if you caught them.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Well, I guess you can say that...";
@@ -8348,7 +8352,7 @@ lasa_dun03,162,158,3	script	Tartufi#dorcon02	4_TARUTUPI,{
 		next;
 		mes "[Tartufi]";
 		mes "Set sail? Ah, right. You said you were from the new world. Then can I ask for a favor? Please tell their ^0000cdchief^000000 to keep them quiet.";
-		npctalk "I want no more.", "", bc_self;
+		npctalk("I want no more.", "");
 		next;
 		mes "[Tartufi]";
 		mes "His name is Imoogi. I don't know where he lives, but there's something ^0000cdup there that can communicate with Imoogi^000000. Basilisks go there every morning and hear something...";
@@ -8403,7 +8407,7 @@ lasa_dun03,162,158,3	script	Tartufi#dorcon02	4_TARUTUPI,{
 		next;
 		mes "[Tartufi]";
 		mes "I'll think about it. I don't even know what that is. I can't promise you without knowing what it is.";
-		npctalk "If It's something important, I can't give it to you.", "", bc_self;
+		npctalk("If It's something important, I can't give it to you.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "I guess you're right. I can't wait forever so I should get rid of those basilisks. How many should I take care of?";
@@ -8419,7 +8423,7 @@ lasa_dun03,162,158,3	script	Tartufi#dorcon02	4_TARUTUPI,{
 		close;
 	}
 	if (lasagna_quest[1] == 26) {
-		if (checkquest(14553,HUNTING) != 2) {
+		if (questprogress(14553,HUNTING) != 2) {
 			mes "[Tartufi]";
 			mes "No, not yet. They keep coming. I said not yet.";
 			next;
@@ -8432,7 +8436,7 @@ lasa_dun03,162,158,3	script	Tartufi#dorcon02	4_TARUTUPI,{
 		next;
 		mes "[Tartufi]";
 		mes "Good job. That should keep them quiet now. I'm going to look through my treasure but I need to sleep first. I'm sleepy cuz I've been up for so long today.";
-		npctalk "I heard I have to sleep a lot to grow a lot.", "", bc_self;
+		npctalk("I heard I have to sleep a lot to grow a lot.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Yes. I'm sure Lord Imuk will wait as well.";
@@ -8501,7 +8505,7 @@ lasa_in01,179,60,5	script	Chief Peperoncino#dorco	4_DR_PEPE,{
 		next;
 		mes "[Chief Peperoncino]";
 		mes "Listening to other people's adventure stories is one of the virtues of an adventurer. If you can listen carefully and learn something from other people, they'll be valuable lessons on life.";
-		npctalk "Young person like you are rare these days.", "", bc_self;
+		npctalk("Young person like you are rare these days.", "");
 		next;
 		mes "[Chief Peperoncino]";
 		mes "So what are you curious about?";
@@ -8511,11 +8515,11 @@ lasa_in01,179,60,5	script	Chief Peperoncino#dorco	4_DR_PEPE,{
 		next;
 		mes "[Peperoncino]";
 		mes "My story... Why are you curious? But since you asked, I'll tell you. I was born outside of Lasagna called ^0000cdFusilli^000000. Back then, you mention the name Peperoncino and everyone in Fusilli knew.";
-		npctalk "The day I left, the entire Fusilli was in tears.", "", bc_self;
+		npctalk("The day I left, the entire Fusilli was in tears.", "");
 		next;
 		mes "[Vigilante]";
 		mes "Sir, That's not what you said the last time we talked over a drink. You said you left because you hated being looked down upon due to poverty.";
-		npctalk "You said you'll slap their faces with a wad of bills one day.", "Vigilante Chef#dorcon99", bc_self;
+		npctalk("You said you'll slap their faces with a wad of bills one day.", "Vigilante Chef#dorcon99");
 		next;
 		mes "[Peperoncino]";
 		mes "What are you talking about? You must've been very drunk that day. What more can an adventurer ask for when you get to experience so many things in a vast ocean?";
@@ -8525,19 +8529,19 @@ lasa_in01,179,60,5	script	Chief Peperoncino#dorco	4_DR_PEPE,{
 		next;
 		mes "Vigilante Chef";
 		mes "Seasickness.";
-		npctalk "Are you not busy?", "", bc_self;
+		npctalk("Are you not busy?", "");
 		next;
 		mes "[Peperoncino]";
 		mes "Then I saw the unlimited potential of fishing industry, or anchovy manufacturing to be more exact. So I jumped into the ^0000cdanchovy manufacturing business^000000. And I met Gamberry around that time.";
-		npctalk "That's right, Gamberry...", "", bc_self;
+		npctalk("That's right, Gamberry...", "");
 		next;
 		mes "[Peperoncino]";
 		mes "^0000cdGamberry was a hoodlum who reminded me of a ruffian^000000. He soon was moved by my words and joined me in the business.";
 		next;
 		mes "Vigilante Chef";
 		mes "I heard you guys fought.";
-		npctalk "Almost to the point of totally destroying a store.", "Vigilante Chef#dorcon99", bc_self;
-		npctalk "Do you cook with your mouth?", "", bc_self;
+		npctalk("Almost to the point of totally destroying a store.", "Vigilante Chef#dorcon99");
+		npctalk("Do you cook with your mouth?", "");
 		next;
 		mes "[Peperoncino]";
 		mes "Of course there were small disputes, but Gamberry was moved by my leadership and became influenced. After we gained enough experience and know-hows from anchovy manufacturing, we decided to draw a bigger picture.";
@@ -8550,7 +8554,7 @@ lasa_in01,179,60,5	script	Chief Peperoncino#dorco	4_DR_PEPE,{
 		next;
 		mes "Vigilante Chef";
 		mes "That story doesn't add up.";
-		npctalk "It's different from the version I heard.", "Vigilante Chef#dorcon99", bc_self;
+		npctalk("It's different from the version I heard.", "Vigilante Chef#dorcon99");
 		next;
 		mes "[Peperoncino]";
 		mes "At any rate, Captain Gamberry is a good man. He was influenced by me since his ragtag days and now he's become a doram.";
@@ -8563,25 +8567,25 @@ lasa_in01,179,60,5	script	Chief Peperoncino#dorco	4_DR_PEPE,{
 		next;
 		mes "[Peperoncino]";
 		mes "If violence subdues violence, then what will subdue that violence? Anyway, Lasagna was like a rotten trash can. In comparison, Fusilli is a town with totally innocent people!";
-		npctalk "I'll never hear the end of that darn Fusilli.", "Vigilante Chef#dorcon99", bc_self;
+		npctalk("I'll never hear the end of that darn Fusilli.", "Vigilante Chef#dorcon99");
 		next;
 		mes "Vigilante Chef";
 		mes "I ask the newcomers about Fusilli and none of them knows. It must be in the backwoods or something.";
-		npctalk "Don't insult Fusilli!", "", bc_self;
+		npctalk("Don't insult Fusilli!", "");
 		next;
 		mes "[Peperoncino]";
 		mes "Anyhow, the biggest obstacle when we started the business was Lasagna's lousy dorams. They pounced on me for a fight. Is everyone who live by sea so belligerent like that?";
 		next;
 		mes "Vigilante Chef";
 		mes "No, don't insult them. It's this place That's unusual.";
-		npctalk "My hometown wasn't like that.", "Vigilante Chef#dorcon99", bc_self;
+		npctalk("My hometown wasn't like that.", "Vigilante Chef#dorcon99");
 		next;
 		mes "[Peperoncino]";
 		mes "At first, I tried to persuade those lousy dorams through conversation. I tried to be a gentleman but they wouldn't listen. That's when Gamberry took the matters into his own hands.";
 		next;
 		mes "[Peperoncino]";
 		mes "didn't I tell you just before? He took care of it completely. I gathered those lousy dorams and spoke to them. They were so touched by my speech that they volunteered to join the vigilance corps.";
-		npctalk "You threatened them to join or leave.", "Vigilante Chef#dorcon99", bc_self;
+		npctalk("You threatened them to join or leave.", "Vigilante Chef#dorcon99");
 		next;
 		mes "[Peperoncino]";
 		mes "Hmph! Anyway, with the efforts of vigilance corps and merchants, Lasagna was reborn to its current state.";
@@ -8597,8 +8601,8 @@ lasa_in01,179,60,5	script	Chief Peperoncino#dorco	4_DR_PEPE,{
 		next;
 		mes "Vigilante Chef";
 		mes "See what I mean? Different version from the last.";
-		npctalk "I'm thinking about inviting all the crewmen of Con-Chliina tomorrow and throwing a banquet.", "", bc_self;
-		npctalk "No, It's okay. I'll keep my mouth shut now.", "Vigilante Chef#dorcon99", bc_self;
+		npctalk("I'm thinking about inviting all the crewmen of Con-Chliina tomorrow and throwing a banquet.", "");
+		npctalk("No, It's okay. I'll keep my mouth shut now.", "Vigilante Chef#dorcon99");
 		next;
 		mes "[Peperoncino]";
 		mes "We gathered those lousy dorams and sent them to the vigilance corps and merchants. Lasagna's ^0000cdmaintenance of order was handled by the vigilantes^000000, and ^0000cdeverything related to the products was handled by the merchants^000000.";
@@ -8611,8 +8615,8 @@ lasa_in01,179,60,5	script	Chief Peperoncino#dorco	4_DR_PEPE,{
 		next;
 		mes "Vigilante Chef";
 		mes "Well, that was Stello of Con-Chliina...";
-		npctalk "Banquet?", "", bc_self;
-		npctalk "Nope.", "Vigilante Chef#dorcon99", bc_self;
+		npctalk("Banquet?", "");
+		npctalk("Nope.", "Vigilante Chef#dorcon99");
 		next;
 		mes "[Peperoncino]";
 		mes "Anything else you're curious about?";
@@ -8647,7 +8651,7 @@ lasagna,263,156,5	script	Grandma#dorcon01	4_CAT_REST,{
 		next;
 		mes "[Grandma]";
 		mes "When you live alone for a long time, you get sensitive to the slightest noise. So what brings you here? I'm out of kaluna milk right now. Do you want to order something else?";
-		npctalk "But I broke all the dishes so I have none.", "", bc_self;
+		npctalk("But I broke all the dishes so I have none.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "there's something I wanted to ask you. Do you remember anything about Captain Gamberry and Chief Peperoncino?";
@@ -8660,7 +8664,7 @@ lasagna,263,156,5	script	Grandma#dorcon01	4_CAT_REST,{
 		next;
 		mes "[Grandma]";
 		mes "Captain? Captain who? Gamberry? That eggring boy? Oh, you're right. He did become a captain. I remember when he showed up in my pub with Pepe.";
-		npctalk "That was long ago, when there was a shell on an eggring.", "", bc_self;
+		npctalk("That was long ago, when there was a shell on an eggring.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Pepe?";
@@ -8685,7 +8689,7 @@ lasagna,263,156,5	script	Grandma#dorcon01	4_CAT_REST,{
 		next;
 		mes "[Grandma]";
 		mes "After that, he couldn't get on a boat ever again. Haha. He became indebted because of the ^0000cdpenalty for breach of contract^000000 and couldn't leave. So he ended up in the anchovy workshop where he removes anchovy head and guts...";
-		npctalk "I think they are used to make fertilizers.", "", bc_self;
+		npctalk("I think they are used to make fertilizers.", "");
 		next;
 		mes "[Grandma]";
 		mes "Anyway, he had a huge debt from the boat and pub. The two mulled over what to do and ended up at the ^0000cdanchovy workshop^000000. Few years later, ^0000cdGamberry became the workshop manager^000000. The job was perfect for him.";
@@ -8701,7 +8705,7 @@ lasagna,263,156,5	script	Grandma#dorcon01	4_CAT_REST,{
 		next;
 		mes "[Grandma]";
 		mes "Then one day, two roughnecks came up with the merchants and vigilance corps and started beating up Lasagna kids.";
-		npctalk "Funny how the two hoodlums were straightening out other hoodlums.", "", bc_self;
+		npctalk("Funny how the two hoodlums were straightening out other hoodlums.", "");
 		next;
 		mes "[Grandma]";
 		mes "I guess sticks do make dorams. The two sent those hoodlums to the merchants and vigilance corps. Mm... I remember those boys. Their beards were cut and tails were tattered.";
@@ -8756,12 +8760,12 @@ lasagna,226,181,3	script	Kalu#dorcon	4_CAT_CHEF,{
 		next;
 		mes "[Kalu]";
 		mes "You know what the main ingredients of kaluna milk are? They're ^0000cdkaluna^000000, the essence made from fermenting a special shellfish called ^0000cdkalunyak^000000, and fresh milk.";
-		npctalk "Kaluna milk! Shaken!", "Boozer#dorcon02", bc_self;
-		npctalk "Kaluna milk, shaken! One glass!", "", bc_self;
+		npctalk("Kaluna milk! Shaken!", "Boozer#dorcon02");
+		npctalk("Kaluna milk, shaken! One glass!", "");
 		next;
 		mes "[Kalu]";
 		mes "Mix that in moderate temperate and garnish with a gooseberry. And then you get the kaluna milk that everyone loves.";
-		npctalk "If you have freshly squeezed milk, then you can taste the supreme version of kaluna milk.", "", bc_self;
+		npctalk("If you have freshly squeezed milk, then you can taste the supreme version of kaluna milk.", "");
 		next;
 		mes "[Kalu]";
 		mes "But we're almost finished with the kaluna in store and the person who supplies us hasn't been here for days. Even the ones we had in stockpile are nearly gone.";
@@ -8771,52 +8775,52 @@ lasagna,226,181,3	script	Kalu#dorcon	4_CAT_CHEF,{
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "What does it mean?";
-		npctalk "What do you mean you don't know?!", "", bc_self;
+		npctalk("What do you mean you don't know?!", "");
 		next;
 		mes "[Kalu]";
 		mes "It means customers who came for kaluna milk would have made their trip in vain.";
-		npctalk "Kaluna milk! A glass for the gentleman over there!", "Boozer#dorcon01", bc_self;
-		npctalk "Kaluna milk, stirred! A glass for the gentleman over there!", "", bc_self;
-		npctalk "Ohh!", "Goon meow#dorcon01", bc_self;
+		npctalk("Kaluna milk! A glass for the gentleman over there!", "Boozer#dorcon01");
+		npctalk("Kaluna milk, stirred! A glass for the gentleman over there!", "");
+		npctalk("Ohh!", "Goon meow#dorcon01");
 		next;
 		mes "[Kalu]";
 		mes "Angry people who didn't get to drink kaluna milk will soon cause a ^0000cdriot^000000, and soon it will spread over the entire Lasagna.";
 		next;
 		mes "[Kalu]";
 		mes "Then Lasagna will return to its former state of filth and danger. I can't let that happen. We're finally living like decent human beings but to go back to that dark age...";
-		npctalk "Then I'll just leave Lasagna without hesitation.", "", bc_self;
+		npctalk("Then I'll just leave Lasagna without hesitation.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "I'm sure that won't happen just over a glass of kaluna milk.";
 		next;
 		mes "[Kalu]";
 		mes "You don't understand what kaluna milk means for people of Lasagna. It's not merely a drink that relaxes the body for these people.";
-		npctalk "Kaluna milk!", "Goon meow#dorcon01", bc_self;
-		npctalk "Kaluna milk, stirred! One glass!", "", bc_self;
-		npctalk "You've had enough!", "Meow goon#dorcon01", bc_self;
+		npctalk("Kaluna milk!", "Goon meow#dorcon01");
+		npctalk("Kaluna milk, stirred! One glass!", "");
+		npctalk("You've had enough!", "Meow goon#dorcon01");
 		next;
 		mes "[Kalu]";
 		mes "Kaluna milk also symbolizes ^0000cdfaith and friendship, as well as festival^000000. I can't discuss the details here, but if you're curious, go see the bookkeeper of Con-Chliina.";
 		next;
 		mes "[Kalu]";
 		mes "He's a recording maniac who loves to record everything.";
-		npctalk "Just flip through any articles about me.", "", bc_self;
+		npctalk("Just flip through any articles about me.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "I'm not exactly sure, but I can tell It's really important for people here.";
 		next;
 		mes "[Kalu]";
 		mes "Right. That's what I'm talking about. You always start or finish the day with kaluna milk. But that kaluna is nearly all gone!";
-		npctalk "Kaluna milk!", "Meow goon#dorcon01", bc_self;
-		npctalk "Kaluna milk, stirred! One glass!", "", bc_self;
+		npctalk("Kaluna milk!", "Meow goon#dorcon01");
+		npctalk("Kaluna milk, stirred! One glass!", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Why don't you send someone over and find out what happened?";
 		next;
 		mes "[Kalu]";
 		mes "I'm not dumb you know. But there's no one to send! Look, everyone is busy.";
-		npctalk "Kaluna milk!", "Boozer#dorcon01", bc_self;
-		npctalk "Kaluna milk, stirred!", "", bc_self;
+		npctalk("Kaluna milk!", "Boozer#dorcon01");
+		npctalk("Kaluna milk, stirred!", "");
 		next;
 		if (select( "I'll help you.", "Oh no. I'm sorry." ) == 2) {
 			mes "[Kalu]";
@@ -8825,32 +8829,32 @@ lasagna,226,181,3	script	Kalu#dorcon	4_CAT_CHEF,{
 		}
 		mes "[Kalu]";
 		mes "What? What did you just say? If I heard you correctly, you said you'd help me.";
-		npctalk "Why, this is practically a golden bell!", "", bc_self;
+		npctalk("Why, this is practically a golden bell!", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "You heard me right.";
 		next;
 		mes "[Kalu]";
 		mes "Dear lord, thank you. So this is how you repay me for all the nice deeds I've done.";
-		npctalk "Kaluna milk!", "Meow goon#dorcon01", bc_self;
-		npctalk "Kaluna milk, stirred! One glass! Oh, what the heck! Two glasses!", "", bc_self;
-		npctalk "Yeah!!!", "Meow goon#dorcon01", bc_self;
+		npctalk("Kaluna milk!", "Meow goon#dorcon01");
+		npctalk("Kaluna milk, stirred! One glass! Oh, what the heck! Two glasses!", "");
+		npctalk("Yeah!!!", "Meow goon#dorcon01");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "I'm the one who said I'll help you, but how come the lord gets the appreciation?";
-		npctalk "How come we don't get any service?!", "Boozer#dorcon01", bc_self;
-		npctalk "Are you discriminating us?!", "Boozer#dorcon02", bc_self;
+		npctalk("How come we don't get any service?!", "Boozer#dorcon01");
+		npctalk("Are you discriminating us?!", "Boozer#dorcon02");
 		next;
 		mes "[Kalu]";
 		mes "Oh, not at all. I'm grateful to you, too. Anyways, if you go to the ^0000cdfishing hole near the south bridge^000000, you'll meet ^0000cdLegalas^000000 who is standing on crutches. He's the one who supplies us with kaluna.";
-		npctalk "We can drink together!", "Meow goon#dorcon01", bc_self;
+		npctalk("We can drink together!", "Meow goon#dorcon01");
 		next;
 		mes "[Kalu]";
 		mes "Most people in Lasagna work for the vigilante corps or merchants, so the town is always short on hands.";
-		npctalk "I'm getting into the mood, so just wait a bit! If everything goes well, not just one, but two glasses on me!", "", bc_self;
-		npctalk "Awesome!", "Boozer#dorcon01", bc_self;
-		npctalk "Oh yeah!", "Boozer#dorcon02", bc_self;
-		npctalk "I'll wait! I'll wait!", "Meow goon#dorcon01", bc_self;
+		npctalk("I'm getting into the mood, so just wait a bit! If everything goes well, not just one, but two glasses on me!", "");
+		npctalk("Awesome!", "Boozer#dorcon01");
+		npctalk("Oh yeah!", "Boozer#dorcon02");
+		npctalk("I'll wait! I'll wait!", "Meow goon#dorcon01");
 		next;
 		mes "[Kalu]";
 		mes "So we hire outsiders who want a job as a special treatment policy, and Legalas is in charge of fermenting kaluna.";
@@ -8860,8 +8864,8 @@ lasagna,226,181,3	script	Kalu#dorcon	4_CAT_CHEF,{
 		next;
 		mes "[Kalu]";
 		mes "Go find Legalas and find out what's going on. And tell him to make delivery as soon as possible. At the rate we're going, we'll be out of stock after today.";
-		npctalk "Kaluna milk!", "Boozer#dorcon01", bc_self;
-		npctalk "Kaluna milk, stirred!", "", bc_self;
+		npctalk("Kaluna milk!", "Boozer#dorcon01");
+		npctalk("Kaluna milk, stirred!", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Okay, I'll go and find out.";
@@ -8878,13 +8882,13 @@ lasagna,226,181,3	script	Kalu#dorcon	4_CAT_CHEF,{
 		next;
 		mes "[Kalu]";
 		mes "I beg you. I'm really worried. Can't even sleep these days.";
-		npctalk "Even my mustache is thinning... Help me...", "", bc_self;
+		npctalk("Even my mustache is thinning... Help me...", "");
 		close;
 	}
 	if (lasagna_quest[2] == 7) {
 		mes "[Kalu]";
 		mes "Adventurer, what did Legalas say? Did he say he can deliver kaluna?";
-		npctalk "I seriously hope he did. Otherwise, I'm dead!", "", bc_self;
+		npctalk("I seriously hope he did. Otherwise, I'm dead!", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Yes. Fortunately, he said he's close to meeting the delivery quota.";
@@ -8899,11 +8903,11 @@ lasagna,226,181,3	script	Kalu#dorcon	4_CAT_CHEF,{
 		next;
 		mes "[Kalu]";
 		mes "I think That's something I can take care of. As a matter of fact, I have a ^0000cdlunchbox delivery to make inside the cave^000000. Every day, that is.";
-		npctalk "Well, It's really not because we're shorthanded...", "", bc_self;
+		npctalk("Well, It's really not because we're shorthanded...", "");
 		next;
 		mes "[Kalu]";
 		mes "Looks like the two can be sent to the delivery team while Legalas is working. For wage, a meal per day would do.";
-		npctalk "Fair is fair, right?", "", bc_self;
+		npctalk("Fair is fair, right?", "");
 		next;
 		mes "[Gopara]";
 		mes "Cave? That's nice. I've always wanted to go there myself.";
@@ -8916,22 +8920,22 @@ lasagna,226,181,3	script	Kalu#dorcon	4_CAT_CHEF,{
 		next;
 		mes "[Gopara]";
 		mes "Let's go.";
-		npctalk "Let's go.", "", bc_self;
+		npctalk("Let's go.", "");
 		next;
 		mes "[Daldal]";
 		mes "Get up.";
-		npctalk "A team must move as one.", "", bc_self;
+		npctalk("A team must move as one.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "M-me, too?";
 		next;
 		mes "[Gopara]";
 		mes "We're a team.";
-		npctalk "We're a team.", "", bc_self;
+		npctalk("We're a team.", "");
 		next;
 		mes "[Daldal]";
 		mes "A team must move as one.";
-		npctalk "A team must move as one.", "", bc_self;
+		npctalk("A team must move as one.", "");
 		classchange( HIDDEN_WARP_NPC, "Daldal#dorcon05", bc_self );
 		classchange( HIDDEN_WARP_NPC, "Gopara#dorcon05", bc_self );
 		next;
@@ -8954,11 +8958,11 @@ lasagna,226,181,3	script	Kalu#dorcon	4_CAT_CHEF,{
 		next;
 		mes "[Gopara]";
 		mes "I said I'm back.";
-		npctalk "I'm exhausted.", "Gopara#dorcon05", bc_self;
+		npctalk("I'm exhausted.", "Gopara#dorcon05");
 		next;
 		mes "[Daldal]";
 		mes "I'm back.";
-		npctalk "I'm beat.", "Daldal#dorcon05", bc_self;
+		npctalk("I'm beat.", "Daldal#dorcon05");
 		next;
 		mes "[Kalu]";
 		mes "Good job. While the three of you went to the cave, Legalas visited with kaluna. If we can keep this up every day, delivery will be no problem at all.";
@@ -8986,11 +8990,11 @@ lasagna,226,181,3	script	Kalu#dorcon	4_CAT_CHEF,{
 		next;
 		mes "[Daldal]";
 		mes "Okay, give me food now.";
-		npctalk "I'm hungry.", "Daldal#dorcon05", bc_self;
+		npctalk("I'm hungry.", "Daldal#dorcon05");
 		next;
 		mes "[Gopara]";
 		mes "I'm fine. Had too much kalunyak that I'm still digesting.";
-		npctalk "I don't want even a piece of it now.", "Gopara#dorcon05", bc_self;
+		npctalk("I don't want even a piece of it now.", "Gopara#dorcon05");
 		classchange( HIDDEN_WARP_NPC, "Daldal#dorcon05", bc_self );
 		classchange( HIDDEN_WARP_NPC, "Gopara#dorcon05", bc_self );
 		next;
@@ -9002,9 +9006,9 @@ lasagna,226,181,3	script	Kalu#dorcon	4_CAT_CHEF,{
 		close;
 	}
 	if (lasagna_quest[2] == 10) {
-		switch( checkquest(14576,PLAYTIME) ) {
+		switch( questprogress(14576,PLAYTIME) ) {
 		case -1:
-			if (isbegin_quest(14578) == 1) {
+			if (questprogress(14578) == 1) {
 				mes "[Kalu]";
 				mes "Good job today as well. Two of you, get some food. Adventurer, that this. I'm counting on you tomorrow as well!";
 				erasequest 14578;// Delivery Complete Report
@@ -9025,11 +9029,11 @@ lasagna,226,181,3	script	Kalu#dorcon	4_CAT_CHEF,{
 			next;
 			mes "[Gopara]";
 			mes "Right. Timing is off.";
-			npctalk "Right. Timing is off.", "Gopara#dorcon05", bc_self;
+			npctalk("Right. Timing is off.", "Gopara#dorcon05");
 			next;
 			mes "[Daldal]";
 			mes "Timing is off!";
-			npctalk "Timing is off!", "Daldal#dorcon05", bc_self;
+			npctalk("Timing is off!", "Daldal#dorcon05");
 			next;
 			mes "[Kalu]";
 			mes "Come back after the daybreak.";
@@ -9046,11 +9050,11 @@ lasagna,226,181,3	script	Kalu#dorcon	4_CAT_CHEF,{
 			next;
 			mes "[Gopara]";
 			mes "Yes, we've been waiting.";
-			npctalk "Yes, we've been waiting.", "Daldal#dorcon06", bc_self;
+			npctalk("Yes, we've been waiting.", "Daldal#dorcon06");
 			next;
 			mes "[Daldal]";
 			mes "Waited for a long time. Almost died waiting.";
-			npctalk "Waited for a long time. Almost died waiting.", "Gopara#dorcon06", bc_self;
+			npctalk("Waited for a long time. Almost died waiting.", "Gopara#dorcon06");
 			next;
 			mes "[Kalu]";
 			mes "Then I ask that you ^0000cddeliver the lunchbox to Panna in the cave^000000 for today as well. Hurry up on your way there, but take your time on your way back.";
@@ -9071,8 +9075,8 @@ lasagna,226,181,3	script	Kalu#dorcon	4_CAT_CHEF,{
 	end;
 
 OnInit:
-	questinfo 14567, QTYPE_QUEST, 1;
-	setquestinfo_level 14567,140,175;
+	questinfo(14567, QTYPE_QUEST, 1);
+	// setquestinfo_level 14567,140,175;
 	end;
 }
 
@@ -9088,11 +9092,11 @@ lasagna,248,105,5	script	Legalas#dorcon	4_RAGGLER,{
 		next;
 		mes "[Daldal]";
 		mes "Conscience? Mm... Sorry, but I don't know because I have no clue where my conscience is.";
-		npctalk "I don't know where my conscience is.", "Daldal#dorcon01", bc_self;
+		npctalk("I don't know where my conscience is.", "Daldal#dorcon01");
 		next;
 		mes "[Gopara]";
 		mes "Probably in the chest, right? But what am I supposed to do with it?";
-		npctalk "What do I do with it?", "Gopara#dorcon01", bc_self;
+		npctalk("What do I do with it?", "Gopara#dorcon01");
 		next;
 		mes "[Legalas]";
 		mes "The minute I catch kalunyak, you two devour it! You even ate the ones I had cleaned!";
@@ -9102,11 +9106,11 @@ lasagna,248,105,5	script	Legalas#dorcon	4_RAGGLER,{
 		next;
 		mes "[Daldal]";
 		mes "Really? I didn't know.";
-		npctalk "Did you know?", "Daldal#dorcon01", bc_self;
+		npctalk("Did you know?", "Daldal#dorcon01");
 		next;
 		mes "[Gopara]";
 		mes "I did. But I couldn't help it.";
-		npctalk "I'm bored.", "Gopara#dorcon01", bc_self;
+		npctalk("I'm bored.", "Gopara#dorcon01");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Uh, are you Legalas who supplies kaluna?";
@@ -9152,12 +9156,12 @@ lasagna,248,105,5	script	Legalas#dorcon	4_RAGGLER,{
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "But they promised that they won't eat kalunyak, so you won't have any problem with the delivery anymore.";
-		npctalk "What is he saying?", "Daldal#dorcon01", bc_self;
-		npctalk "What's gotten into you?", "Gopara#dorcon01", bc_self;
+		npctalk("What is he saying?", "Daldal#dorcon01");
+		npctalk("What's gotten into you?", "Gopara#dorcon01");
 		next;
 		mes "[Gopara]";
 		mes "You seem to have some grudge against us. I'm going to tell Legalas everything as soon as he gets here.";
-		npctalk "That you rat on us.", "Gopara#dorcon01", bc_self;
+		npctalk("That you rat on us.", "Gopara#dorcon01");
 		next;
 		mes "[Daldal]";
 		mes "What did we do wrong anyway?";
@@ -9173,18 +9177,18 @@ lasagna,248,105,5	script	Legalas#dorcon	4_RAGGLER,{
 		next;
 		mes "[Daldal]";
 		mes "Kalunyak is definitely the best.";
-		npctalk "Eating again?", "Gopara#dorcon01", bc_self;
+		npctalk("Eating again?", "Gopara#dorcon01");
 		next;
 		mes "[Legalas]";
 		mes "Doh! That pig is eating kalunyak again!";
 		next;
 		mes "[Daldal]";
 		mes "I was hungry. I can't eat anchovies anymore. I can only eat kalunyak now.";
-		npctalk "Me, too.", "Gopara#dorcon01", bc_self;
+		npctalk("Me, too.", "Gopara#dorcon01");
 		next;
 		mes "[Gopara]";
 		mes "I have no work so I'll eat again.";
-		npctalk "I'm going finish this myself.", "Daldal#dorcon01", bc_self;
+		npctalk("I'm going finish this myself.", "Daldal#dorcon01");
 		next;
 		mes "[Legalas]";
 		mes "Adventurer, I have a favor to ask. I haven't met my delivery quota yet, but those two are eating all my kalunyaks! What you see is all I got for today and at this rate, I won't be able to fulfill the order.";
@@ -9194,8 +9198,8 @@ lasagna,248,105,5	script	Legalas#dorcon	4_RAGGLER,{
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "I need to deliver some message to Kalu anyway, so I'll take the two with me.";
-		npctalk "Go where?", "Gopara#dorcon01", bc_self;
-		npctalk "I won't go until I finish eating these.", "Daldal#dorcon01", bc_self;
+		npctalk("Go where?", "Gopara#dorcon01");
+		npctalk("I won't go until I finish eating these.", "Daldal#dorcon01");
 		next;
 		mes "[Legalas]";
 		mes "Please, I beg you!";
@@ -9239,32 +9243,32 @@ lasagna,246,103,5	script	Gopara#dorcon01	4_GALAPAGO,3,3,{
 		next;
 		mes "[Daldal]";
 		mes "What is it? Did you bring something to eat?";
-		npctalk "What is it? Did you bring something to eat?", "Daldal#dorcon01", bc_self;
+		npctalk("What is it? Did you bring something to eat?", "Daldal#dorcon01");
 		next;
 		mes "[Gopara]";
 		mes "Are you going to play with us?";
-		npctalk "Are you going to play with us?", "", bc_self;
+		npctalk("Are you going to play with us?", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "From what I hear, you eat all the kalunyaks that Legalas cleans. Right now, we're almost out of kaluna made from those kalunyaks. Can you please control yourselves a bit?";
 		next;
 		mes "[Daldal]";
 		mes "Why should we?";
-		npctalk "Yeah.", "", bc_self;
+		npctalk("Yeah.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Because you can't make kaluna milk without kaluna. Someone who was supposed to receive kaluna from Legalas is in a tight spot right now.";
 		next;
 		mes "[Gopara]";
 		mes "What does that have to do with us?";
-		npctalk "Right.", "", bc_self;
+		npctalk("Right.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "You see, Kalu really needs kaluna. Without kaluna, he can't continue his business.";
 		next;
 		mes "[Daldal]";
 		mes "That has nothing to do with me.";
-		npctalk "I don't know who he is.", "", bc_self;
+		npctalk("I don't know who he is.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "It has a lot to do with Legalas. You are aware that Legalas supplies Kalu with kaluna fermented from kalunyak, right?";
@@ -9274,7 +9278,7 @@ lasagna,246,103,5	script	Gopara#dorcon01	4_GALAPAGO,3,3,{
 		next;
 		mes "[Gopara]";
 		mes "So what does that have to do with us?";
-		npctalk "I just need my belly to be full.", "Daldal#dorcon01", bc_self;
+		npctalk("I just need my belly to be full.", "Daldal#dorcon01");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "If Legalas loses his job, then he won't be able to earn money. And if he can't earn money, then wouldn't that put you guys in a tight spot?";
@@ -9305,11 +9309,11 @@ lasagna,246,103,5	script	Gopara#dorcon01	4_GALAPAGO,3,3,{
 		next;
 		mes "[Daldal]";
 		mes "No! No more!";
-		npctalk "No! No more!", "Daldal#dorcon01", bc_self;
+		npctalk("No! No more!", "Daldal#dorcon01");
 		next;
 		mes "[Gopara]";
 		mes "Not eating kalunyaks is not enough. I've never thought about the possibility that Legalas can leave us. We must do something.";
-		npctalk "We need to do something as well.", "", bc_self;
+		npctalk("We need to do something as well.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Great attitude! Now Legalas will...";
@@ -9328,9 +9332,9 @@ lasagna,246,103,5	script	Gopara#dorcon01	4_GALAPAGO,3,3,{
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "there's something called doram trash among the dorams. Too bad that you can't use it since you're not dorams and That's about it. Fine.";
-		npctalk "Doram trash? What the? How can you say such a thing?!", "", bc_self;
-		npctalk "What does that mean?", "Daldal#dorcon01", bc_self;
-		npctalk "It's better that you don't know.", "", bc_self;
+		npctalk("Doram trash? What the? How can you say such a thing?!", "");
+		npctalk("What does that mean?", "Daldal#dorcon01");
+		npctalk("It's better that you don't know.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "I'm the one responsible for bringing up the subject and for poor Legalas's sake, I'll help you guys find a job.";
@@ -9346,7 +9350,7 @@ lasagna,246,103,5	script	Gopara#dorcon01	4_GALAPAGO,3,3,{
 		next;
 		mes "[Gopara]";
 		mes "Then find something easy. I think something like ^0000cdbabysitting^000000 would be nice.";
-		npctalk "Easy.", "", bc_self;
+		npctalk("Easy.", "");
 		next;
 		mes "[Daldal]";
 		mes "Yeah, I like babies. Small and cute.";
@@ -9395,32 +9399,32 @@ lasagna,247,101,7	script	Daldal#dorcon01	4_SEA_OTTER,{
 		next;
 		mes "[Daldal]";
 		mes "What is it? Did you bring something to eat?";
-		npctalk "What is it? Did you bring something to eat?", "Daldal#dorcon01", bc_self;
+		npctalk("What is it? Did you bring something to eat?", "Daldal#dorcon01");
 		next;
 		mes "[Gopara]";
 		mes "Are you going to play with us?";
-		npctalk "Are you going to play with us?", "", bc_self;
+		npctalk("Are you going to play with us?", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "From what I hear, you eat all the kalunyaks that Legalas cleans. Right now, we're almost out of kaluna made from those kalunyaks. Can you please control yourselves a bit?";
 		next;
 		mes "[Daldal]";
 		mes "Why should we?";
-		npctalk "Yeah.", "", bc_self;
+		npctalk("Yeah.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Because you can't make kaluna milk without kaluna. Someone who was supposed to receive kaluna from Legalas is in a tight spot right now.";
 		next;
 		mes "[Gopara]";
 		mes "What does that have to do with us?";
-		npctalk "Right.", "", bc_self;
+		npctalk("Right.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "You see, Kalu really needs kaluna. Without kaluna, he can't continue his business.";
 		next;
 		mes "[Daldal]";
 		mes "That has nothing to do with me.";
-		npctalk "I don't know who he is.", "", bc_self;
+		npctalk("I don't know who he is.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "It has a lot to do with Legalas. You are aware that Legalas supplies Kalu with kaluna fermented from kalunyak, right?";
@@ -9430,7 +9434,7 @@ lasagna,247,101,7	script	Daldal#dorcon01	4_SEA_OTTER,{
 		next;
 		mes "[Gopara]";
 		mes "So what does that have to do with us?";
-		npctalk "I just need my belly to be full.", "Daldal#dorcon01", bc_self;
+		npctalk("I just need my belly to be full.", "Daldal#dorcon01");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "If Legalas loses his job, then he won't be able to earn money. And if he can't earn money, then wouldn't that put you guys in a tight spot?";
@@ -9461,11 +9465,11 @@ lasagna,247,101,7	script	Daldal#dorcon01	4_SEA_OTTER,{
 		next;
 		mes "[Daldal]";
 		mes "No! No more!";
-		npctalk "No! No more!", "Daldal#dorcon01", bc_self;
+		npctalk("No! No more!", "Daldal#dorcon01");
 		next;
 		mes "[Gopara]";
 		mes "Not eating kalunyaks is not enough. I've never thought about the possibility that Legalas can leave us. We must do something.";
-		npctalk "We need to do something as well.", "", bc_self;
+		npctalk("We need to do something as well.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Great attitude! Now Legalas will...";
@@ -9484,9 +9488,9 @@ lasagna,247,101,7	script	Daldal#dorcon01	4_SEA_OTTER,{
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "there's something called doram trash among the dorams. Too bad that you can't use it since you're not dorams and That's about it. Fine.";
-		npctalk "Doram trash? What the? How can you say such a thing?!", "", bc_self;
-		npctalk "What does that mean?", "Daldal#dorcon01", bc_self;
-		npctalk "It's better that you don't know.", "", bc_self;
+		npctalk("Doram trash? What the? How can you say such a thing?!", "");
+		npctalk("What does that mean?", "Daldal#dorcon01");
+		npctalk("It's better that you don't know.", "");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "I'm the one responsible for bringing up the subject and for poor Legalas's sake, I'll help you guys find a job.";
@@ -9502,7 +9506,7 @@ lasagna,247,101,7	script	Daldal#dorcon01	4_SEA_OTTER,{
 		next;
 		mes "[Gopara]";
 		mes "Then find something easy. I think something like ^0000cdbabysitting^000000 would be nice.";
-		npctalk "Easy.", "", bc_self;
+		npctalk("Easy.", "");
 		next;
 		mes "[Daldal]";
 		mes "Yeah, I like babies. Small and cute.";
@@ -9561,8 +9565,8 @@ lasagna,195,235,3	script	Cute Baby#dorcon	4_F_KR_TIGER,{
 	if (lasagna_quest[2] == 3) {
 		mes "[Baby]";
 		mes "Waa.";
-		npctalk "Arrived.", "Daldal#dorcon02", bc_self;
-		npctalk "Tired.", "Gopara#dorcon02", bc_self;
+		npctalk("Arrived.", "Daldal#dorcon02");
+		npctalk("Tired.", "Gopara#dorcon02");
 		next;
 		mes "[Gopara]";
 		mes "there's a baby here.";
@@ -9572,26 +9576,26 @@ lasagna,195,235,3	script	Cute Baby#dorcon	4_F_KR_TIGER,{
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Big but definitely... a baby.";
-		npctalk "Waa - aah - meow", "Cute Baby#dorcon", bc_self;
+		npctalk("Waa - aah - meow", "Cute Baby#dorcon");
 		next;
 		mes "[Gopara]";
 		mes "Okay, I'm sitting now.";
-		npctalk "Sitting now.", "Daldal#dorcon02", bc_self;
+		npctalk("Sitting now.", "Daldal#dorcon02");
 		next;
 		emotion ET_QUESTION;
 		mes "[Daldal]";
 		mes "Sitting.";
-		npctalk "Sitting.", "Gopara#dorcon02", bc_self;
+		npctalk("Sitting.", "Gopara#dorcon02");
 		next;
 		emotion ET_QUESTION;
 		mes "[Gopara]";
 		mes "Patiently sitting.";
-		npctalk "Patiently -", "Daldal#dorcon02", bc_self;
+		npctalk("Patiently -", "Daldal#dorcon02");
 		next;
 		emotion ET_QUESTION;
 		mes "[Daldal]";
 		mes "Sitting.";
-		npctalk "Sitting.", "Daldal#dorcon02", bc_self;
+		npctalk("Sitting.", "Daldal#dorcon02");
 		next;
 		emotion ET_CRY;
 		mes "[Baby]";
@@ -9603,11 +9607,11 @@ lasagna,195,235,3	script	Cute Baby#dorcon	4_F_KR_TIGER,{
 		next;
 		mes "[Gopara]";
 		mes "So That's what we're doing right now. We're sitting as hard as we can.";
-		npctalk "I'm doing my best.", "Daldal#dorcon02", bc_self;
+		npctalk("I'm doing my best.", "Daldal#dorcon02");
 		next;
 		mes "[Daldal]";
 		mes "Me too.";
-		npctalk "We're communing.", "Gopara#dorcon02", bc_self;
+		npctalk("We're communing.", "Gopara#dorcon02");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Babysitting is not sitting around quietly. It's looking after a baby!";
@@ -9624,18 +9628,18 @@ lasagna,195,235,3	script	Cute Baby#dorcon	4_F_KR_TIGER,{
 		next;
 		mes "[Gopara]";
 		mes "Be quiet. Just speak up.";
-		npctalk "I don't want to do this anymore.", "Daldal#dorcon02", bc_self;
+		npctalk("I don't want to do this anymore.", "Daldal#dorcon02");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "This is not going to work. Let's forget about babysitting. Was there anything you've always wanted to do?";
 		next;
 		mes "[Daldal]";
 		mes "No such thing. I'm hungry.";
-		npctalk "I want to go back.", "Daldal#dorcon02", bc_self;
+		npctalk("I want to go back.", "Daldal#dorcon02");
 		next;
 		mes "[Gopara]";
 		mes "Now that I think about it, I've always wanted to do something ^0000cdrelated to anchovies^000000. Anchovies are yummy.";
-		npctalk "Anchovy sounds great!", "Gopara#dorcon02", bc_self;
+		npctalk("Anchovy sounds great!", "Gopara#dorcon02");
 		classchange( HIDDEN_WARP_NPC, "Daldal#dorcon02", bc_self );
 		classchange( HIDDEN_WARP_NPC, "Gopara#dorcon02", bc_self );
 		next;
@@ -9698,7 +9702,7 @@ lasagna,225,290,5	script	Workshop Manager#dorcon	4_M_BOSSCAT,{
 		next;
 		mes "[Workshop Manager]";
 		mes "Now, follow after me. Grab an anchovy. Remove its head. Pull out the guts. Put it inside the container.";
-		npctalk "Piece of cake, right?", "", bc_self;
+		npctalk("Piece of cake, right?", "");
 		next;
 		mes "[Workshop Manager]";
 		mes "Rookies go through these four steps, but skilled workers pick up and simultaneously remove head and guts and throw it inside the container. They are capable of one-step method.";
@@ -9717,7 +9721,7 @@ lasagna,225,290,5	script	Workshop Manager#dorcon	4_M_BOSSCAT,{
 		next;
 		mes "[Gopara]";
 		mes "Anchovy is a long and thin snack That's a bit salty, Isn't it? But this thing has a head... and eyes too!";
-		npctalk "Are you snubbing us?", "Gopara#dorcon03", bc_self;
+		npctalk("Are you snubbing us?", "Gopara#dorcon03");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Of course it has eyes and head since It's a fish.";
@@ -9739,11 +9743,11 @@ lasagna,225,290,5	script	Workshop Manager#dorcon	4_M_BOSSCAT,{
 		next;
 		mes "[Gopara]";
 		mes "I can't do this.";
-		npctalk "I was grew up sheltered.", "Gopara#dorcon03", bc_self;
+		npctalk("I was grew up sheltered.", "Gopara#dorcon03");
 		next;
 		mes "[Daldal]";
 		mes "I don't think I can eat another anchovy ever again. Our eyes met just before. They're going to follow me every time I see an anchovy.";
-		npctalk "I can't believe I've been eating them all along.", "Daldal#dorcon03", bc_self;
+		npctalk("I can't believe I've been eating them all along.", "Daldal#dorcon03");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Ha... Is that so? Seems like this job is not for you either. Then Let's go find something else. Was there any other job you wanted to try?";
@@ -9753,7 +9757,7 @@ lasagna,225,290,5	script	Workshop Manager#dorcon	4_M_BOSSCAT,{
 		next;
 		mes "[Gopara]";
 		mes "Right. I've been living in Lasagna all this time and never been on a ship. This is a good chance to board on one.";
-		npctalk "I think that'll suit my personality.", "Gopara#dorcon03", bc_self;
+		npctalk("I think that'll suit my personality.", "Gopara#dorcon03");
 		classchange( HIDDEN_WARP_NPC, "Daldal#dorcon03", bc_self );
 		classchange( HIDDEN_WARP_NPC, "Gopara#dorcon03", bc_self );
 		next;
@@ -9818,11 +9822,11 @@ lasagna,139,299,3	script	Captain of Anchovy Fish	4_CAT_SAILOR5,{
 		next;
 		mes "[Gopara]";
 		mes "Feels like we're being sold.";
-		npctalk "Feels like we're being sold.", "Gopara#dorcon04", bc_self;
+		npctalk("Feels like we're being sold.", "Gopara#dorcon04");
 		next;
 		mes "[Daldal]";
 		mes "Probably just an imagination. He wouldn't sell us.";
-		npctalk "Probably just an imagination.", "Daldal#dorcon04", bc_self;
+		npctalk("Probably just an imagination.", "Daldal#dorcon04");
 		next;
 		mes "Captain of Anchovy Fishing Boat";
 		mes "Hey, you two over there. Have you ever been on a ship?";
@@ -9849,7 +9853,7 @@ lasagna,139,299,3	script	Captain of Anchovy Fish	4_CAT_SAILOR5,{
 		next;
 		mes "[Gopara]";
 		mes "I want to share mine. Can I tell you?";
-		npctalk "So many heartbreaking stories.", "Gopara#dorcon04", bc_self;
+		npctalk("So many heartbreaking stories.", "Gopara#dorcon04");
 		next;
 		mes "[Daldal]";
 		mes "Not really interested.";
@@ -9878,21 +9882,21 @@ lasagna,139,299,3	script	Captain of Anchovy Fish	4_CAT_SAILOR5,{
 		next;
 		mes "[Gopara]";
 		mes "What? Isn't the boat stuck firmly on the water?!";
-		npctalk "Stop lying!", "Gopara#dorcon04", bc_self;
+		npctalk("Stop lying!", "Gopara#dorcon04");
 		next;
 		mes "Captain of Anchovy Fishing Boat";
 		mes "It's floating on water, not stuck on water. How can a boat move if It's stuck on water?!";
 		next;
 		mes "[Daldal]";
 		mes "I can't believe it! How can you say that such heavy boat is floating on water?!";
-		npctalk "Even I have the common sense to know that heavy things sink in water!", "Daldal#dorcon04", bc_self;
+		npctalk("Even I have the common sense to know that heavy things sink in water!", "Daldal#dorcon04");
 		next;
 		mes "Captain of Anchovy Fishing Boat";
 		mes "Hey you, adventurer!";
 		next;
 		mes "Captain of Anchovy Fishing Boat";
 		mes "Take them back with you. Working on a ship doesn't require high intelligence, but these idiots probably can't even pull off a cleaning job. No, forget cleaning. I'll be lucky if they don't drive me crazy first.";
-		npctalk "What do you mean by that?", "Daldal#dorcon04", bc_self;
+		npctalk("What do you mean by that?", "Daldal#dorcon04");
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "I understand.";
@@ -9998,7 +10002,7 @@ lasa_dun02,53,150,7	script	Daldal#dorcon06	HIDDEN_WARP_NPC,{
 }
 
 lasa_dun02,55,153,3	script	Panna#dorcon	4_DR_SOLDIER,{
-	if (isbegin_quest(14574) > 0 || isbegin_quest(14577) > 0) {
+	if (questprogress(14574) > 0 || questprogress(14577) > 0) {
 		mes "[Panna]";
 		mes "Oh, I'm so hungry. When is the food coming? Food.";
 		next;
@@ -10038,8 +10042,8 @@ lasa_dun02,55,153,3	script	Panna#dorcon	4_DR_SOLDIER,{
 		next;
 		mes "[Daldal]";
 		mes "That looks delicious...";
-		npctalk "Give me a bite...", "Daldal#dorcon06", bc_self;
-		npctalk "How can you even think about taking his food? Hang on just a bit longer.", "Gopara#dorcon06", bc_self;
+		npctalk("Give me a bite...", "Daldal#dorcon06");
+		npctalk("How can you even think about taking his food? Hang on just a bit longer.", "Gopara#dorcon06");
 		next;
 		mes "[Panna]";
 		mes "Hah, I feel much better now. I was so hungry that I was about to eat a basilisk, and you couldn't come at a better time. I almost became a doram who failed to remain as one and turn into an animal.";
@@ -10069,7 +10073,7 @@ lasa_dun02,55,153,3	script	Panna#dorcon	4_DR_SOLDIER,{
 		}
 		close;
 	}
-	if (isbegin_quest(14575) == 1 || isbegin_quest(14578) == 1) {
+	if (questprogress(14575) == 1 || questprogress(14578) == 1) {
 		mes "[Panna]";
 		mes "Thanks to you, I was able to eat a hearty meal. Please tell Kalu that I'm grateful for the delicious lunch. Hopefully, today will be another safe...";
 		close;
@@ -10080,83 +10084,83 @@ lasa_dun02,55,153,3	script	Panna#dorcon	4_DR_SOLDIER,{
 }
 
 conch_in,122,61,5	script	Crewman#dorcon01	4_CAT_ADV1,{
-	npctalk "Thank you for boarding on Con-Chliina. Please enjoy a safe and comfortable trip to your destination!", "", bc_self;
+	npctalk("Thank you for boarding on Con-Chliina. Please enjoy a safe and comfortable trip to your destination!", "");
 	end;
 }
 
 // in C_D
 conch_in,59,29,5	script	Engineer#dorcon01	4_CAT_SAILOR5,{
 	// pcblocknpc
-	npctalk "Are you an adventurer heading to the new world? Welcome. Have you heard about how our ship moves?", "", bc_self;
+	npctalk("Are you an adventurer heading to the new world? Welcome. Have you heard about how our ship moves?", "");
 	sleep2 2000;
-	unittalk getcharid(3), "" + strcharinfo(0) + " : No, I have not.", bc_self;
+	unittalk(getcharid(3), "" + strcharinfo(0) + " : No, I have not.");
 	sleep2 2000;
-	npctalk "Our ship has a different power system compared to other ships. And only few people know this.", "", bc_self;
+	npctalk("Our ship has a different power system compared to other ships. And only few people know this.", "");
 	sleep2 2000;
-	npctalk "Hundreds of hamsters are running on treadmills on the bottom of this ship. The ship moves forward because this area is connected to the main part of the engine.", "", bc_self;
+	npctalk("Hundreds of hamsters are running on treadmills on the bottom of this ship. The ship moves forward because this area is connected to the main part of the engine.", "");
 	sleep2 1000;
 	emotion ET_HUK;
-	unittalk getcharid(3), "" + strcharinfo(0) + " : Pardon???", bc_self;
+	unittalk(getcharid(3), "" + strcharinfo(0) + " : Pardon???");
 	sleep2 1000;
 	emotion ET_SWEAT;
-	npctalk "Oh, wait. You're not taking me seriously, are you? It's a joke, a joke!", "", bc_self;
+	npctalk("Oh, wait. You're not taking me seriously, are you? It's a joke, a joke!", "");
 	end;
 }
 
 // in E_F
 conch_in,59,91,5	script	Passenger#dorcon04	4_F_ALCHE_A,{
-	npctalk "Heading to Midgard? It's my first time in Lasagna and It's great, really! So I'm just going to stay here for good. I found a place to live and signed the papers, too!", "", bc_self;
+	npctalk("Heading to Midgard? It's my first time in Lasagna and It's great, really! So I'm just going to stay here for good. I found a place to live and signed the papers, too!", "");
 	sleep2 2000;
-	npctalk "I'm on my way to pack up my stuff in Midgard. It's great, really.", "", bc_self;
+	npctalk("I'm on my way to pack up my stuff in Midgard. It's great, really.", "");
 	end;
 }
 
 // in_I_J
 conch_in,97,96,5	script	Merchant#dorcon01	4_M_MERCAT2,{
-	npctalk "You can tell from this bundle, right? I'm not a rookie adventurer. I'm a merchant who travels to different places and sells stuff.", "", bc_self;
+	npctalk("You can tell from this bundle, right? I'm not a rookie adventurer. I'm a merchant who travels to different places and sells stuff.", "");
 	sleep2 2000;
-	npctalk "I heard that Igdrasil is rare in the new world since there are none. So I'm going to try selling it over there.", "", bc_self;
+	npctalk("I heard that Igdrasil is rare in the new world since there are none. So I'm going to try selling it over there.", "");
 	sleep2 2000;
-	npctalk "If there is anything else that might sell, I'm going to buy some and sell them there. I'm going be a millionaire.", "", bc_self;
+	npctalk("If there is anything else that might sell, I'm going to buy some and sell them there. I'm going be a millionaire.", "");
 	end;
 }
 
 // in_N_M
 conch_in,135,91,5	script	Passenger#dorcon01	4_CAT_ADV2,{
-	npctalk "What does a new world person want with me?", "", bc_self;
+	npctalk("What does a new world person want with me?", "");
 	end;
 }
 conch_in,135,93,5	script	Passenger#dorcon03	4_DR_TORTEL,{
-	npctalk "Is this your first time on Con-Chliina? I was on this ship before to get to the new world once my training was over. Back then, the food was really good, so...", "", bc_self;
+	npctalk("Is this your first time on Con-Chliina? I was on this ship before to get to the new world once my training was over. Back then, the food was really good, so...", "");
 	sleep2 2000;
-	npctalk "The minute I landed on the new world, I went right back to the boat. Just loved the food...", "", bc_self;
+	npctalk("The minute I landed on the new world, I went right back to the boat. Just loved the food...", "");
 	end;
 }
 conch_in,137,98,3	script	Passenger#dorcon02	4_DR_F_01,{
-	npctalk "It's my first time in the new world and I'm really excited. Did you decide what you'll do first when you get there? I want to go to the Mjolnir Mountains first!", "", bc_self;
+	npctalk("It's my first time in the new world and I'm really excited. Did you decide what you'll do first when you get there? I want to go to the Mjolnir Mountains first!", "");
 	sleep2 2000;
-	npctalk "The minute I saw it on [A Guide for New Adventurers to the New World], I promised myself that I would go! I heard It's got wonderful landscapes!", "", bc_self;
+	npctalk("The minute I saw it on [A Guide for New Adventurers to the New World], I promised myself that I would go! I heard It's got wonderful landscapes!", "");
 	end;
 }
 
 // in_P_O
 conch_in,169,70,3	script	Crewman#dorcon02	4_CAT_SAILOR2,{
-	npctalk "Midgard has been discovered, so I wonder if there's any other place out there. Place where we've never been to and not on the map.", "", bc_self;
+	npctalk("Midgard has been discovered, so I wonder if there's any other place out there. Place where we've never been to and not on the map.", "");
 	sleep2 2000;
-	npctalk "You think there's such a place?", "Crewman#dorcon03", bc_self;
+	npctalk("You think there's such a place?", "Crewman#dorcon03");
 	sleep2 2000;
-	npctalk "Before it was discovered, we had no idea Midgard even existed. I'm sure there's a place out there and we just don't know it.", "", bc_self;
+	npctalk("Before it was discovered, we had no idea Midgard even existed. I'm sure there's a place out there and we just don't know it.", "");
 	sleep2 2000;
-	npctalk "Do you think It's looking for us too?", "Crewman#dorcon03", bc_self;
+	npctalk("Do you think It's looking for us too?", "Crewman#dorcon03");
 	sleep2 2000;
-	npctalk "Oh, my heart is beating just from the thought of it.", "", bc_self;
+	npctalk("Oh, my heart is beating just from the thought of it.", "");
 	end;
 }
 conch_in,166,68,6	script	Crewman#dorcon03	4_CAT_SAILOR1,{
-	npctalk "You know, I think First Officer Stello may be able to find another sea route to the new world That's not on the map.", "", bc_self;
+	npctalk("You know, I think First Officer Stello may be able to find another sea route to the new world That's not on the map.", "");
 	sleep2 2000;
-	npctalk "Indeed, if it does exist then we can find it and sail on it someday!", "Crewman#dorcon02", bc_self;
+	npctalk("Indeed, if it does exist then we can find it and sail on it someday!", "Crewman#dorcon02");
 	sleep2 2000;
-	npctalk "I should stay on Con-Chliina for a long time and witness the moment when we make a discovery.", "", bc_self;
+	npctalk("I should stay on Con-Chliina for a long time and witness the moment when we make a discovery.", "");
 	end;
 }
