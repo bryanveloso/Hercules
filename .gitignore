@@ -29,6 +29,7 @@ Thumbs.db
 /config.log
 /config.status
 /core
+/grfs
 /ipch
 /login-server
 /Makefile
