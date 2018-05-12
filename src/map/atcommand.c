@@ -2057,7 +2057,7 @@ ACMD(monster)
 		number = 1;
 
 	if (!name[0])
-		strcpy(name, "--ja--");
+		strcpy(name, DEFAULT_MOB_JNAME);
 
 	// If value of atcommand_spawn_quantity_limit directive is greater than or equal to 1 and quantity of monsters is greater than value of the directive
 	if (battle_config.atc_spawn_quantity_limit && number > battle_config.atc_spawn_quantity_limit)
@@ -3957,6 +3957,10 @@ ACMD(mapinfo)
 		strcat(atcmd_output, msg_fd(fd, 1063)); // NoAutoloot |
 	if (map->list[m_id].flag.noviewid != EQP_NONE)
 		strcat(atcmd_output, msg_fd(fd,1079)); // NoViewID |
+	if (map->list[m_id].flag.pairship_startable)
+		strcat(atcmd_output, msg_fd(fd, 1292)); // PrivateAirshipStartable |
+	if (map->list[m_id].flag.pairship_endable)
+		strcat(atcmd_output, msg_fd(fd, 1293)); // PrivateAirshipEndable |
 	clif->message(fd, atcmd_output);
 
 	switch (list) {
@@ -6129,9 +6133,10 @@ ACMD(mobsearch)
 		clif->message(fd, atcmd_output);
 		return false;
 	}
-	if (mob_id == atoi(mob_name))
-		strcpy(mob_name,mob->db(mob_id)->jname); // --ja--
-		//strcpy(mob_name,mob_db(mob_id)->name); // --en--
+	if (mob_id == atoi(mob_name)) {
+		strcpy(mob_name,mob->db(mob_id)->jname); // DEFAULT_MOB_JNAME
+		//strcpy(mob_name,mob_db(mob_id)->name); // DEFAULT_MOB_NAME
+	}
 
 	snprintf(atcmd_output, sizeof atcmd_output, msg_fd(fd,1220), mob_name, mapindex_id2name(sd->mapindex)); // Mob Search... %s %s
 	clif->message(fd, atcmd_output);
@@ -6193,7 +6198,7 @@ ACMD(cleanarea) {
  *------------------------------------------*/
 ACMD(npctalk)
 {
-	char name[NAME_LENGTH],mes[100],temp[100];
+	char name[NAME_LENGTH], mes[100], temp[200];
 	struct npc_data *nd;
 	bool ifcolor=(*(info->command + 7) != 'c' && *(info->command + 7) != 'C')?0:1;
 	unsigned int color = 0;
@@ -6230,7 +6235,7 @@ ACMD(npctalk)
 
 ACMD(pettalk)
 {
-	char mes[100],temp[100];
+	char mes[100], temp[200];
 	struct pet_data *pd;
 
 	if (battle_config.min_chat_delay) {
@@ -6374,7 +6379,7 @@ ACMD(summon)
 		return false;
 	}
 
-	md = mob->once_spawn_sub(&sd->bl, sd->bl.m, -1, -1, "--ja--", mob_id, "", SZ_SMALL, AI_NONE);
+	md = mob->once_spawn_sub(&sd->bl, sd->bl.m, -1, -1, DEFAULT_MOB_JNAME, mob_id, "", SZ_SMALL, AI_NONE);
 
 	if(!md)
 		return false;
@@ -6815,9 +6820,10 @@ ACMD(showmobs)
 		return false;
 	}
 
-	if(mob_id == atoi(mob_name))
-		strcpy(mob_name,mob->db(mob_id)->jname);    // --ja--
-	//strcpy(mob_name,mob_db(mob_id)->name);    // --en--
+	if (mob_id == atoi(mob_name)) {
+		strcpy(mob_name,mob->db(mob_id)->jname); // DEFAULT_MOB_JNAME
+		//strcpy(mob_name,mob_db(mob_id)->name); // DEFAULT_MOB_NAME
+	}
 
 	snprintf(atcmd_output, sizeof atcmd_output, msg_fd(fd,1252), // Mob Search... %s %s
 			 mob_name, mapindex_id2name(sd->mapindex));
@@ -7035,7 +7041,7 @@ ACMD(homhungry)
  *------------------------------------------*/
 ACMD(homtalk)
 {
-	char mes[100],temp[100];
+	char mes[100], temp[200];
 
 	if (battle_config.min_chat_delay) {
 		if (DIFF_TICK(sd->cantalk_tick, timer->gettick()) > 0)

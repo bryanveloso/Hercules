@@ -360,6 +360,8 @@
 - `mf_nocashshop`: 54
 - `mf_noautoloot`: 55
 - `mf_noviewid`: 56
+- `mf_pairship_startable`: 57
+- `mf_pairship_endable`: 58
 
 ### Cell Properties
 
@@ -4161,6 +4163,72 @@
 - `ITEMINFO_VIEWID`: 14
 - `ITEMINFO_MATK`: 15
 - `ITEMINFO_VIEWSPRITE`: 16
+
+### monster skill states
+
+- `MSS_ANY`: -1
+- `MSS_IDLE`: 0
+- `MSS_WALK`: 1
+- `MSS_LOOT`: 2
+- `MSS_DEAD`: 3
+- `MSS_BERSERK`: 4
+- `MSS_ANGRY`: 5
+- `MSS_RUSH`: 6
+- `MSS_FOLLOW`: 7
+- `MSS_ANYTARGET`: 8
+
+### monster skill conditions
+
+- `MSC_ANY`: -1
+- `MSC_ALWAYS`: 0
+- `MSC_MYHPLTMAXRATE`: 1
+- `MSC_MYHPINRATE`: 2
+- `MSC_FRIENDHPLTMAXRATE`: 3
+- `MSC_FRIENDHPINRATE`: 4
+- `MSC_MYSTATUSON`: 5
+- `MSC_MYSTATUSOFF`: 6
+- `MSC_FRIENDSTATUSON`: 7
+- `MSC_FRIENDSTATUSOFF`: 8
+- `MSC_ATTACKPCGT`: 9
+- `MSC_ATTACKPCGE`: 10
+- `MSC_SLAVELT`: 11
+- `MSC_SLAVELE`: 12
+- `MSC_CLOSEDATTACKED`: 13
+- `MSC_LONGRANGEATTACKED`: 14
+- `MSC_SKILLUSED`: 16
+- `MSC_AFTERSKILL`: 15
+- `MSC_CASTTARGETED`: 17
+- `MSC_RUDEATTACKED`: 18
+- `MSC_MASTERHPLTMAXRATE`: 19
+- `MSC_MASTERATTACKED`: 20
+- `MSC_ALCHEMIST`: 21
+- `MSC_SPAWN`: 22
+
+### monster skill targets
+
+- `MST_TARGET`: 0
+- `MST_RANDOM`: 1
+- `MST_SELF`: 2
+- `MST_FRIEND`: 3
+- `MST_MASTER`: 4
+- `MST_AROUND5`: 5
+- `MST_AROUND6`: 6
+- `MST_AROUND7`: 7
+- `MST_AROUND8`: 8
+- `MST_AROUND1`: 9
+- `MST_AROUND2`: 10
+- `MST_AROUND3`: 11
+- `MST_AROUND4`: 12
+- `MST_AROUND`: 12
+
+### private airship responds
+
+- `P_AIRSHIP_NONE`: 0
+- `P_AIRSHIP_RETRY`: 1
+- `P_AIRSHIP_INVALID_START_MAP`: 2
+- `P_AIRSHIP_INVALID_END_MAP`: 3
+- `P_AIRSHIP_ITEM_NOT_ENOUGH`: 4
+- `P_AIRSHIP_ITEM_INVALID`: 5
 
 ### Renewal
 

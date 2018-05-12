@@ -2268,6 +2268,8 @@ typedef void (*HPMHOOK_pre_clif_pMoveItem) (int *fd, struct map_session_data **s
 typedef void (*HPMHOOK_post_clif_pMoveItem) (int fd, struct map_session_data *sd);
 typedef void (*HPMHOOK_pre_clif_pDull) (int *fd, struct map_session_data **sd);
 typedef void (*HPMHOOK_post_clif_pDull) (int fd, struct map_session_data *sd);
+typedef void (*HPMHOOK_pre_clif_p_cz_blocking_play_cancel) (int *fd, struct map_session_data **sd);
+typedef void (*HPMHOOK_post_clif_p_cz_blocking_play_cancel) (int fd, struct map_session_data *sd);
 typedef void (*HPMHOOK_pre_clif_pBGQueueRegister) (int *fd, struct map_session_data **sd);
 typedef void (*HPMHOOK_post_clif_pBGQueueRegister) (int fd, struct map_session_data *sd);
 typedef void (*HPMHOOK_pre_clif_pBGQueueCheckState) (int *fd, struct map_session_data **sd);
@@ -2426,6 +2428,10 @@ typedef void (*HPMHOOK_pre_clif_pAttendanceRewardRequest) (int *fd, struct map_s
 typedef void (*HPMHOOK_post_clif_pAttendanceRewardRequest) (int fd, struct map_session_data *sd);
 typedef void (*HPMHOOK_pre_clif_ui_action) (struct map_session_data **sd, int32 *UIType, int32 *data);
 typedef void (*HPMHOOK_post_clif_ui_action) (struct map_session_data *sd, int32 UIType, int32 data);
+typedef void (*HPMHOOK_pre_clif_pPrivateAirshipRequest) (int *fd, struct map_session_data **sd);
+typedef void (*HPMHOOK_post_clif_pPrivateAirshipRequest) (int fd, struct map_session_data *sd);
+typedef void (*HPMHOOK_pre_clif_PrivateAirshipResponse) (struct map_session_data **sd, uint32 *flag);
+typedef void (*HPMHOOK_post_clif_PrivateAirshipResponse) (struct map_session_data *sd, uint32 flag);
 #endif // MAP_CLIF_H
 #ifdef COMMON_CORE_H /* cmdline */
 typedef void (*HPMHOOK_pre_cmdline_init) (void);
@@ -5078,8 +5084,6 @@ typedef bool (*HPMHOOK_pre_mob_parse_row_chatdb) (char ***str, const char **sour
 typedef bool (*HPMHOOK_post_mob_parse_row_chatdb) (bool retVal___, char **str, const char *source, int line, int *last_msg_id);
 typedef void (*HPMHOOK_pre_mob_readchatdb) (void);
 typedef void (*HPMHOOK_post_mob_readchatdb) (void);
-typedef bool (*HPMHOOK_pre_mob_parse_row_mobskilldb) (char ***str, int *columns, int *current);
-typedef bool (*HPMHOOK_post_mob_parse_row_mobskilldb) (bool retVal___, char **str, int columns, int current);
 typedef void (*HPMHOOK_pre_mob_readskilldb) (void);
 typedef void (*HPMHOOK_post_mob_readskilldb) (void);
 typedef bool (*HPMHOOK_pre_mob_readdb_race2) (char **fields[], int *columns, int *current);
@@ -5092,6 +5096,12 @@ typedef void (*HPMHOOK_pre_mob_clear_spawninfo) (void);
 typedef void (*HPMHOOK_post_mob_clear_spawninfo) (void);
 typedef void (*HPMHOOK_pre_mob_destroy_mob_db) (int *index);
 typedef void (*HPMHOOK_post_mob_destroy_mob_db) (int index);
+typedef bool (*HPMHOOK_pre_mob_skill_db_libconfig) (const char **filename, bool *ignore_missing);
+typedef bool (*HPMHOOK_post_mob_skill_db_libconfig) (bool retVal___, const char *filename, bool ignore_missing);
+typedef bool (*HPMHOOK_pre_mob_skill_db_libconfig_sub) (struct config_setting_t **it, int *n);
+typedef bool (*HPMHOOK_post_mob_skill_db_libconfig_sub) (bool retVal___, struct config_setting_t *it, int n);
+typedef bool (*HPMHOOK_pre_mob_skill_db_libconfig_sub_skill) (struct config_setting_t **it, int *n, int *mob_id);
+typedef bool (*HPMHOOK_post_mob_skill_db_libconfig_sub_skill) (bool retVal___, struct config_setting_t *it, int n, int mob_id);
 #endif // MAP_MOB_H
 #ifdef COMMON_MUTEX_H /* mutex */
 typedef struct mutex_data* (*HPMHOOK_pre_mutex_create) (void);

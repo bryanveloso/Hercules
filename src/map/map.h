@@ -740,7 +740,7 @@ enum map_zone_merge_type {
 #define MAP_ZONE_BG_NAME "Battlegrounds"
 #define MAP_ZONE_CVC_NAME "CvC"
 #define MAP_ZONE_PK_NAME "PK Mode"
-#define MAP_ZONE_MAPFLAG_LENGTH 50
+#define MAP_ZONE_MAPFLAG_LENGTH 65
 
 struct map_zone_data {
 	char name[MAP_ZONE_NAME_LENGTH];/* 20'd */
@@ -857,6 +857,8 @@ struct map_data {
 		unsigned notomb : 1;
 		unsigned nocashshop : 1;
 		unsigned noautoloot : 1;
+		unsigned pairship_startable : 1;
+		unsigned pairship_endable : 1;
 		uint32 noviewid; ///< noviewid (bitmask - @see enum equip_pos)
 	} flag;
 	struct point save;
